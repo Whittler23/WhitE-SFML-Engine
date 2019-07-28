@@ -1,7 +1,6 @@
+#include "gameEngine.hpp"
 
 #include <stdexcept>
-
-//TODO: Macro should be handled by own macro
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -15,7 +14,9 @@ void showMessageBox(const std::string& str)
 int main()
 {
 try {
-	
+	WhitE::GameEngine gameEngine;
+
+	gameEngine.start();
 }
 catch (std::runtime_error & e)
 {
