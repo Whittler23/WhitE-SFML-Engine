@@ -6,7 +6,7 @@
 bin/
 
 # IDE files
-.vscode
+.vs
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
