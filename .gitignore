@@ -8,6 +8,11 @@ bin/
 # IDE files
 .vscode
 *.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
 *.sln
+
+
+
 
 
