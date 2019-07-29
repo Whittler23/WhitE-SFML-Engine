@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-#ifdef _WIN32
+#ifdef WE_WINDOWS
 #include <Windows.h>
 #endif
 
