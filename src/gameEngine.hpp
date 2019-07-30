@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics.hpp>
 
 namespace WhitE {
 
@@ -10,6 +10,11 @@ public:
 	GameEngine();
 
 	void start();
+
+private:
+	void update(const sf::Time deltaTime);
+	void draw();
+	void input();
 
 private:
 	sf::RenderWindow mGameWindow;
