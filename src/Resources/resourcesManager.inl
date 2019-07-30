@@ -11,7 +11,7 @@ auto WhitE::ResourcesManager<typename ResourceType>::get(const std::string& resP
 {
 	auto found = mResourcesMap.find(resPath);
 	if (found != mResourcesMap.end())
-		return found->second;
+		return *found->second;
 	else;
 		//TODO:	Warning Log
 }
@@ -29,9 +29,10 @@ void WhitE::ResourcesManager<typename ResourceType>::free(const std::string& res
 template<typename ResourceType>
 void WhitE::ResourcesManager<typename ResourceType>::load(const std::string& resPath)
 {
-	ResourceType resource;
-	if (resource.loadFromFile(resPath))
-		mResourcesMap.insert(std::make_pair(resPath, resource));
+	//ResourceType resource;
+	auto resource = std::make_unique<ResourceType>();
+	if (resource->loadFromFile(resPath))
+		mResourcesMap.insert(std::make_pair(resPath, std::move(resource)));
 	else;
 		//TODO: Warning Log
 }

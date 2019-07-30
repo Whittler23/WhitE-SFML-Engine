@@ -4,6 +4,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <memory>
 
 namespace WhitE {
 
@@ -19,7 +20,8 @@ public:
 	bool doesExist(const std::string&);
 
 private:
-	std::unordered_map<std::string, ResourceType> mResourcesMap;
+	std::unordered_map<std::string, std::unique_ptr<ResourceType> > mResourcesMap;
+	
 };
 
 }
