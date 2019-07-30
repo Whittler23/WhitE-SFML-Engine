@@ -22,6 +22,7 @@ project "WhitE"
     files {
          "../../src/**.cpp",
          "../../src/**.hpp",
+		 "../../src/**.inl"
     }
 
     defines { "SFML_STATIC" }

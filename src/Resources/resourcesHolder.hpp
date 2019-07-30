@@ -2,9 +2,12 @@
 
 #include "Resources/resourcesManager.hpp"
 
+#include "Resources/resourcesManager.inl"
+
 #include <SFML/Audio.hpp>
 
 namespace WhitE {
+
 
 class ResourceHolder
 {
@@ -21,5 +24,6 @@ private:
 	ResourcesManager<sf::Font> mFontHolder;
 
 };
+
 
 }
