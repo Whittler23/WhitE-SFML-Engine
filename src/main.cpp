@@ -18,7 +18,7 @@ try {
 
 	gameEngine.start();
 }
-catch (std::runtime_error & e)
+catch (std::exception& e)
 {
 	showMessageBox(e.what());
 	throw;
