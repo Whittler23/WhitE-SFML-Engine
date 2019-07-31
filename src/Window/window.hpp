@@ -6,19 +6,19 @@ namespace WhitE {
 
 struct WindowProperties
 {
-	const std::string mWindowTitle;
+	const std::string mWinTitle;
 	sf::Vector2u mWinSize;
-	bool mWinFullscreen;
+	bool mWinFllscr;
 
 	WindowProperties()
-		:mWindowTitle("WhitE")
-		,mWinFullscreen(false)
+		:mWinTitle("WhitE")
+		,mWinFllscr(false)
 		,mWinSize(640, 480)
 	{}
 
 	WindowProperties(const std::string name, bool winStyle, sf::Vector2u size = { 0, 0 })
-		:mWindowTitle(name)
-		,mWinFullscreen(winStyle)
+		:mWinTitle(name)
+		,mWinFllscr(winStyle)
 		,mWinSize(size)
 	{}
 };
@@ -26,7 +26,7 @@ struct WindowProperties
 class Window
 {
 public:
-	Window(WindowProperties);
+	Window(const std::string name, bool winStyle, sf::Vector2u size);
 	Window();
 
 	void update();

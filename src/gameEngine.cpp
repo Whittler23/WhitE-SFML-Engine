@@ -3,7 +3,7 @@
 namespace WhitE {
 
 GameEngine::GameEngine()
-	:mGameWindow(WindowProperties())
+	:mGameWindow()
 {
 }
 
