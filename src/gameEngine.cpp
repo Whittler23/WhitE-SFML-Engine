@@ -3,7 +3,7 @@
 namespace WhitE {
 
 GameEngine::GameEngine()
-	:mGameWindow(sf::VideoMode::getDesktopMode(), "Test of WhitE!", sf::Style::Close)
+	:mGameWindow(WindowProperties())
 {
 }
 
@@ -36,8 +36,7 @@ void GameEngine::update(const sf::Time deltaTime)
 
 void GameEngine::draw()
 {
-	mGameWindow.clear();
-	mGameWindow.display();
+	mGameWindow.draw();
 }
 
 }

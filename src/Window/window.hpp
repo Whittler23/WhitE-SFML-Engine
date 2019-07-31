@@ -4,44 +4,44 @@
 
 namespace WhitE {
 
-enum class WindowStyle
-{
-	Fullscreen,
-	Windowed
-};
-
 struct WindowProperties
 {
-	const std::string mGameWindowTitle;
-	sf::Vector2u mGameWindowSize;
-	WindowStyle mGameWindowStyle;
+	const std::string mWindowTitle;
+	sf::Vector2u mWinSize;
+	bool mWinFullscreen;
 
-	WindowProperties(const std::string name, WindowStyle winStyle)
-		:mGameWindowTitle(name)
-		,mGameWindowStyle(winStyle)
+	WindowProperties()
+		:mWindowTitle("WhitE")
+		,mWinFullscreen(false)
+		,mWinSize(640, 480)
 	{}
 
-	WindowProperties(const std::string name, WindowStyle winStyle, sf::Vector2u size)
-		:mGameWindowTitle(name)
-		,mGameWindowStyle(winStyle)
-		,mGameWindowSize(size)
+	WindowProperties(const std::string name, bool winStyle, sf::Vector2u size = { 0, 0 })
+		:mWindowTitle(name)
+		,mWinFullscreen(winStyle)
+		,mWinSize(size)
 	{}
 };
 
 class Window
 {
 public:
-	explicit Window(WindowProperties);
+	Window(WindowProperties);
+	Window();
+
+	void update();
+	void draw();
 
 	auto getWindowWidth() const -> const unsigned { return mGameWindow.getSize().x; }
 	auto getWindowHeight() const -> const unsigned { return mGameWindow.getSize().y; }
+	bool isOpen() const { return mGameWindow.isOpen(); }
 
 private:
 	void initializeWindow();
 
 private:
 	sf::RenderWindow mGameWindow;
-	WindowProperties mGameWindowProperties;
+	WindowProperties mProperties;
 
 };
 
