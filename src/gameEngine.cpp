@@ -32,6 +32,7 @@ void GameEngine::input()
 
 void GameEngine::update(const sf::Time deltaTime)
 {
+	mGameWindow.update();
 }
 
 void GameEngine::draw()
