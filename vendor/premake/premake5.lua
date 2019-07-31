@@ -53,7 +53,6 @@ project "WhitE"
         links{
             "sfml-graphics-s-d",
             "sfml-audio-s-d",
-            "sfml-network-s-d",
             "sfml-window-s-d",
             "sfml-system-s-d"
         }
@@ -64,7 +63,6 @@ project "WhitE"
         links{
             "sfml-graphics-s",
             "sfml-audio-s", 
-            "sfml-network-s",
             "sfml-window-s",
             "sfml-system-s"
         }
