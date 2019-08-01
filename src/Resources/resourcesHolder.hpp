@@ -14,9 +14,9 @@ class ResourceHolder
 public:
 	ResourceHolder();
 
-	auto getTextureHolder() const ->  const	ResourcesManager<sf::Texture>& { return mTextureHolder; }
-	auto getSoundHolder() const -> const ResourcesManager<sf::SoundBuffer>& { return mSoundHolder; }
-	auto getFontHolder() const -> const ResourcesManager<sf::Font>& { return mFontHolder; }
+	auto getTextureHolder()  ->  ResourcesManager<sf::Texture>& { return mTextureHolder; }
+	auto getSoundHolder()  ->  ResourcesManager<sf::SoundBuffer>& { return mSoundHolder; }
+	auto getFontHolder()  ->  ResourcesManager<sf::Font>& { return mFontHolder; }
 
 private:
 	ResourcesManager<sf::Texture> mTextureHolder;

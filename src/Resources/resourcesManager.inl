@@ -29,7 +29,6 @@ void WhitE::ResourcesManager<typename ResourceType>::free(const std::string& res
 template<typename ResourceType>
 void WhitE::ResourcesManager<typename ResourceType>::load(const std::string& resPath)
 {
-	//ResourceType resource;
 	auto resource = std::make_unique<ResourceType>();
 	if (resource->loadFromFile(resPath))
 		mResourcesMap.insert(std::make_pair(resPath, std::move(resource)));
@@ -40,5 +39,5 @@ void WhitE::ResourcesManager<typename ResourceType>::load(const std::string& res
 template<typename ResourceType>
 bool WhitE::ResourcesManager<typename ResourceType>::doesExist(const std::string& resPath)
 {
-	return true ? false : mResourcesMap.count(resPath) == 1;
+	return mResourcesMap.count(resPath) == 1 ? true : false;
 }
