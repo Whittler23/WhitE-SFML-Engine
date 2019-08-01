@@ -135,7 +135,7 @@ project "Tests"
             "sfml-system-s-d"
         }
 		
-		defines{"WE_TESTS"}
+	defines{"WE_TESTS"}
 
     filter{"configurations:Release"}
         optimize "On"
