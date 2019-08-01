@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Window/window.hpp"
+#include "Debugger/dataCollector.hpp"
+#include "Resources/resourcesHolder.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -13,7 +15,7 @@ public:
 
 	void start();
 
-	auto getWindow() const -> const Window & { return mGameWindow; }
+	auto getWindow() -> sf::RenderWindow & { return mGameWindow.getRenderWindow(); }
 
 private:
 	void update(const sf::Time deltaTime);
@@ -22,6 +24,8 @@ private:
 
 private:
 	Window mGameWindow;
+	DataCollector mDataCollector;
+	ResourceHolder mResourceHolder;
 
 };
 

@@ -23,9 +23,10 @@ namespace WhitE {
 
 	}
 
-	void Window::draw()
+	void Window::draw(sf::Drawable& drawable)
 	{
 		mGameWindow.clear();
+		mGameWindow.draw(drawable);
 		mGameWindow.display();
 	}
 

@@ -30,8 +30,9 @@ public:
 	Window();
 
 	void update();
-	void draw();
+	void draw(sf::Drawable& drawable);
 
+	auto getRenderWindow() -> sf::RenderWindow & { return mGameWindow; }
 	auto getWindowWidth() const -> const unsigned { return mGameWindow.getSize().x; }
 	auto getWindowHeight() const -> const unsigned { return mGameWindow.getSize().y; }
 	bool isOpen() const { return mGameWindow.isOpen(); }
