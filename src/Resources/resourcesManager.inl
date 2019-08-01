@@ -40,5 +40,5 @@ void WhitE::ResourcesManager<typename ResourceType>::load(const std::string& res
 template<typename ResourceType>
 bool WhitE::ResourcesManager<typename ResourceType>::doesExist(const std::string& resPath)
 {
-	return true ? false : mResourcesMap.count(resPath) == 1;
+	return mResourcesMap.count(resPath) ? true : false;
 }
