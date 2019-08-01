@@ -4,6 +4,7 @@ namespace WhitE {
 
 GameEngine::GameEngine()
 	:mGameWindow()
+	,mDataCollector(getWindow())
 {
 }
 
@@ -32,12 +33,14 @@ void GameEngine::input()
 
 void GameEngine::update(const sf::Time deltaTime)
 {
+	mDataCollector.update(deltaTime);
 	mGameWindow.update();
 }
 
 void GameEngine::draw()
 {
-	mGameWindow.draw();
+	
+	mGameWindow.draw(mDataCollector.getDebuggerDisplayer().getText());
 }
 
 }
