@@ -4,13 +4,10 @@
 
 # Build directories
 bin/
-testsFiles/testBin/
 
 # IDE files
 .vs
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
+*.vcxproj*
 *.sln
 
 
