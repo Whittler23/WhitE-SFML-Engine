@@ -2,15 +2,16 @@
 
 #include "Logger/logger.hpp"
 
-namespace WhitE {
 
-#define WE_LOG(LogLevel, message)/
-	Logger::outputLog(logLevel, message, __LINE__)
+#define WE_LOG(logLevel, message)\
+	WhitE::Logger::outputLog(logLevel, message, __LINE__)
 
-#define WE_LOG_ERROR(message)
+#define WE_LOG_INFO(message)\
+	WhitE::Logger::outputLog(WhitE::LogLevel::Info, message, __LINE__)
 
-#define WE_LOG_CRITICAL(message)
+#define WE_LOG_ERROR(message)\
+	WhitE::Logger::outputLog(WhitE::LogLevel::Error, message, __LINE__)
 
-#define WE_LOG_INFO(message)
+#define WE_LOG_CRITICAL(message)\
+	WhitE::Logger::outputLog(WhitE::LogLevel::Error, message, __LINE__)
 
-}
