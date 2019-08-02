@@ -57,6 +57,8 @@ project "WhitE"
             "sfml-window-s-d",
             "sfml-system-s-d"
         }
+		
+		defines{ "WE_DEBUG" }
 
     filter{ "configurations:Release" }
         optimize "On"
