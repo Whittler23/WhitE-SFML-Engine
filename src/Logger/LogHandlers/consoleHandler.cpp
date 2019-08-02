@@ -1,5 +1,4 @@
 #include "Logger/LogHandlers/consoleHandler.hpp"
-#include "Logger/logRecord.hpp"
 
 #include <iostream>
 #include <iomanip>

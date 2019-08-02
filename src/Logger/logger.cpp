@@ -1,7 +1,6 @@
 #include "Logger/logger.hpp"
 #include "Logger/logRecord.hpp"
 #include "Logger/LogHandlers/consoleHandler.hpp"
-#include "Logger/handler.hpp"
 #include "Logger/logs.hpp"
 
 namespace WhitE {
@@ -9,7 +8,7 @@ namespace WhitE {
 void Logger::init()
 {
 	addLogsHandler(std::make_unique<ConsoleHandler>());
-	WE_LOG_INFO("WhitE SFML Engine run!");
+	WE_LOG_INFO("Logs Initialized!");
 }
 
 void Logger::outputLog(LogLevel logLevel, const std::string& message, unsigned int line)

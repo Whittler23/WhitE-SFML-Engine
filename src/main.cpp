@@ -1,4 +1,5 @@
 #include "gameEngine.hpp"
+#include "Logger/logInitializer.hpp"
 #include "Logger/logs.hpp"
 
 #include <stdexcept>
@@ -15,7 +16,8 @@ void showMessageBox(const std::string& str)
 int main()
 {
 try {
-	WhitE::Logger::init();
+	WhitE::initializeLogger("conf/logConf.ini");
+	WE_LOG_INFO("WhitE engine started!");
 
 	WhitE::GameEngine gameEngine;
 

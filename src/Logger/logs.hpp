@@ -3,26 +3,29 @@
 #include "Logger/logger.hpp"
 #include "Logger/logRecord.hpp"
 
+#define WE_LOG(logLevel, message)\
+	WhitE::Logger::outputLog(logLevel, message, __LINE__)
+
 #ifdef WE_DEBUG
 
 #define WE_LOG_INFO(message)\
-	WhitE::Logger::outputLog(WhitE::LogLevel::Info, message, __LINE__)
+	WE_LOG(WhitE::LogLevel::Info, message)
+#define WE_LOG_WARNING(message)\
+	WE_LOG(WhitE::LogLevel::Warning, message)
 #define WE_LOG_ERROR(message)\
-	WhitE::Logger::outputLog(WhitE::LogLevel::Error, message, __LINE__)
+	WE_LOG(WhitE::LogLevel::Error, message)
 #define WE_LOG_CRITICAL(message)\
-	WhitE::Logger::outputLog(WhitE::LogLevel::Error, message, __LINE__)
+	WE_LOG(WhitE::LogLevel::Critical, message)
 
 #else 
 
 #define WE_LOG_INFO(message)
+#define WE_LOG_WARNING(message)
 #define WE_LOG_ERROR(message)
 #define WE_LOG_CRITICAL(message)
 
 #endif //WE_DEBUG
 
-
-#define WE_LOG(logLevel, message)\
-	WhitE::Logger::outputLog(logLevel, message, __LINE__)
 
 
 

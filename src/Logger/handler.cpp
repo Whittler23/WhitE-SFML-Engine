@@ -23,6 +23,9 @@ std::ostream& operator<<(std::ostream& os, const LogLevel& dt)
 	case LogLevel::Critical:
 		os << "Critical";
 		return os;
+	default:
+		os << "Undefined Log Level!";
+		return os;
 	}
 }
 

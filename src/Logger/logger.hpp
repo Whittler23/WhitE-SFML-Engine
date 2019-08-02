@@ -1,15 +1,17 @@
 #pragma once
 
 #include "Logger/logRecord.hpp"
-#include "handler.hpp"
 
-#include <SFML/System/Clock.hpp>
+#include <SFML/System.hpp>
 
 #include <string>
 #include <vector>
 #include <memory>
+#include <map>
 
 namespace WhitE {
+
+class Handler;
 
 class Logger
 {
