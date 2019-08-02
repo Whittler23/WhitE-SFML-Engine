@@ -21,8 +21,10 @@ private:
 public:
 	static void outputLog(LogLevel logLevel, const std::string& message, unsigned int line);
 
-	static void loggerInitialize();
+	static void init();
 	static void addLogsHandler(std::unique_ptr<Handler> handler);
+	static void removeLogsHandler(std::unique_ptr<Handler> handler);
+
 	static float getTimeSinceBeginning();
 
 private:

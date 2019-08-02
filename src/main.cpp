@@ -15,12 +15,13 @@ void showMessageBox(const std::string& str)
 int main()
 {
 try {
-	WhitE::Logger::loggerInitialize();
+	WhitE::Logger::init();
 
 	WhitE::GameEngine gameEngine;
 
 	gameEngine.start();
 }
+
 catch (std::exception& e)
 {
 	showMessageBox(e.what());

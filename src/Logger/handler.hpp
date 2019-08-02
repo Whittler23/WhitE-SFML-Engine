@@ -1,8 +1,9 @@
 #pragma once
 
-namespace WhitE {
+#include <iostream>
+#include "logRecord.hpp"
 
-struct LogRecord;
+namespace WhitE {
 
 class Handler
 {
@@ -12,6 +13,7 @@ public:
 	void handleLog(const LogRecord&);
 
 private:
+	friend std::ostream& operator<<(std::ostream& os, const LogLevel& dt);
 	virtual void utilizeLog(const LogRecord&) = 0;
 };
 
