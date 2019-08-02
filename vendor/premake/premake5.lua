@@ -4,7 +4,7 @@ printf "Building WhitE project using Premake..."
 printf ""
 
 workspace "WhitE"
-    architecture "x86"
+    architecture "x64"
     location "../../"
 	cppdialect "C++17"
     
