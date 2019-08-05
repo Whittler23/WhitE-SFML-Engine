@@ -20,7 +20,7 @@ void ActionManager::deleteAction(const std::string& actionName)
 	if (mKeyboardMap.find(actionName) != mKeyboardMap.end())
 		mKeyboardMap.erase(actionName);
 	else
-		WE_LOG_ERROR("WhitE: Key of map cannot be found!");
+		WE_LOG_WARNING("WhitE: Key of map cannot be found!");
 }
 
 bool ActionManager::isActionPressed(const std::string& actionName)
@@ -31,6 +31,11 @@ bool ActionManager::isActionPressed(const std::string& actionName)
 		if (mInput.isKeyPressed(key))
 			return true;
 	}
+}
+
+bool ActionManager::isMouseButtonPressed(sf::Mouse::Button button)
+{
+	return mInput.isMouseButtonPressed(button) ? true : false;
 }
 
 }

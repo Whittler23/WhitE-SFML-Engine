@@ -14,6 +14,7 @@ public:
 
 	static void deleteAction(const std::string& actionName);
 	static bool isActionPressed(const std::string& actionName);
+	static bool isMouseButtonPressed(sf::Mouse::Button);
 
 private:
 	inline static Input mInput;
