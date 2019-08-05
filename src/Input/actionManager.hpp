@@ -8,11 +8,6 @@ namespace WhitE {
 
 class ActionManager
 {
-private:
-	ActionManager() = default;
-	ActionManager(const ActionManager&) = delete;
-	ActionManager& operator=(const ActionManager&) = delete;
-
 public:
 	static void addAction(const std::string&, sf::Keyboard::Key);
 	static void addAction(const std::string&, std::vector<sf::Keyboard::Key>);
@@ -26,11 +21,9 @@ private:
 	static bool handleKeyboard(const std::string& actionName);
 
 private:
-	Input input;
-	std::unordered_map<std::string, std::vector<sf::Keyboard::Key>> mKeyboardMap;
-	std::unordered_map<std::string, sf::Mouse::Button> mMouseMap;
-
-	static ActionManager& getInstance();
+	inline static Input mInput;
+	inline static std::unordered_map<std::string, std::vector<sf::Keyboard::Key>> mKeyboardMap;
+	inline static std::unordered_map<std::string, sf::Mouse::Button> mMouseMap;
 };
 
 }
