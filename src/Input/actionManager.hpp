@@ -18,8 +18,8 @@ public:
 	static void addAction(std::pair<std::string, sf::Keyboard::Key>);
 	static void deleteAction(const std::string& actionName);
 	static void deleteAction(const std::string& actionName);
-	static bool isActionPressed(sf::Keyboard::Key key);
-	static bool isActionPressed(sf::Mouse::Button button);
+	static bool isActionPressed(const std::string& actionName);
+	static bool isActionPressed(const std::string& actionName);
 
 private:
 	Input input;
