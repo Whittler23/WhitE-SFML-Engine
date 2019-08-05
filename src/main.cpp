@@ -17,7 +17,7 @@ int main()
 {
 try {
 	WhitE::initializeLogger("conf/logConf.ini");
-	WE_LOG_INFO("WhitE engine started!");
+	WE_INFO("WhitE engine started!");
 
 	WhitE::GameEngine gameEngine;
 

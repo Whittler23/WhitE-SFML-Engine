@@ -7,7 +7,7 @@ void ActionManager::addAction(const std::string& actionName, sf::Keyboard::Key k
 {
 	mKeyboardMap.insert(std::make_pair(actionName, std::vector<sf::Keyboard::Key> {key}));
 
-	WE_LOG_INFO(actionName + " action was added to the manager.");
+	WE_CORE_INFO(actionName + " action was added to the manager.");
 }
 
 void ActionManager::addAction(const std::string& actionName, std::vector<sf::Keyboard::Key> keys)
@@ -20,7 +20,7 @@ void ActionManager::deleteAction(const std::string& actionName)
 	if (mKeyboardMap.find(actionName) != mKeyboardMap.end())
 		mKeyboardMap.erase(actionName);
 	else
-		WE_LOG_WARNING("WhitE: Key of map cannot be found!");
+		WE_CORE_WARNING("Key of map cannot be found!");
 }
 
 bool ActionManager::isActionPressed(const std::string& actionName)

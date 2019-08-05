@@ -14,16 +14,14 @@ enum class LogLevel
 
 struct LogRecord
 {
-	LogRecord(LogLevel logLvl, std::string mes, unsigned int line, float time)
+	LogRecord(LogLevel logLvl, std::string mes, float time)
 		:mLogLevel(logLvl)
 		, mMessage(mes)
-		, mFileLine(line)
 		, mTimeFromStart(time)
 	{}
 
 	LogLevel mLogLevel;
 	std::string mMessage;
-	unsigned int mFileLine;
 	float mTimeFromStart;
 };
 

@@ -21,7 +21,7 @@ private:
 	Logger& operator=(const Logger&) = delete;
 
 public:
-	static void outputLog(LogLevel logLevel, const std::string& message, unsigned int line);
+	static void outputLog(LogLevel logLevel, const std::string& message);
 
 	static void init();
 	static void addLogsHandler(std::unique_ptr<Handler> handler);

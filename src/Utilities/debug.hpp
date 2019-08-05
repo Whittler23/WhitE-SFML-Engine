@@ -11,7 +11,7 @@
 
 #else 
 
-#define WE_EXCEPTION(message) { WhitE::Logger::outputLog(LogLevel::Error, message, __LINE__); throw std::runtime_error(message); }
+#define WE_EXCEPTION(message) { WhitE::Logger::outputLog(LogLevel::Error, message); throw std::runtime_error(message); }
 	
 
 #endif //WE_DEBUG

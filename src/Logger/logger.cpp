@@ -8,12 +8,12 @@ namespace WhitE {
 void Logger::init()
 {
 	addLogsHandler(std::make_unique<ConsoleHandler>());
-	WE_LOG_INFO("Logs Initialized!");
+	WE_CORE_INFO("Logs Initialized!");
 }
 
-void Logger::outputLog(LogLevel logLevel, const std::string& message, unsigned int line)
+void Logger::outputLog(LogLevel logLevel, const std::string& message)
 {
-	LogRecord logRecord(logLevel, message, line, Logger::getTimeSinceBeginning());
+	LogRecord logRecord(logLevel, message, Logger::getTimeSinceBeginning());
 	
 	auto& handlers = getInstance().mHandlers;
 
