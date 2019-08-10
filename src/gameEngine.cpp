@@ -6,9 +6,11 @@ namespace WhitE {
 
 GameEngine::GameEngine()
 	:mGameWindow()
-	,mDataCollector(getWindow())
+	,mDataCollector(getRenderWindow())
+	,mStatesManager(mGameWindow, mResourceHolder)
+	,mSharedData(getWindow(), getResourceHolder(), getStatesManager())
 {
-	mStates.push(new IntroState(getWindow(), getResourceHolder()));
+	mStatesManager.pushScene(std::make_unique<IntroState>(getSharedData()));
 }
 
 void GameEngine::start()
@@ -32,11 +34,12 @@ void GameEngine::start()
 
 void GameEngine::input()
 {
+	mStatesManager.input();
 }
 
 void GameEngine::update(const sf::Time deltaTime)
 {
-	if (!mStates.empty()) mStates.top()->update(deltaTime);
+	mStatesManager.update(deltaTime);
 	mDataCollector.update(deltaTime);
 	mGameWindow.update();
 }
@@ -45,8 +48,8 @@ void GameEngine::draw()
 {
 	mGameWindow.getRenderWindow().clear();
 
-	if(!mStates.empty()) mStates.top()->draw();
-	mGameWindow.getRenderWindow().draw(mDataCollector.getDebuggerDisplayer().getText());
+	mStatesManager.draw();
+	getRenderWindow().draw(mDataCollector.getDebuggerDisplayer().getText());
 
 	mGameWindow.getRenderWindow().display();
 }

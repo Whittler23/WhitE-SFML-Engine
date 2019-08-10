@@ -3,6 +3,8 @@
 #include "Window/window.hpp"
 #include "Debugger/dataCollector.hpp"
 #include "Resources/ResourcesHolder.hpp"
+#include "States/StatesManager.hpp"
+#include "sharedData.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -19,8 +21,11 @@ public:
 
 	void start();
 
-	auto getWindow() -> sf::RenderWindow & { return mGameWindow.getRenderWindow(); }
+	auto getWindow() -> Window & { return mGameWindow; }
+	auto getRenderWindow() -> sf::RenderWindow & { return mGameWindow.getRenderWindow(); }
 	auto getResourceHolder() -> ResourceHolder & { return mResourceHolder; }
+	auto getStatesManager() -> StatesManager & { return mStatesManager; }
+	auto getSharedData() -> SharedData & { return mSharedData; }
 
 private:
 	void update(const sf::Time deltaTime);
@@ -31,8 +36,8 @@ private:
 	Window mGameWindow;
 	DataCollector mDataCollector;
 	ResourceHolder mResourceHolder;
-
-	std::stack<BaseState*> mStates;
+	StatesManager mStatesManager;
+	SharedData mSharedData;
 
 };
 

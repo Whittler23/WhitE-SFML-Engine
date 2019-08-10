@@ -31,6 +31,7 @@ bool ActionManager::isActionPressed(const std::string& actionName)
 		if (mInput.isKeyPressed(key))
 			return true;
 	}
+	return false;
 }
 
 bool ActionManager::isMouseButtonPressed(sf::Mouse::Button button)
