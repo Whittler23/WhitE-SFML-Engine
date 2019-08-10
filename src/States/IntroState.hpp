@@ -1,6 +1,6 @@
 #pragma once
 
-#include "States/BaseState.hpp"
+#include "States/baseState.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -11,19 +11,25 @@ class ResourceHolder;
 class IntroState : public BaseState
 {
 public:
-	IntroState(sf::RenderWindow& win, ResourceHolder& rh);
+	IntroState(SharedData& sharedData);
 	~IntroState();
 
 	void draw() const override;
+	void input() override;
 	void update(const sf::Time& deltaTime) override;
 
 	void onPush() override;
 	void onPop() override;
 
+	bool shouldContinue() const { return mContinue; }
+
+	auto getSharedData() const -> SharedData & { return mSharedData; }
+
 private:
-	sf::RenderTarget& mRenderTarget;
-	ResourceHolder& mResources;
+	SharedData& mSharedData;
 	sf::Sprite mSplash;
+	sf::Text mText;
+	bool mContinue;
 };
 
 }

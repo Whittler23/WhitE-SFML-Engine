@@ -3,6 +3,8 @@
 namespace WhitE {
 
 BaseState::BaseState()
+	:mTransparent(false)
+	,mTrandescend(false)
 {
 }
 

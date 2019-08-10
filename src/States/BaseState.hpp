@@ -9,7 +9,7 @@
 
 namespace WhitE {
 
-	class ResourcesHolder;
+struct SharedData;
 
 class BaseState
 {
@@ -21,10 +21,23 @@ public:
 	virtual void onPush() = 0;
 
 	virtual void draw() const = 0;
+	virtual void input() = 0;
 	virtual void update(const sf::Time& deltaTime) = 0;
+
+	float getTime() const { return mStateTimer.getElapsedTime().asSeconds(); }
+	bool getTransparent() { return mTransparent; }
+	bool getTranscendent() { return mTrandescend; }
+
+	void setTransparent(const bool transparent) { mTransparent = transparent; }
+	void setTranscendent(const bool transcendent) { mTrandescend = transcendent; }
 
 protected:
 	sf::Clock mStateTimer;
+
+private:
+	bool mTransparent;
+	bool mTrandescend;
+	
 };
 
 }
