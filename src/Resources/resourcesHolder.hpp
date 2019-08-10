@@ -8,7 +8,6 @@
 
 namespace WhitE {
 
-
 class ResourceHolder
 {
 public:

@@ -1,4 +1,6 @@
 #include "gameEngine.hpp"
+#include "States/BaseState.hpp"
+#include "States/IntroState.hpp"
 
 namespace WhitE {
 
@@ -6,6 +8,7 @@ GameEngine::GameEngine()
 	:mGameWindow()
 	,mDataCollector(getWindow())
 {
+	mStates.push(new IntroState(getWindow(), getResourceHolder()));
 }
 
 void GameEngine::start()
@@ -33,14 +36,19 @@ void GameEngine::input()
 
 void GameEngine::update(const sf::Time deltaTime)
 {
+	if (!mStates.empty()) mStates.top()->update(deltaTime);
 	mDataCollector.update(deltaTime);
 	mGameWindow.update();
 }
 
 void GameEngine::draw()
 {
-	
-	mGameWindow.draw(mDataCollector.getDebuggerDisplayer().getText());
+	mGameWindow.getRenderWindow().clear();
+
+	if(!mStates.empty()) mStates.top()->draw();
+	mGameWindow.getRenderWindow().draw(mDataCollector.getDebuggerDisplayer().getText());
+
+	mGameWindow.getRenderWindow().display();
 }
 
 }
