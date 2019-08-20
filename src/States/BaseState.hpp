@@ -10,6 +10,7 @@
 namespace WhitE {
 
 struct SharedData;
+class GameObject;
 
 class BaseState
 {
@@ -31,10 +32,11 @@ public:
 	void setTransparent(const bool transparent) { mTransparent = transparent; }
 	void setTranscendent(const bool transcendent) { mTrandescend = transcendent; }
 
-protected:
-	sf::Clock mStateTimer;
+	auto getRoot() const -> GameObject& { return *mRootObject; }
 
 private:
+	std::unique_ptr<GameObject> mRootObject;
+	sf::Clock mStateTimer;
 	bool mTransparent;
 	bool mTrandescend;
 	
