@@ -10,7 +10,7 @@ GameEngine::GameEngine()
 	,mStatesManager(mGameWindow, mResourcesHolder)
 	,mSharedData(getWindow(), getResourcesHolder(), getStatesManager())
 {
-	mStatesManager.pushScene(std::make_unique<IntroState>(getSharedData()));
+	mStatesManager.pushState(std::make_unique<IntroState>(getSharedData()));
 }
 
 void GameEngine::start()

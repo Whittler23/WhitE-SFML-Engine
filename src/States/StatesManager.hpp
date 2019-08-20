@@ -20,8 +20,8 @@ public:
 	void draw();
 	void input();
 
-	void pushScene(std::unique_ptr<BaseState> state);
-	void popScene();
+	void pushState(std::unique_ptr<BaseState> state);
+	void popState();
 
 	auto getResources() const -> ResourcesHolder & { return mResources; }
 	auto getWindow() const -> Window & { return mWindow; }

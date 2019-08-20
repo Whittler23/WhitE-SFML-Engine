@@ -36,21 +36,21 @@ void StatesManager::update(const sf::Time& deltaTime)
 	{
 		if (mStack.top()->getShouldPop())
 		{
-			popScene();
+			popState();
 			return;
 		}
 		mStack.top()->update(deltaTime);
 	}
 }
 
-void StatesManager::pushScene(std::unique_ptr<BaseState> state)
+void StatesManager::pushState(std::unique_ptr<BaseState> state)
 {
 	mStack.push(std::move(state));
 
 	WE_CORE_INFO("State pushed on stack!");
 }
 
-void StatesManager::popScene()
+void StatesManager::popState()
 {
 	if (!mStack.empty())
 	{

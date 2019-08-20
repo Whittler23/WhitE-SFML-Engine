@@ -29,12 +29,12 @@ public:
 	bool getTransparent()	{ return mTransparent; }
 	bool getTranscendent()	{ return mTrandescend; }
 	bool getShouldPop()		{ return mShouldPop; }
+	auto getRoot() const -> GameObject& { return *mRootObject; }
 
 	void setTransparent(const bool transparent)		{ mTransparent = transparent; }
 	void setTranscendent(const bool transcendent)	{ mTrandescend = transcendent; }
 	void setShouldPop(const bool shouldPop)			{ mShouldPop =  shouldPop; }
 
-	auto getRoot() const -> GameObject& { return *mRootObject; }
 
 private:
 	std::unique_ptr<GameObject> mRootObject;
@@ -42,7 +42,6 @@ private:
 	bool mTransparent;
 	bool mTrandescend;
 	bool mShouldPop;
-	
 };
 
 }
