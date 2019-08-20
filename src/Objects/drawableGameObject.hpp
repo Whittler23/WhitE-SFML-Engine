@@ -1,1 +1,33 @@
 #pragma once
+
+#include "Objects/gameObject.hpp"
+
+#include <SFML/Graphics.hpp>
+
+namespace WhitE {
+
+class DrawableGameObject : public GameObject, public sf::Drawable
+{
+public:
+	DrawableGameObject(const std::string& name);
+
+	sf::Vector2f getPosition() const;
+	sf::Vector2f getScale() const;
+	float getRotation() const;
+	bool getVisibility() const;
+
+	void setPosition(sf::Vector2f& position);
+	void setScale(sf::Vector2f& scale);
+	void setRotation(float rotation);
+	void setVisibility(bool visibility);
+	void rotate(float rotation);
+
+private:
+	sf::Vector2f mPosition;
+	sf::Vector2f mScale;
+	float mRotation;
+	bool mVisibility;
+	
+};
+
+}
