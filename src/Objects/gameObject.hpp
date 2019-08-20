@@ -9,10 +9,10 @@ namespace WhitE {
 class GameObject
 {
 public:
-	GameObject(const std::string name);
+	GameObject(const std::string& name);
 
-	virtual void update(const sf::Time& deltaTime);
-	virtual void input();
+	virtual void update(const sf::Time& deltaTime) {}
+	virtual void input() {}
 
 private:
 	const std::string mName;
