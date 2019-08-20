@@ -21,15 +21,12 @@ public:
 	void onPush() override;
 	void onPop() override;
 
-	bool shouldContinue() const { return mContinue; }
-
 	auto getSharedData() const -> SharedData & { return mSharedData; }
 
 private:
 	SharedData& mSharedData;
 	sf::Sprite mSplash;
 	sf::Text mText;
-	bool mContinue;
 };
 
 }

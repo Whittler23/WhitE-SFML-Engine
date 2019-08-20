@@ -25,12 +25,14 @@ public:
 	virtual void input() = 0;
 	virtual void update(const sf::Time& deltaTime) = 0;
 
-	float getTime() const { return mStateTimer.getElapsedTime().asSeconds(); }
-	bool getTransparent() { return mTransparent; }
-	bool getTranscendent() { return mTrandescend; }
+	float getTime() const	{ return mStateTimer.getElapsedTime().asSeconds(); }
+	bool getTransparent()	{ return mTransparent; }
+	bool getTranscendent()	{ return mTrandescend; }
+	bool getShouldPop()		{ return mShouldPop; }
 
-	void setTransparent(const bool transparent) { mTransparent = transparent; }
-	void setTranscendent(const bool transcendent) { mTrandescend = transcendent; }
+	void setTransparent(const bool transparent)		{ mTransparent = transparent; }
+	void setTranscendent(const bool transcendent)	{ mTrandescend = transcendent; }
+	void setShouldPop(const bool shouldPop)			{ mShouldPop =  shouldPop; }
 
 	auto getRoot() const -> GameObject& { return *mRootObject; }
 
@@ -39,6 +41,7 @@ private:
 	sf::Clock mStateTimer;
 	bool mTransparent;
 	bool mTrandescend;
+	bool mShouldPop;
 	
 };
 

@@ -7,6 +7,7 @@ BaseState::BaseState()
 	:mRootObject(std::make_unique<GameObject>("root"))
 	,mTransparent(false)
 	,mTrandescend(false)
+	,mShouldPop(false)
 {
 }
 

@@ -33,7 +33,14 @@ void StatesManager::input()
 void StatesManager::update(const sf::Time& deltaTime)
 {
 	if (!mStack.empty())
+	{
+		if (mStack.top()->getShouldPop())
+		{
+			popScene();
+			return;
+		}
 		mStack.top()->update(deltaTime);
+	}
 }
 
 void StatesManager::pushScene(std::unique_ptr<BaseState> state)

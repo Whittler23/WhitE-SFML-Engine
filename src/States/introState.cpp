@@ -11,7 +11,6 @@ namespace WhitE {
 
 IntroState::IntroState(SharedData& sharedData)
 	:mSharedData(sharedData)
-	,mContinue(false)
 {
 	onPush();
 }
@@ -63,13 +62,12 @@ void IntroState::draw() const
 void IntroState::input()
 {
 	if (ActionManager::isActionPressed("Continue"))
-		mContinue = true;
+		setShouldPop(true);
 }
 
 void IntroState::update(const sf::Time& deltaTime)
 {
-	if (shouldContinue())
-		getSharedData().mStatesManager.popScene();
+
 }
 
 }
