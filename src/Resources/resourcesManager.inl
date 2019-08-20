@@ -14,7 +14,7 @@ auto WhitE::ResourcesManager<typename ResourceType>::get(const std::string& resP
 	if (found != mResourcesMap.end())
 		return *found->second;
 	else
-		WE_CORE_WARNING("Could not find specified path");
+		WE_CORE_WARNING("Could not find specified path (" + resPath + ")");
 }
 
 template<typename ResourceType>
