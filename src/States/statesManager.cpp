@@ -6,7 +6,7 @@
 
 namespace WhitE {
 
-StatesManager::StatesManager(Window& renderWindow, ResourceHolder& resourcesHolder)
+StatesManager::StatesManager(Window& renderWindow, ResourcesHolder& resourcesHolder)
 	:mWindow(renderWindow)
 	,mResources(resourcesHolder)
 {

@@ -7,19 +7,19 @@
 namespace WhitE {
 
 class Window;
-class ResourceHolder;
+class ResourcesHolder;
 class StatesManager;
 
 struct SharedData
 {
-	SharedData(Window& window, ResourceHolder& resourceHolder, StatesManager& statesManager)
+	SharedData(Window& window, ResourcesHolder& resourcesHolder, StatesManager& statesManager)
 		:mWindow(window)
-		,mResourceHolder(resourceHolder)
+		,mResourcesHolder(resourcesHolder)
 		,mStatesManager(statesManager)
 	{}
 
 	Window& mWindow;
-	ResourceHolder& mResourceHolder;
+	ResourcesHolder& mResourcesHolder;
 	StatesManager& mStatesManager;
 };
 

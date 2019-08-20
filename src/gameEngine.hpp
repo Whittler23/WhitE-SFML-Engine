@@ -23,7 +23,7 @@ public:
 
 	auto getWindow() -> Window & { return mGameWindow; }
 	auto getRenderWindow() -> sf::RenderWindow & { return mGameWindow.getRenderWindow(); }
-	auto getResourceHolder() -> ResourceHolder & { return mResourceHolder; }
+	auto getResourcesHolder() -> ResourcesHolder & { return mResourcesHolder; }
 	auto getStatesManager() -> StatesManager & { return mStatesManager; }
 	auto getSharedData() -> SharedData & { return mSharedData; }
 
@@ -35,7 +35,7 @@ private:
 private:
 	Window mGameWindow;
 	DataCollector mDataCollector;
-	ResourceHolder mResourceHolder;
+	ResourcesHolder mResourcesHolder;
 	StatesManager mStatesManager;
 	SharedData mSharedData;
 

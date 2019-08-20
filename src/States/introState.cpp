@@ -22,17 +22,17 @@ IntroState::~IntroState()
 
 void IntroState::onPush() 
 {
-	getSharedData().mResourceHolder.getTextureHolder().load("resources/textures/testLogo.png");
-	getSharedData().mResourceHolder.getFontHolder().load("resources/fonts/testFont.ttf");
+	getSharedData().mResourcesHolder.getTextureHolder().load("resources/textures/testLogo.png");
+	getSharedData().mResourcesHolder.getFontHolder().load("resources/fonts/testFont.ttf");
 
 	mSplash.setPosition(
 		getSharedData().mWindow.getRenderWindow().getSize().x / 2.f-300.f, 
 		getSharedData().mWindow.getRenderWindow().getSize().y / 2.f
 	);
-	mSplash.setTexture(getSharedData().mResourceHolder.getTextureHolder().get("resources/textures/testLogo.png"));
+	mSplash.setTexture(getSharedData().mResourcesHolder.getTextureHolder().get("resources/textures/testLogo.png"));
 	mSplash.setScale(0.15, 0.15);
 
-	mText.setFont(getSharedData().mResourceHolder.getFontHolder().get("resources/fonts/testFont.ttf"));
+	mText.setFont(getSharedData().mResourcesHolder.getFontHolder().get("resources/fonts/testFont.ttf"));
 	mText.setPosition(mSplash.getPosition().x, mSplash.getPosition().y - 50.f);
 	mText.setString("Press \"Space\" to continue!");
 
@@ -41,8 +41,8 @@ void IntroState::onPush()
 
 void IntroState::onPop()
 {
-	getSharedData().mResourceHolder.getTextureHolder().free("resources/textures/testLogo.png");
-	getSharedData().mResourceHolder.getFontHolder().free("resources/fonts/testFont.ttf");
+	getSharedData().mResourcesHolder.getTextureHolder().free("resources/textures/testLogo.png");
+	getSharedData().mResourcesHolder.getFontHolder().free("resources/fonts/testFont.ttf");
 
 	WE_INFO("InfoState popped from the stack");
 }

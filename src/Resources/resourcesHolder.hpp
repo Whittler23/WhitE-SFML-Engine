@@ -8,10 +8,10 @@
 
 namespace WhitE {
 
-class ResourceHolder
+class ResourcesHolder
 {
 public:
-	ResourceHolder();
+	ResourcesHolder();
 
 	auto getTextureHolder()  ->  ResourcesManager<sf::Texture>& { return mTextureHolder; }
 	auto getSoundHolder()  ->  ResourcesManager<sf::SoundBuffer>& { return mSoundHolder; }

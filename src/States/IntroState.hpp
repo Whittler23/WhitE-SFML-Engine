@@ -6,7 +6,7 @@
 
 namespace WhitE {
 
-class ResourceHolder;
+class ResourcesHolder;
 
 class IntroState : public BaseState
 {

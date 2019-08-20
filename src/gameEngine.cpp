@@ -7,8 +7,8 @@ namespace WhitE {
 GameEngine::GameEngine()
 	:mGameWindow()
 	,mDataCollector(getRenderWindow())
-	,mStatesManager(mGameWindow, mResourceHolder)
-	,mSharedData(getWindow(), getResourceHolder(), getStatesManager())
+	,mStatesManager(mGameWindow, mResourcesHolder)
+	,mSharedData(getWindow(), getResourcesHolder(), getStatesManager())
 {
 	mStatesManager.pushScene(std::make_unique<IntroState>(getSharedData()));
 }

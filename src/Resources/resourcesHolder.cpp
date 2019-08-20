@@ -2,7 +2,7 @@
 
 namespace WhitE {
 
-	ResourceHolder::ResourceHolder()
+	ResourcesHolder::ResourcesHolder()
 	{
 	}
 

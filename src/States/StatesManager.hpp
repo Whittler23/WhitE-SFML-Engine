@@ -7,13 +7,13 @@
 namespace WhitE {
 
 class BaseState;
-class ResourceHolder;
+class ResourcesHolder;
 class Window;
 
 class StatesManager
 {
 public:
-	StatesManager(Window& window, ResourceHolder& resourcesHolder);
+	StatesManager(Window& window, ResourcesHolder& resourcesHolder);
 	~StatesManager();
 
 	void update(const sf::Time& deltaTime);
@@ -23,12 +23,12 @@ public:
 	void pushScene(std::unique_ptr<BaseState> state);
 	void popScene();
 
-	auto getResources() const -> ResourceHolder & { return mResources; }
+	auto getResources() const -> ResourcesHolder & { return mResources; }
 	auto getWindow() const -> Window & { return mWindow; }
 
 private:
 	Window& mWindow;
-	ResourceHolder& mResources;
+	ResourcesHolder& mResources;
 	std::stack<std::unique_ptr<BaseState>> mStack;
 };
 
