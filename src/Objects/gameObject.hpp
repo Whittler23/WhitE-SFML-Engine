@@ -15,7 +15,7 @@ public:
 	virtual void update(const sf::Time& deltaTime) {}
 	virtual void input() {}
 
-	void addChild(GameObject* gameObject);
+	void addChild(std::unique_ptr<GameObject> gameObject);
 	void removeChild(const std::string& name);
 	void removeChild(GameObject* gameObject);
 

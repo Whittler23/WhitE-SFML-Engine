@@ -5,6 +5,7 @@
 #include "sharedData.hpp"
 #include "States/baseState.hpp"
 #include "Input/actionManager.hpp"
+#include "Objects/gameObject.hpp"
 
 namespace WhitE {
 
@@ -37,12 +38,14 @@ void IntroState::onPush()
 	mText.setString("Press \"Space\" to continue!");
 
 	ActionManager::addAction("Continue", sf::Keyboard::Space);
+
 }
 
 void IntroState::onPop()
 {
 	getSharedData().mResourcesHolder.getTextureHolder().free("resources/textures/testLogo.png");
 	getSharedData().mResourcesHolder.getFontHolder().free("resources/fonts/testFont.ttf");
+	ActionManager::deleteAction("Continue");
 
 	WE_INFO("InfoState popped from the stack");
 }
@@ -51,8 +54,10 @@ void IntroState::draw() const
 {
 	getSharedData().mWindow.getRenderWindow().draw(mSplash);
 
-	if(getTime() > 5)
+	if (getTime() > 5)
+	{
 		getSharedData().mWindow.getRenderWindow().draw(mText);
+	}
 }
 
 void IntroState::input()
