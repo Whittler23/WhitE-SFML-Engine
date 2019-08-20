@@ -15,10 +15,10 @@ using namespace std::string_literals;
 #define WE_ERROR(message)		WE_LOG(WhitE::LogLevel::Error, message)
 #define WE_CRITICAL(message)	WE_LOG(WhitE::LogLevel::Critical, message)
 
-#define WE_CORE_INFO(message)		WE_LOG(WhitE::LogLevel::Info, "| WhitE | "s + message)
-#define WE_CORE_WARNING(message)	WE_LOG(WhitE::LogLevel::Warning, "| WhitE | "s +  message)
-#define WE_CORE_ERROR(message)		WE_LOG(WhitE::LogLevel::Error, "| WhitE | "s + message)
-#define WE_CORE_CRITICAL(message)	WE_LOG(WhitE::LogLevel::Critical, "| WhitE | "s + message)
+#define WE_CORE_INFO(message)		WE_LOG(WhitE::LogLevel::Info, "WhitE | "s + message)
+#define WE_CORE_WARNING(message)	WE_LOG(WhitE::LogLevel::Warning, "WhitE | "s +  message)
+#define WE_CORE_ERROR(message)		WE_LOG(WhitE::LogLevel::Error, "WhitE | "s + message)
+#define WE_CORE_CRITICAL(message)	WE_LOG(WhitE::LogLevel::Critical, "WhitE | "s + message)
 
 #else 
 

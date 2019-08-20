@@ -9,7 +9,7 @@ void ConsoleHandler::utilizeLog(const LogRecord& logRecord)
 {
 	std::cout << "[  " << std::left << std::setw(7)
 		<< std::to_string(logRecord.mTimeFromStart).erase(5, 4) << "s ]"
-		<< " | " << logRecord.mLogLevel << " | " << logRecord.mMessage << std::endl;
+		<< " | " << std::setw(8) << logRecord.mLogLevel << " | " << logRecord.mMessage << std::endl;
 }
 
 }
