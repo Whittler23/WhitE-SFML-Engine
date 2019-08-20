@@ -32,6 +32,8 @@ public:
 	void setTransparent(const bool transparent) { mTransparent = transparent; }
 	void setTranscendent(const bool transcendent) { mTrandescend = transcendent; }
 
+	auto getRoot() const -> GameObject& { return *mRootObject; }
+
 private:
 	std::unique_ptr<GameObject> mRootObject;
 	sf::Clock mStateTimer;
