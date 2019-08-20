@@ -1,4 +1,5 @@
 #include "Resources/resourcesManager.hpp"
+#include "Logger/logs.hpp"
 
 
 template<typename ResourceType>
@@ -12,8 +13,8 @@ auto WhitE::ResourcesManager<typename ResourceType>::get(const std::string& resP
 	auto found = mResourcesMap.find(resPath);
 	if (found != mResourcesMap.end())
 		return *found->second;
-	else;
-		//TODO:	Warning Log
+	else
+		WE_CORE_WARNING("Could not find specified path");
 }
 
 template<typename ResourceType>
@@ -21,9 +22,12 @@ void WhitE::ResourcesManager<typename ResourceType>::free(const std::string& res
 {
 	auto found = mResourcesMap.find(resPath);
 	if (found != mResourcesMap.end())
+	{
 		mResourcesMap.erase(found);
-	else;
-		//TODO: Warning Log
+		WE_CORE_INFO(resPath + " was erased!");
+	}
+	else
+		WE_CORE_WARNING("Could not find specified path (" + resPath + ")");
 }
 
 template<typename ResourceType>
@@ -31,9 +35,12 @@ void WhitE::ResourcesManager<typename ResourceType>::load(const std::string& res
 {
 	auto resource = std::make_unique<ResourceType>();
 	if (resource->loadFromFile(resPath))
+	{
 		mResourcesMap.insert(std::make_pair(resPath, std::move(resource)));
-	else;
-		//TODO: Warning Log
+		WE_CORE_INFO(resPath + " was loaded!");
+	}
+	else
+		WE_CORE_WARNING("Could not find specified path (" + resPath + ")");
 }
 
 template<typename ResourceType>

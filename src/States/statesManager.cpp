@@ -2,6 +2,8 @@
 #include "States/baseState.hpp"
 #include "Window/window.hpp"
 
+#include "Logger/logs.hpp"
+
 namespace WhitE {
 
 StatesManager::StatesManager(Window& renderWindow, ResourceHolder& resourcesHolder)
@@ -37,15 +39,18 @@ void StatesManager::update(const sf::Time& deltaTime)
 void StatesManager::pushScene(std::unique_ptr<BaseState> state)
 {
 	mStack.push(std::move(state));
+
+	WE_CORE_INFO("State pushed on stack!");
 }
 
 void StatesManager::popScene()
 {
 	if (!mStack.empty())
 	{
-		mStack.top()->onPop();
 		mStack.pop();
 	}
+
+	WE_CORE_INFO("State popped from stack!");
 }
 
 }

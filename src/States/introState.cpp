@@ -17,7 +17,7 @@ IntroState::IntroState(SharedData& sharedData)
 
 IntroState::~IntroState()
 {
-
+	onPop();
 }
 
 void IntroState::onPush() 
@@ -41,8 +41,10 @@ void IntroState::onPush()
 
 void IntroState::onPop()
 {
-	getSharedData().mResourceHolder.getTextureHolder().free("resources / textures / testLogo.png");
-	getSharedData().mResourceHolder.getTextureHolder().free("resources / fonts / testFont.ttf");
+	getSharedData().mResourceHolder.getTextureHolder().free("resources/textures/testLogo.png");
+	getSharedData().mResourceHolder.getFontHolder().free("resources/fonts/testFont.ttf");
+
+	WE_INFO("InfoState popped from the stack");
 }
 
 void IntroState::draw() const
