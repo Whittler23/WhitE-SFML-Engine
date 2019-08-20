@@ -9,16 +9,18 @@ namespace WhitE {
 class Renderer
 {
 public:
-	Renderer();
+	Renderer(sf::RenderTarget& renderTarget);
+	~Renderer();
 
 	void update();
-	void draw() const;
+	void draw() ;
 
 	void addObject(const sf::Drawable& object) const;
 	void removeObject(const sf::Drawable& object) const;
 
 private:
-	std::multiset<sf::Drawable> mObjectsToDraw;
+	sf::RenderTarget& mRenderTarget;
+	std::multiset<sf::Drawable*> mDrawableSet;
 };
 
 }
