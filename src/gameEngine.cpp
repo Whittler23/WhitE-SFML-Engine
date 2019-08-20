@@ -19,7 +19,7 @@ void GameEngine::start()
 	sf::Time timeSinceLastTick = sf::Time::Zero;
 	const sf::Time frameTime = sf::seconds(1.f / 60.f);
 
-	while (mGameWindow.isOpen())	
+	while (!mGameWindow.shouldClose())	
 	{
 		timeSinceLastTick += gameClock.restart();
 		while (timeSinceLastTick > frameTime)
@@ -35,6 +35,7 @@ void GameEngine::start()
 void GameEngine::input()
 {
 	mStatesManager.input();
+	mGameWindow.input();
 }
 
 void GameEngine::update(const sf::Time deltaTime)

@@ -31,11 +31,12 @@ public:
 
 	void update();
 	void draw(sf::Drawable& drawable);
+	void input();
 
 	auto getRenderWindow() -> sf::RenderWindow & { return mGameWindow; }
 	auto getWindowWidth() const -> const unsigned { return mGameWindow.getSize().x; }
 	auto getWindowHeight() const -> const unsigned { return mGameWindow.getSize().y; }
-	bool isOpen() const { return mGameWindow.isOpen(); }
+	bool shouldClose() { return mShouldClose; }
 
 private:
 	void initializeWindow();
@@ -43,6 +44,7 @@ private:
 private:
 	sf::RenderWindow mGameWindow;
 	WindowProperties mProperties;
+	bool mShouldClose;
 
 };
 

@@ -35,7 +35,6 @@ public:
 	void setTranscendent(const bool transcendent)	{ mTrandescend = transcendent; }
 	void setShouldPop(const bool shouldPop)			{ mShouldPop =  shouldPop; }
 
-
 private:
 	std::unique_ptr<GameObject> mRootObject;
 	sf::Clock mStateTimer;
