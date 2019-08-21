@@ -28,7 +28,7 @@ public:
 	float getTime() const	{ return mStateTimer.getElapsedTime().asSeconds(); }
 	bool getTransparent()	{ return mTransparent; }
 	bool getTranscendent()	{ return mTrandescend; }
-	bool getShouldPop()		{ return mShouldPop; }
+	bool shouldPop()		{ return mShouldPop; }
 	auto getRoot() const -> GameObject& { return *mRootObject; }
 
 	void setTransparent(const bool transparent)		{ mTransparent = transparent; }

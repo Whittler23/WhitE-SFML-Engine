@@ -34,7 +34,7 @@ void StatesManager::update(const sf::Time& deltaTime)
 {
 	if (!mStack.empty())
 	{
-		if (mStack.top()->getShouldPop())
+		if (mStack.top()->shouldPop())
 		{
 			popState();
 			return;
