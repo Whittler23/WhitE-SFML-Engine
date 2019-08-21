@@ -23,7 +23,7 @@ void ActionManager::deleteAction(const std::string& actionName)
 		WE_CORE_WARNING("Key of map cannot be found!");
 }
 
-bool ActionManager::isActionPressed(const std::string& actionName)
+bool ActionManager::isActionPressed(const std::string& actionName) 
 {
 	auto keys = mKeyboardMap.at(actionName);
 	for (const auto& key : keys)
@@ -34,9 +34,29 @@ bool ActionManager::isActionPressed(const std::string& actionName)
 	return false;
 }
 
-bool ActionManager::isMouseButtonPressed(sf::Mouse::Button button)
+bool ActionManager::isMouseButtonPressed(sf::Mouse::Button button)  
 {
 	return mInput.isMouseButtonPressed(button) ? true : false;
+}
+
+void ActionManager::readMouseClickPosition(const sf::Vector2i& mouseClickPosition)
+{
+	mLastMouseClickPosition = mouseClickPosition;
+}
+
+sf::Vector2i ActionManager::getLastMouseClickPosition() 
+{
+	return mLastMouseClickPosition;
+}
+
+void ActionManager::readMousePosition(const sf::Vector2i& mousePosition)
+{
+	mMousePosition = mousePosition;
+}
+
+sf::Vector2i ActionManager::getMousePosition()
+{
+	return mMousePosition;
 }
 
 }

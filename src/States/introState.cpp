@@ -11,6 +11,7 @@ namespace WhitE {
 
 IntroState::IntroState(SharedData& sharedData)
 	:mSharedData(sharedData)
+	,mShouldDraw(false)
 {
 	onPush();
 }
@@ -52,7 +53,7 @@ void IntroState::draw() const
 {
 	getSharedData().mWindow.getRenderWindow().draw(mSplash);
 
-	if (getTime() > 5)
+	if (mShouldDraw)
 	{
 		getSharedData().mWindow.getRenderWindow().draw(mText);
 	}
@@ -62,6 +63,7 @@ void IntroState::input()
 {
 	if (ActionManager::isActionPressed("Continue"))
 		setShouldPop(true);
+	mShouldDraw = (ActionManager::getLastMouseClickPosition().x > 100 ? true : false);
 
 	getRoot().input();
 

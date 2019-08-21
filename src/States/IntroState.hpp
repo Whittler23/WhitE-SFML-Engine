@@ -27,6 +27,8 @@ private:
 	SharedData& mSharedData;
 	sf::Sprite mSplash;
 	sf::Text mText;
+
+	bool mShouldDraw;
 };
 
 }
