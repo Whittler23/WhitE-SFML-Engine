@@ -9,6 +9,22 @@ GameObject::GameObject(const std::string& name)
 {
 }
 
+void GameObject::input()
+{
+	for (auto& child : mChildren)
+	{
+		child->input();
+	}
+}
+
+void GameObject::update(const sf::Time& deltaTime)
+{
+	for (auto& child : mChildren)
+	{
+		child->update(deltaTime);
+	}
+}
+
 void GameObject::addChild(std::unique_ptr<GameObject> gameObject)
 {
 	gameObject->setParent(this);

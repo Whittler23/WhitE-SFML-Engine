@@ -37,7 +37,6 @@ void IntroState::onPush()
 	mText.setString("Press \"Space\" to continue!");
 
 	ActionManager::addAction("Continue", sf::Keyboard::Space);
-
 }
 
 void IntroState::onPop()
@@ -63,11 +62,14 @@ void IntroState::input()
 {
 	if (ActionManager::isActionPressed("Continue"))
 		setShouldPop(true);
+
+	getRoot().input();
+
 }
 
 void IntroState::update(const sf::Time& deltaTime)
 {
-
+	getRoot().update(deltaTime);
 }
 
 }

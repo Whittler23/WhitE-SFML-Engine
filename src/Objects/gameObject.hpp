@@ -12,13 +12,14 @@ class GameObject
 public:
 	GameObject(const std::string& name);
 
-	virtual void update(const sf::Time& deltaTime) {}
-	virtual void input() {}
+	virtual void update(const sf::Time& deltaTime);
+	virtual void input();
 
 	void addChild(std::unique_ptr<GameObject> gameObject);
 	void removeChild(const std::string& name);
 	void removeChild(GameObject* gameObject);
 
+	auto getChildren() const -> const std::list<std::unique_ptr<GameObject>>& { return mChildren; }
 	auto getParent() const -> GameObject* { return mParent; }
 	auto getName() const -> std::string { return mName; }
 
