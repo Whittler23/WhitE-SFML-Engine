@@ -31,7 +31,7 @@ void IntroState::onPush()
 		getSharedData().mWindow.getRenderWindow().getSize().y / 2.f
 	);
 	mSplash.setTexture(getSharedData().mResourcesHolder.getTextureHolder().get("resources/textures/testLogo.png"));
-	mSplash.setScale(0.15, 0.15);
+	mSplash.setScale(.15f, .15f);
 
 	mText.setFont(getSharedData().mResourcesHolder.getFontHolder().get("resources/fonts/testFont.ttf"));
 	mText.setPosition(mSplash.getPosition().x, mSplash.getPosition().y - 50.f);
