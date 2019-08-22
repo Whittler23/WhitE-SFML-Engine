@@ -13,7 +13,7 @@ public:
 
 	void update(const sf::Time deltaTime);
 
-	auto getDebuggerDisplayer() { return mDebuggerDisplayer; }
+	auto getDebuggerDisplayer() -> DebuggerDisplayer& { return mDebuggerDisplayer; }
 
 private:
 	sf::RenderWindow& mRenderWindow;
