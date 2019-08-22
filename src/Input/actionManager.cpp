@@ -34,29 +34,4 @@ bool ActionManager::isActionPressed(const std::string& actionName)
 	return false;
 }
 
-bool ActionManager::isMouseButtonPressed(sf::Mouse::Button button)  
-{
-	return mInput.isMouseButtonPressed(button) ? true : false;
-}
-
-void ActionManager::readMouseClickPosition(const sf::Vector2i& mouseClickPosition)
-{
-	mLastMouseClickPosition = mouseClickPosition;
-}
-
-sf::Vector2i ActionManager::getLastMouseClickPosition() 
-{
-	return mLastMouseClickPosition;
-}
-
-void ActionManager::readMousePosition(const sf::Vector2i& mousePosition)
-{
-	mMousePosition = mousePosition;
-}
-
-sf::Vector2i ActionManager::getMousePosition()
-{
-	return mMousePosition;
-}
-
 }

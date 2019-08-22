@@ -2,6 +2,8 @@
 
 #include "Input/input.hpp"
 
+#include <SFML/Window.hpp>
+
 #include <unordered_map>
 
 namespace WhitE {
@@ -14,13 +16,6 @@ public:
 
 	static void deleteAction(const std::string& actionName);
 	static bool isActionPressed(const std::string& actionName);
-
-	static bool isMouseButtonPressed(sf::Mouse::Button);
-	static void readMouseClickPosition(const sf::Vector2i& mouseClickPosition);
-	static sf::Vector2i getLastMouseClickPosition();
-
-	static void readMousePosition(const sf::Vector2i& mousePosition);
-	static sf::Vector2i getMousePosition();
 
 private:
 	inline static Input mInput;
