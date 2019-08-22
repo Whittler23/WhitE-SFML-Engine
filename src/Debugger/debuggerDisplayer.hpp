@@ -1,10 +1,12 @@
 #pragma once
 
+#include "Objects/drawableGameObject.hpp"
+
 #include <SFML/Graphics.hpp>
 
 namespace WhitE {
 
-class DebuggerDisplayer : public sf::Drawable
+class DebuggerDisplayer : public DrawableGameObject
 {
 public:
 	DebuggerDisplayer(sf::RenderWindow& renderWindow);
