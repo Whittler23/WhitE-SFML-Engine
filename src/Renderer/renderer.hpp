@@ -2,9 +2,11 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <set>
+#include <list>
 
 namespace WhitE {
+
+class DrawableGameObject;
 
 class Renderer
 {
@@ -12,15 +14,16 @@ public:
 	Renderer(sf::RenderTarget& renderTarget);
 	~Renderer();
 
-	void update();
-	void draw() ;
+	void draw() const;
 
-	void addObject(const sf::Drawable& object) const;
-	void removeObject(const sf::Drawable& object) const;
+	void addObjectToDrawables(DrawableGameObject* const object);
+
+	void removeObjectFromDrawables(DrawableGameObject* const object);
+	void removeObjectFromDrawables(const std::string& objectName);
 
 private:
 	sf::RenderTarget& mRenderTarget;
-	std::multiset<sf::Drawable*> mDrawableSet;
+	std::list<DrawableGameObject*> mDrawableObjects;
 };
 
 }
