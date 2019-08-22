@@ -1,4 +1,5 @@
 #include "Debugger/dataCollector.hpp"
+#include "Input/actionManager.hpp"
 
 namespace WhitE {
 
@@ -8,6 +9,7 @@ DataCollector::DataCollector(sf::RenderWindow& renderWindow)
 	,mFramesPerSecond(0)
 {
 }
+
 
 void DataCollector::update(const sf::Time deltaTime)
 {
@@ -19,6 +21,14 @@ void DataCollector::update(const sf::Time deltaTime)
 	}
 	else
 		++mFramesPerSecond;
+}
+
+void DataCollector::input()
+{
+	bool shouldBeActive = getDebuggerDisplayer().shouldBeDrawn();
+	if (ActionManager::isActionPressed("SwitchDebugger"))
+		shouldBeActive = !shouldBeActive;
+	getDebuggerDisplayer().setShouldBeDrawn(shouldBeActive);
 }
 
 }

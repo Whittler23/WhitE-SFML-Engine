@@ -16,12 +16,16 @@ public:
 	void setFramesPerSecond(unsigned int fps);
 	auto getText() -> sf::Text & { return mFPSText; }
 
+	void setShouldBeDrawn(const bool shouldBeDrawn) { mShouldBeDrawn = shouldBeDrawn; }
+	bool shouldBeDrawn() { return mShouldBeDrawn; }
+
 private:
 	void initializeText();
 
 private:
 	sf::Text mFPSText;
 	sf::Font mFont;
+	bool mShouldBeDrawn;
 };
 
 }

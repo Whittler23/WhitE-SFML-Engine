@@ -4,6 +4,7 @@ namespace WhitE {
 
 DebuggerDisplayer::DebuggerDisplayer(sf::RenderWindow&)
 	:DrawableGameObject("DebuggerDisplayer")
+	,mShouldBeDrawn(false)
 {
 	initializeText();
 }
@@ -22,7 +23,8 @@ void DebuggerDisplayer::setFramesPerSecond(unsigned int fps)
 
 void DebuggerDisplayer::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	target.draw(mFPSText);
+	if(mShouldBeDrawn)
+		target.draw(mFPSText);
 }
 
 }
