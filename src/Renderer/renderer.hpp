@@ -21,6 +21,8 @@ public:
 	void removeObjectFromDrawables(DrawableGameObject* const object);
 	void removeObjectFromDrawables(const std::string& objectName);
 
+	void clearDrawables();
+
 private:
 	sf::RenderTarget& mRenderTarget;
 	std::list<DrawableGameObject*> mDrawableObjects;

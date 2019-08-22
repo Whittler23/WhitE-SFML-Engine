@@ -14,6 +14,7 @@ Renderer::Renderer(sf::RenderTarget& renderTarget)
 Renderer::~Renderer()
 {
 	WE_CORE_INFO("Deleted state renderer");
+	clearDrawables();
 }
 
 void Renderer::draw() const
@@ -55,6 +56,13 @@ void Renderer::removeObjectFromDrawables(const std::string& objectName)
 			return;
 		}
 	}
+}
+
+void Renderer::clearDrawables()
+{
+	mDrawableObjects.clear();
+
+	WE_CORE_INFO("Removed all objects from drawables");
 }
 
 }
