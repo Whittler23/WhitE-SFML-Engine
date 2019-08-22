@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Input/actionManager.hpp"
-
 #include <SFML/Window.hpp>
 
 namespace WhitE {
@@ -13,6 +11,7 @@ private:
 	bool isMouseButtonPressed(sf::Mouse::Button button) { return sf::Mouse::isButtonPressed(button); }
 
 	friend class ActionManager;
+	friend class MouseManager;
 };
 
 }
