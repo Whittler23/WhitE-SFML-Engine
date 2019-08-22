@@ -8,7 +8,7 @@ GameEngine::GameEngine()
 	:mGameWindow()
 	,mDataCollector(getRenderWindow())
 	,mStatesManager(mGameWindow, mResourcesHolder)
-	,mSharedData(getWindow(), getResourcesHolder(), getStatesManager())
+	,mSharedData(getWindow(), getResourcesHolder())
 {
 	mStatesManager.pushState(std::make_unique<IntroState>(getSharedData()));
 }

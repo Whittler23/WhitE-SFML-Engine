@@ -12,15 +12,13 @@ class StatesManager;
 
 struct SharedData
 {
-	SharedData(Window& window, ResourcesHolder& resourcesHolder, StatesManager& statesManager)
+	SharedData(Window& window, ResourcesHolder& resourcesHolder)
 		:mWindow(window)
 		,mResourcesHolder(resourcesHolder)
-		,mStatesManager(statesManager)
 	{}
 
 	Window& mWindow;
 	ResourcesHolder& mResourcesHolder;
-	StatesManager& mStatesManager;
 };
 
 }
