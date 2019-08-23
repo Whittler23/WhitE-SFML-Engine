@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Window/window.hpp"
+#include "window.hpp"
 #include "Debugger/dataCollector.hpp"
 #include "Resources/ResourcesHolder.hpp"
 #include "States/StatesManager.hpp"

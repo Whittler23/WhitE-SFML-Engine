@@ -1,5 +1,5 @@
 #include "Input/mouseManager.hpp"
-#include "Window/window.hpp"
+#include "window.hpp"
 #include "Logger/logs.hpp"
 
 namespace WhitE {

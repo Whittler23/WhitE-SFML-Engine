@@ -1,6 +1,6 @@
 #include "States/StatesManager.hpp"
 #include "States/baseState.hpp"
-#include "Window/window.hpp"
+#include "window.hpp"
 
 #include "Logger/logs.hpp"
 

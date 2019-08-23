@@ -1,7 +1,7 @@
 #include "Renderer/renderer.hpp"
 #include "Objects/drawableGameObject.hpp"
 #include "Logger/logs.hpp"
-#include "Window/window.hpp"
+#include "window.hpp"
 
 namespace WhitE {
 
