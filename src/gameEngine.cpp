@@ -3,8 +3,6 @@
 #include "States/IntroState.hpp"
 #include "Input/actionManager.hpp"
 
-#include "Objects/drawableGameObject.hpp"
-
 namespace WhitE {
 
 GameEngine::GameEngine()
