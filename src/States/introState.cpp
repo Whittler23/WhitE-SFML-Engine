@@ -5,6 +5,7 @@
 #include "sharedData.hpp"
 #include "States/baseState.hpp"
 #include "Input/actionManager.hpp"
+#include "Input/mouseManager.hpp"
 #include "Objects/gameObject.hpp"
 
 namespace WhitE {
@@ -63,10 +64,9 @@ void IntroState::input()
 {
 	if (ActionManager::isActionPressed("Continue"))
 		setShouldPop(true);
-	mShouldDraw = (ActionManager::getLastMouseClickPosition().x > 100 ? true : false);
+	mShouldDraw = (MouseManager::getLastMouseClickPosition().x > 100 ? true : false);
 
 	getRoot().input();
-
 }
 
 void IntroState::update(const sf::Time& deltaTime)
