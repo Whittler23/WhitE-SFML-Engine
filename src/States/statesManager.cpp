@@ -66,7 +66,7 @@ void StatesManager::replaceState(std::unique_ptr<BaseState> state)
 	if (!mStack.empty())
 	{
 		mStack.pop();
-		mStack.push(state);
+		mStack.push(std::move(state));
 		WE_CORE_INFO("Replaced popped from stack");
 	}
 
