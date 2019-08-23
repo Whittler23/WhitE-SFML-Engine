@@ -17,9 +17,14 @@ GameEngine::GameEngine()
 	mStatesManager.pushState(std::make_unique<IntroState>(getSharedData()));
 }
 
+GameEngine::~GameEngine()
+{
+
+}
+
 void GameEngine::initializeRenderer()
 {
-	mRenderer.addObjectToDrawables(&getDataCollector().getDebuggerDisplayer());
+	mRenderer.addObjectToDrawables(LayerType::EngineObjects, &getDataCollector().getDebuggerDisplayer());
 }
 
 void GameEngine::initializeEngineActions()

@@ -8,6 +8,7 @@ namespace WhitE {
 Renderer::Renderer(sf::RenderTarget& renderTarget)
 	:mRenderTarget(renderTarget)
 {
+	init();
 	WE_CORE_INFO("Initialized state renderer");
 }
 
@@ -17,52 +18,65 @@ Renderer::~Renderer()
 	clearDrawables();
 }
 
+void Renderer::init()
+{
+	mLayerNames = { { LayerType::Background, "BackgroundLayer" },
+				{ LayerType::StaticObjects, "StaticObjectsLayer" },
+				{ LayerType::KinematicObjects, "KinematicObjectsLayer" } };
+
+	mLayers = { {LayerType::Background, Layer(getLayerName(LayerType::Background))},
+			{LayerType::StaticObjects, Layer(getLayerName(LayerType::StaticObjects))},
+			{LayerType::KinematicObjects, Layer(getLayerName(LayerType::KinematicObjects))} };
+
+}
+
 void Renderer::draw() const
 {
-	for (auto& drawableObject : mDrawableObjects)
-	{
-		mRenderTarget.draw(*drawableObject);
-	}
+	for (auto& layer : mLayers)
+		for (auto drawableObject : layer.second.getDrawableObjects())
+			mRenderTarget.draw(*drawableObject);
 }
 
-void Renderer::addObjectToDrawables(DrawableGameObject* const object)
+void Renderer::addObjectToDrawables(LayerType layerType, DrawableGameObject* const object)
 {
-	mDrawableObjects.emplace_back(object);
+	mLayers[layerType].addObjectToDrawables(object);
 
-	WE_CORE_INFO("\"" + object->getName() + "\" was added to rendered objects");
+	WE_CORE_INFO("\"" + object->getName() + "\" was added to " + getLayerName(layerType));
 }
 
-void Renderer::removeObjectFromDrawables(DrawableGameObject* const object)
+void Renderer::removeObjectFromDrawables(LayerType layerType, DrawableGameObject* const object)
 {
-	for (auto it = mDrawableObjects.begin(); it != mDrawableObjects.end(); ++it)
-	{
-		if (*it = object)
-		{
-			WE_CORE_INFO("\"" + object->getName() + "\" was removed from rendered objects");
-			mDrawableObjects.erase(it);
-			return;
-		}
-	}
+	mLayers[layerType].removeObjectFromDrawables(object);
+
+	WE_CORE_INFO("\"" + object->getName() + "\" was removed from " + getLayerName(layerType));
 }
 
 void Renderer::removeObjectFromDrawables(const std::string& objectName)
 {
-	for (auto& it = mDrawableObjects.begin(); it != mDrawableObjects.end(); ++it)
-	{
-		if ((*it)->getName() == objectName)
-		{
-			WE_CORE_INFO("\"" + objectName + "\" was removed from rendered objects");
-			mDrawableObjects.erase(it);
-			return;
-		}
-	}
+	for (auto& layer : mLayers)
+		layer.second.removeObjectFromDrawables(objectName);
+
+	WE_CORE_INFO("\"" + objectName + "\" was removed from layers it existed in");
+}
+
+void Renderer::clearDrawables(LayerType layerType)
+{
+	mLayers[layerType].clearDrawables();
+
+	WE_CORE_INFO("Drawable objects were removed from " + getLayerName(layerType));
 }
 
 void Renderer::clearDrawables()
 {
-	mDrawableObjects.clear();
+	for (auto& layer : mLayers)
+		layer.second.clearDrawables();
 
-	WE_CORE_INFO("Removed all objects from drawables");
+	WE_CORE_INFO("Drawable objects were removed from all layers");
+}
+
+std::string Renderer::getLayerName(LayerType layerType)
+{
+	return mLayerNames[layerType];
 }
 
 }

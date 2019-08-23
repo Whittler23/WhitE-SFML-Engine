@@ -9,7 +9,6 @@
 
 namespace WhitE {
 
-struct SharedData;
 class GameObject;
 
 class BaseState

@@ -6,6 +6,7 @@
 
 namespace WhitE {
 
+struct SharedData;
 class ResourcesHolder;
 
 class IntroState : public BaseState
