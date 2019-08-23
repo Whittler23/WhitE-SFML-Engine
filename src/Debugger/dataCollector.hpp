@@ -9,7 +9,7 @@ namespace WhitE {
 class DataCollector
 {
 public:
-	DataCollector(sf::RenderWindow& renderWindow);
+	DataCollector(Renderer& renderer);
 
 	void update(const sf::Time deltaTime);
 	void input();
@@ -17,7 +17,6 @@ public:
 	auto getDebuggerDisplayer() -> DebuggerDisplayer& { return mDebuggerDisplayer; }
 
 private:
-	sf::RenderWindow& mRenderWindow;
 	DebuggerDisplayer mDebuggerDisplayer;
 	sf::Clock mOneSecondClock;
 	int mFramesPerSecond;

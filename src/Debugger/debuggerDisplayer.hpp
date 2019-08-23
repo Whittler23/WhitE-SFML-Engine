@@ -9,7 +9,7 @@ namespace WhitE {
 class DebuggerDisplayer : public DrawableGameObject
 {
 public:
-	DebuggerDisplayer(sf::RenderWindow& renderWindow);
+	DebuggerDisplayer(Renderer& renderer);
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

@@ -7,7 +7,7 @@ namespace WhitE {
 
 GameEngine::GameEngine()
 	:mGameWindow()
-	,mDataCollector(getRenderWindow())
+	,mDataCollector(getRenderer())
 	,mStatesManager(mGameWindow, mResourcesHolder)
 	,mRenderer(mGameWindow.getRenderWindow())
 	,mSharedData(getWindow(), getResourcesHolder())

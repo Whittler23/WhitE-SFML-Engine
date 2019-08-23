@@ -2,8 +2,8 @@
 
 namespace WhitE {
 
-DebuggerDisplayer::DebuggerDisplayer(sf::RenderWindow&)
-	:DrawableGameObject("DebuggerDisplayer")
+DebuggerDisplayer::DebuggerDisplayer(Renderer& renderer)
+	:DrawableGameObject(renderer, LayerType::EngineObjects, "DebuggerDisplayer")
 	,mShouldBeDrawn(false)
 {
 	initializeText();

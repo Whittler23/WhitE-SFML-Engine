@@ -1,15 +1,18 @@
 #pragma once
 
 #include "Objects/gameObject.hpp"
+#include "Renderer/layerType.hpp"
 
 #include <SFML/Graphics.hpp>
 
 namespace WhitE {
 
+class Renderer;
+
 class DrawableGameObject : public GameObject, public sf::Drawable
 {
 public:
-	DrawableGameObject(const std::string& name);
+	DrawableGameObject(Renderer& renderer, LayerType layerType, const std::string& name);
 
 	sf::Vector2f getPosition() const;
 	sf::Vector2f getScale() const;
@@ -23,6 +26,7 @@ public:
 	void rotate(float rotation);
 
 private:
+	Renderer& mRenderer;
 	sf::Vector2f mPosition;
 	sf::Vector2f mScale;
 	float mRotation;

@@ -3,13 +3,11 @@
 
 namespace WhitE {
 
-DataCollector::DataCollector(sf::RenderWindow& renderWindow)
-	:mRenderWindow(renderWindow)
-	,mDebuggerDisplayer(renderWindow)
+DataCollector::DataCollector(Renderer& renderer)
+	:mDebuggerDisplayer(renderer)
 	,mFramesPerSecond(0)
 {
 }
-
 
 void DataCollector::update(const sf::Time deltaTime)
 {
