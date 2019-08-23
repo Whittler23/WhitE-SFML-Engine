@@ -1,6 +1,9 @@
 #include "gameEngine.hpp"
 #include "States/BaseState.hpp"
 #include "States/IntroState.hpp"
+#include "Input/actionManager.hpp"
+
+#include "Objects/drawableGameObject.hpp"
 
 namespace WhitE {
 
@@ -8,9 +11,22 @@ GameEngine::GameEngine()
 	:mGameWindow()
 	,mDataCollector(getRenderWindow())
 	,mStatesManager(mGameWindow, mResourcesHolder)
+	,mRenderer(mGameWindow.getRenderWindow())
 	,mSharedData(getWindow(), getResourcesHolder())
 {
+	initializeRenderer();
+	initializeEngineActions();
 	mStatesManager.pushState(std::make_unique<IntroState>(getSharedData()));
+}
+
+void GameEngine::initializeRenderer()
+{
+	mRenderer.addObjectToDrawables(&getDataCollector().getDebuggerDisplayer());
+}
+
+void GameEngine::initializeEngineActions()
+{
+	ActionManager::addAction("SwitchDebugger", sf::Keyboard::Tab);
 }
 
 void GameEngine::start()
@@ -32,12 +48,6 @@ void GameEngine::start()
 	}
 }
 
-void GameEngine::input()
-{
-	mStatesManager.input();
-	mGameWindow.input();
-}
-
 void GameEngine::update(const sf::Time deltaTime)
 {
 	mStatesManager.update(deltaTime);
@@ -45,12 +55,19 @@ void GameEngine::update(const sf::Time deltaTime)
 	mGameWindow.update();
 }
 
+void GameEngine::input()
+{
+	mStatesManager.input();
+	mDataCollector.input();
+	mGameWindow.input();
+}
+
 void GameEngine::draw()
 {
 	mGameWindow.getRenderWindow().clear();
 
+	mRenderer.draw();
 	mStatesManager.draw();
-	getRenderWindow().draw(mDataCollector.getDebuggerDisplayer().getText());
 
 	mGameWindow.getRenderWindow().display();
 }
