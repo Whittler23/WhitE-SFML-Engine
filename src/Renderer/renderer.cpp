@@ -1,5 +1,6 @@
 #include "Renderer/renderer.hpp"
 #include "Objects/drawableGameObject.hpp"
+#include "Objects/gameEngineObject.hpp"
 #include "Logger/logs.hpp"
 #include "window.hpp"
 
@@ -35,6 +36,14 @@ void Renderer::draw() const
 	for (auto& layer : mLayers)
 		for (auto drawableObject : layer.second.getDrawableObjects())
 			mRenderTarget.draw(*drawableObject);
+
+	drawGameEngineObjects();
+}
+
+void Renderer::drawGameEngineObjects() const
+{
+	for (auto& gameEngineObject : mGameEngineObjects)
+		mRenderTarget.draw(*gameEngineObject);
 }
 
 void Renderer::addObjectToDrawables(LayerType layerType, DrawableGameObject* const object)
@@ -42,6 +51,13 @@ void Renderer::addObjectToDrawables(LayerType layerType, DrawableGameObject* con
 	mLayers[layerType].addObjectToDrawables(object);
 
 	WE_CORE_INFO("\"" + object->getName() + "\" was added to " + getLayerName(layerType));
+}
+
+void Renderer::addGameEngineObject(GameEngineObject* const gameEngineObject)
+{
+	mGameEngineObjects.emplace_back(gameEngineObject);
+
+	WE_CORE_INFO("\"" + gameEngineObject->getName() + "\" was added to game engine objects");
 }
 
 void Renderer::removeObjectFromDrawables(LayerType layerType, DrawableGameObject* const object)
@@ -57,6 +73,28 @@ void Renderer::removeObjectFromDrawables(const std::string& objectName)
 		layer.second.removeObjectFromDrawables(objectName);
 
 	WE_CORE_INFO("\"" + objectName + "\" was removed from layers it existed in");
+}
+
+void Renderer::removeObjectFromDrawables(LayerType layerType, const std::string& objectName)
+{
+	mLayers[layerType].removeObjectFromDrawables(objectName);
+
+	WE_CORE_INFO("\"" + objectName + "\" was removed from " + getLayerName(layerType));
+}
+
+void Renderer::removeGameEngineObject(const std::string& gameEngineObjectName)
+{
+	for (auto it = mGameEngineObjects.begin(); it != mGameEngineObjects.end(); ++it)
+	{
+		if ((*it)->getName() == gameEngineObjectName)
+		{
+			mGameEngineObjects.erase(it);
+			WE_CORE_INFO("\"" + gameEngineObjectName + "\" was removed from game engine objects");
+			return;
+		}
+	}
+
+	WE_CORE_WARNING("\"" + gameEngineObjectName + "\" could not be removed from game engine objects");
 }
 
 void Renderer::clearDrawables(LayerType layerType)

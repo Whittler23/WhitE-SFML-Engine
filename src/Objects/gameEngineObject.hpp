@@ -12,6 +12,8 @@ public:
 	bool isVisible() { return mVisibility; }
 	void setVisibility(const bool visibility) { mVisibility = visibility; }
 
+	auto getName() const -> const std::string & { return mName; }
+
 private:
 	std::string mName;
 	bool mVisibility;

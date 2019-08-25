@@ -7,7 +7,7 @@ GameEngineObject::GameEngineObject(Renderer& renderer, const std::string& name)
 	:mName(name)
 	,mVisibility(false)
 {
-	//renderer.addToGameEngineObjects(this);
+	renderer.addGameEngineObject(this);
 }
 
 }

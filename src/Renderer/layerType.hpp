@@ -4,8 +4,7 @@ namespace WhitE {
 
 enum class LayerType
 {
-	Background, StaticObjects, KinematicObjects,
-	EngineObjects
+	Background, StaticObjects, KinematicObjects
 };
 
 }
