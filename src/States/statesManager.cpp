@@ -45,7 +45,12 @@ void StatesManager::update(const sf::Time& deltaTime)
 
 void StatesManager::pushState(std::unique_ptr<BaseState> state)
 {
+	if (!mStack.empty())
+		mStack.top()->onCover();
+	//Most likely temporary solution
+
 	mStack.push(std::move(state));
+	mStack.top()->onPush();
 
 	WE_CORE_INFO("State pushed on stack");
 }
@@ -54,7 +59,11 @@ void StatesManager::popState()
 {
 	if (!mStack.empty())
 	{
+		mStack.top()->onPop();
 		mStack.pop();
+		if (!mStack.empty())
+			mStack.top()->onPush();
+
 		WE_CORE_INFO("State popped from stack");
 	}
 	else

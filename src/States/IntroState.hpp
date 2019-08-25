@@ -21,6 +21,7 @@ public:
 
 	void onPush() override;
 	void onPop() override;
+	void onCover() override;
 
 	auto getSharedData() const -> SharedData & { return mSharedData; }
 

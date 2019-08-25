@@ -30,6 +30,9 @@ void GameEngine::initializeRenderer()
 void GameEngine::initializeEngineActions()
 {
 	ActionManager::addAction("SwitchDebugger", sf::Keyboard::Tab);
+	ActionManager::addAction("PopState", sf::Keyboard::BackSpace);
+	ActionManager::addAction("PushGame", sf::Keyboard::G);
+	ActionManager::addAction("PushIntro", sf::Keyboard::I);
 }
 
 void GameEngine::start()
@@ -64,6 +67,13 @@ void GameEngine::input()
 	mStatesManager.input();
 	mDataCollector.input();
 	mGameWindow.input();
+
+	if (ActionManager::isActionPressed("PopState"))
+		getStatesManager().popState();
+	if(ActionManager::isActionPressed("PushGame"))
+		getStatesManager().pushState(std::make_unique<GameState>(getSharedData()));
+	if (ActionManager::isActionPressed("PushIntro"))
+		getStatesManager().pushState(std::make_unique<IntroState>(getSharedData()));
 }
 
 void GameEngine::draw()

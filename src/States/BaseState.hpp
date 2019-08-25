@@ -19,6 +19,7 @@ public:
 
 	virtual void onPop() = 0;
 	virtual void onPush() = 0;
+	virtual void onCover() = 0;
 
 	virtual void draw() const = 0;
 	virtual void input() = 0;

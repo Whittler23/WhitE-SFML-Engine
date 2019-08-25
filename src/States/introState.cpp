@@ -7,6 +7,7 @@
 #include "Input/actionManager.hpp"
 #include "Input/mouseManager.hpp"
 #include "Objects/gameObject.hpp"
+#include "Renderer/renderer.hpp"
 
 namespace WhitE {
 
@@ -14,12 +15,10 @@ IntroState::IntroState(SharedData& sharedData)
 	:mSharedData(sharedData)
 	,mShouldDraw(false)
 {
-	onPush();
 }
 
 IntroState::~IntroState()
 {
-	onPop();
 }
 
 void IntroState::onPush() 
@@ -48,6 +47,11 @@ void IntroState::onPop()
 	ActionManager::deleteAction("Continue");
 
 	WE_INFO("InfoState popped from the stack");
+}
+
+void IntroState::onCover()
+{
+	getSharedData().mRenderer.clearDrawables();
 }
 
 void IntroState::draw() const
