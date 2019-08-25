@@ -18,10 +18,8 @@ StatesManager::~StatesManager()
 
 void StatesManager::draw()
 {
-	if (mStack.empty() || mStack.top()->getTransparent())
-		return;
-	mStack.top()->draw();
-
+	if (!mStack.empty() && !mStack.top()->getTransparent())
+		mStack.top()->draw();
 }
 
 void StatesManager::input()
@@ -45,10 +43,6 @@ void StatesManager::update(const sf::Time& deltaTime)
 
 void StatesManager::pushState(std::unique_ptr<BaseState> state)
 {
-	if (!mStack.empty())
-		mStack.top()->onCover();
-	//Most likely temporary solution
-
 	mStack.push(std::move(state));
 	mStack.top()->onPush();
 
@@ -61,8 +55,6 @@ void StatesManager::popState()
 	{
 		mStack.top()->onPop();
 		mStack.pop();
-		if (!mStack.empty())
-			mStack.top()->onPush();
 
 		WE_CORE_INFO("State popped from stack");
 	}

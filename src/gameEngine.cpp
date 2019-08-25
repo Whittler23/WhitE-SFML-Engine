@@ -15,7 +15,7 @@ GameEngine::GameEngine()
 {
 	initializeRenderer();
 	initializeEngineActions();
-	mStatesManager.pushState(std::make_unique<IntroState>(getSharedData()));
+	mStatesManager.pushState(std::make_unique<IntroState>(mSharedData));
 }
 
 GameEngine::~GameEngine()

@@ -41,11 +41,11 @@ private:
 
 private:
 	Window mGameWindow;
-	Renderer mRenderer;
-	DataCollector mDataCollector;
 	ResourcesHolder mResourcesHolder;
-	StatesManager mStatesManager;
+	Renderer mRenderer;
 	SharedData mSharedData;
+	DataCollector mDataCollector;
+	StatesManager mStatesManager;
 
 };
 
