@@ -2,6 +2,11 @@
 
 namespace WhitE {
 
+bool MouseManager::isMouseButtonJustPressed(sf::Mouse::Button)
+{
+	return false;
+}
+
 bool MouseManager::isMouseButtonPressed(sf::Mouse::Button button)
 {
 	return mInput.isMouseButtonPressed(button) ? true : false;

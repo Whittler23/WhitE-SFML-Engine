@@ -9,6 +9,7 @@ namespace WhitE {
 class MouseManager
 {
 public:
+	static bool isMouseButtonJustPressed(sf::Mouse::Button);
 	static bool isMouseButtonPressed(sf::Mouse::Button);
 	static void readMouseClickPosition(const sf::Vector2i& mouseClickPosition);
 	static sf::Vector2i getLastMouseClickPosition();

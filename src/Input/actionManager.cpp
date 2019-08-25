@@ -23,7 +23,7 @@ void ActionManager::deleteAction(const std::string& actionName)
 		WE_CORE_WARNING("Key of map cannot be found!");
 }
 
-bool ActionManager::isActionPressed(const std::string& actionName) 
+bool ActionManager::isActionJustPressed(const std::string& actionName) 
 {
 	auto keys = mKeyboardMap.at(actionName);
 	for (const auto& key : keys)

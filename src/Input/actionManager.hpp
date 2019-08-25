@@ -20,8 +20,6 @@ public:
 private:
 	inline static Input mInput;
 	inline static std::unordered_map<std::string, std::vector<sf::Keyboard::Key>> mKeyboardMap;
-	inline static sf::Vector2i mLastMouseClickPosition;
-	inline static sf::Vector2i mMousePosition;
 };
 
 }

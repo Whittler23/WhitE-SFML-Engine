@@ -1,5 +1,6 @@
 #include "Input/mouseManager.hpp"
 #include "Input/actionManager.hpp"
+#include "Input/eventManager.hpp"
 #include "window.hpp"
 #include "Logger/logs.hpp"
 
@@ -32,25 +33,39 @@ namespace WhitE {
 
 	void Window::updateEvents()
 	{
-		sf::Event windowEvent;
+		EventManager::clear();
+		sf::Event event;
 
-		while (getRenderWindow().pollEvent(windowEvent))
+		while (getRenderWindow().pollEvent(event))
 		{
-			switch (windowEvent.type)
+			switch (event.type)
 			{
 			case sf::Event::KeyPressed:
+				EventManager::setIsKeyPressed(true);
+				EventManager::setLastPressedKey(event.key.code);
 				break;
+
 			case sf::Event::KeyReleased:
+				EventManager::setIsKeyReleased(true);
+				EventManager::setLastReleasedKey(event.key.code);
 				break;
+
 			case sf::Event::MouseButtonPressed:
 			{
+				EventManager::setIsButtonPressed(true);
+				EventManager::setLastPressedButton(event.mouseButton.button);
+
 				sf::Vector2i mouseClickPosition = sf::Mouse::getPosition(getRenderWindow());
 				MouseManager::readMouseClickPosition(mouseClickPosition);
+
 				WE_CORE_INFO("Clicked! Mouse position: x" + std::to_string(mouseClickPosition.x)
 					+ " y" + std::to_string(mouseClickPosition.y));
 				break;
 			}
+
 			case sf::Event::MouseButtonReleased:
+				EventManager::setIsButtonReleased(true);
+				EventManager::setLastReleasedButton(event.mouseButton.button);
 				break;
 
 			case sf::Event::Closed:
