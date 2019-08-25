@@ -7,12 +7,12 @@
 
 namespace WhitE {
 
-class Renderer;
+class StateRenderer;
 
 class DrawableGameObject : public GameObject, public sf::Drawable
 {
 public:
-	DrawableGameObject(Renderer& renderer, LayerType layerType, const std::string& name);
+	DrawableGameObject(StateRenderer& stateRenderer, LayerType layerType, const std::string& name);
 
 	sf::Vector2f getPosition() const;
 	sf::Vector2f getScale() const;
@@ -26,7 +26,6 @@ public:
 	void rotate(float rotation);
 
 private:
-	Renderer& mRenderer;
 	sf::Vector2f mPosition;
 	sf::Vector2f mScale;
 	float mRotation;

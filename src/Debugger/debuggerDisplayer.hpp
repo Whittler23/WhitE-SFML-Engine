@@ -6,6 +6,8 @@
 
 namespace WhitE {
 
+class Renderer;
+
 class DebuggerDisplayer : public GameEngineObject
 {
 public:

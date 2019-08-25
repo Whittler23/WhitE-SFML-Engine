@@ -12,7 +12,7 @@
 namespace WhitE {
 
 IntroState::IntroState(SharedData& sharedData)
-	:mSharedData(sharedData)
+	:BaseState(sharedData)
 	,mShouldDraw(false)
 {
 }
@@ -38,20 +38,22 @@ void IntroState::onPush()
 	mText.setString("Press \"Space\" to continue!");
 
 	ActionManager::addAction("Continue", sf::Keyboard::Space);
+	ActionManager::addAction("Move", sf::Keyboard::D);
+
+	WE_INFO("Intro State pushed on the stack");
 }
 
 void IntroState::onPop()
 {
 	getSharedData().mResourcesHolder.getTextureHolder().free("resources/textures/testLogo.png");
 	getSharedData().mResourcesHolder.getFontHolder().free("resources/fonts/testFont.ttf");
+
+	mStateRenderer.clearDrawables();
+
 	ActionManager::deleteAction("Continue");
+	ActionManager::deleteAction("Move");
 
-	WE_INFO("InfoState popped from the stack");
-}
-
-void IntroState::onCover()
-{
-	getSharedData().mRenderer.clearDrawables();
+	WE_INFO("Intro State popped from the stack");
 }
 
 void IntroState::draw() const
@@ -68,6 +70,8 @@ void IntroState::input()
 {
 	if (ActionManager::isActionPressed("Continue"))
 		setShouldPop(true);
+	if (ActionManager::isActionPressed("Move"))
+		mText.setPosition(mText.getPosition() + sf::Vector2f(50.f, 20.f));
 	mShouldDraw = (MouseManager::getLastMouseClickPosition().x > 100 ? true : false);
 
 	getRoot().input();

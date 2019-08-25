@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Objects/drawableGameObject.hpp"
+#include "Renderer/renderer.hpp"
 
 namespace WhitE {
 
