@@ -7,8 +7,8 @@ namespace WhitE {
 class Input
 {
 private:
-	bool isKeyPressed(sf::Keyboard::Key key) { return sf::Keyboard::isKeyPressed(key); }
-	bool isMouseButtonPressed(sf::Mouse::Button button) { return sf::Mouse::isButtonPressed(button); }
+	bool isKeyJustPressed(sf::Keyboard::Key key) { return sf::Keyboard::isKeyPressed(key); }
+	bool isMouseButtonJustPressed(sf::Mouse::Button button) { return sf::Mouse::isButtonPressed(button); }
 
 	friend class ActionManager;
 	friend class MouseManager;

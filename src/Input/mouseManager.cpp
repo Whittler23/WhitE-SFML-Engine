@@ -1,15 +1,16 @@
 #include "Input/mouseManager.hpp"
+#include "Input/eventManager.hpp"
 
 namespace WhitE {
 
-bool MouseManager::isMouseButtonJustPressed(sf::Mouse::Button)
-{
-	return false;
-}
-
 bool MouseManager::isMouseButtonPressed(sf::Mouse::Button button)
 {
-	return mInput.isMouseButtonPressed(button) ? true : false;
+	return EventManager::getIsButtonPressed() && EventManager::getLastPressedButton() == button;
+}
+
+bool MouseManager::isMouseButtonJustPressed(sf::Mouse::Button button)
+{
+	return mInput.isMouseButtonJustPressed(button) ? true : false;
 }
 
 void MouseManager::readMouseClickPosition(const sf::Vector2i& mouseClickPosition)

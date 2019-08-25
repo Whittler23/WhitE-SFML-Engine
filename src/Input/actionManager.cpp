@@ -1,4 +1,5 @@
 #include "Input/actionManager.hpp"
+#include "Input/eventManager.hpp"
 #include "Logger/logs.hpp"
 
 namespace WhitE {
@@ -28,7 +29,18 @@ bool ActionManager::isActionJustPressed(const std::string& actionName)
 	auto keys = mKeyboardMap.at(actionName);
 	for (const auto& key : keys)
 	{
-		if (mInput.isKeyPressed(key))
+		if (mInput.isKeyJustPressed(key))
+			return true;
+	}
+	return false;
+}
+
+bool ActionManager::isActionPressed(const std::string& actionName)
+{
+	auto keys = mKeyboardMap.at(actionName);
+	for (const auto& key : keys)
+	{
+		if (EventManager::getIsKeyPressed() && EventManager::getLastPressedKey() == key)
 			return true;
 	}
 	return false;

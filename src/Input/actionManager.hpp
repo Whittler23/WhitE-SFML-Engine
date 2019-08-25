@@ -15,6 +15,7 @@ public:
 	static void addAction(const std::string&, std::vector<sf::Keyboard::Key>);
 
 	static void deleteAction(const std::string& actionName);
+	static bool isActionJustPressed(const std::string& actionName);
 	static bool isActionPressed(const std::string& actionName);
 
 private:
