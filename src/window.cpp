@@ -1,4 +1,5 @@
 #include "Input/mouseManager.hpp"
+#include "Input/actionManager.hpp"
 #include "window.hpp"
 #include "Logger/logs.hpp"
 
@@ -6,12 +7,14 @@ namespace WhitE {
 
 	Window::Window(const std::string name, bool winStyle, sf::Vector2u size)
 		:mShouldClose(false)
+		,mHasFocus(true)
 	{
 		initializeWindow();
 	}
 
 	Window::Window()
-		: mShouldClose(false)
+		:mShouldClose(false)
+		,mHasFocus(true)
 	{
 		initializeWindow();
 	}
@@ -24,12 +27,32 @@ namespace WhitE {
 
 	void Window::input()
 	{
+		
+	}
+
+	void Window::updateEvents()
+	{
 		sf::Event windowEvent;
 
-		while(getRenderWindow().pollEvent(windowEvent))
-		{ 
+		while (getRenderWindow().pollEvent(windowEvent))
+		{
 			switch (windowEvent.type)
 			{
+			case sf::Event::KeyPressed:
+				break;
+			case sf::Event::KeyReleased:
+				break;
+			case sf::Event::MouseButtonPressed:
+			{
+				sf::Vector2i mouseClickPosition = sf::Mouse::getPosition(getRenderWindow());
+				MouseManager::readMouseClickPosition(mouseClickPosition);
+				WE_CORE_INFO("Clicked! Mouse position: x" + std::to_string(mouseClickPosition.x)
+					+ " y" + std::to_string(mouseClickPosition.y));
+				break;
+			}
+			case sf::Event::MouseButtonReleased:
+				break;
+
 			case sf::Event::Closed:
 				WE_CORE_INFO("Closing WhitE Engine!");
 				mShouldClose = true;
@@ -37,22 +60,17 @@ namespace WhitE {
 
 			case sf::Event::LostFocus:
 				WE_CORE_INFO("Window lost focus");
+				mHasFocus = false;
 				break;
 
 			case sf::Event::GainedFocus:
 				WE_CORE_INFO("Window gained focus");
+				mHasFocus = true;
 				break;
 
 			case sf::Event::Resized:
 				WE_CORE_INFO("Resized! Window size: x" + std::to_string(getWindowWidth())
 					+ " y" + std::to_string(getWindowHeight()));
-				break;
-
-			case sf::Event::MouseButtonPressed:
-				sf::Vector2i mouseClickPosition = sf::Mouse::getPosition(getRenderWindow());
-				MouseManager::readMouseClickPosition(mouseClickPosition);
-				WE_CORE_INFO("Clicked! Mouse position: x" + std::to_string(mouseClickPosition.x) 
-					+ " y" + std::to_string(mouseClickPosition.y));
 				break;
 			}
 		}
@@ -60,7 +78,8 @@ namespace WhitE {
 
 	void Window::update()
 	{
-		MouseManager::readMousePosition(sf::Mouse::getPosition(getRenderWindow()));
+		sf::Vector2i mousePosition = sf::Mouse::getPosition(getRenderWindow());
+		MouseManager::readMousePosition(mousePosition);
 	}
 
 	void Window::draw(sf::Drawable& drawable)

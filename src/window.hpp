@@ -30,12 +30,14 @@ public:
 	Window();
 
 	void update();
+	void updateEvents();
 	void draw(sf::Drawable& drawable);
 	void input();
 
 	auto getRenderWindow() -> sf::RenderWindow & { return mGameWindow; }
 	auto getWindowWidth() const -> const unsigned { return mGameWindow.getSize().x; }
 	auto getWindowHeight() const -> const unsigned { return mGameWindow.getSize().y; }
+	bool hasFocus() { return mHasFocus; }
 	bool shouldClose() { return mShouldClose; }
 
 private:
@@ -45,6 +47,7 @@ private:
 	sf::RenderWindow mGameWindow;
 	WindowProperties mProperties;
 	bool mShouldClose;
+	bool mHasFocus;
 
 };
 

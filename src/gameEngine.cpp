@@ -55,6 +55,7 @@ void GameEngine::update(const sf::Time deltaTime)
 {
 	mStatesManager.update(deltaTime);
 	mDataCollector.update(deltaTime);
+	mGameWindow.updateEvents();
 	mGameWindow.update();
 }
 
