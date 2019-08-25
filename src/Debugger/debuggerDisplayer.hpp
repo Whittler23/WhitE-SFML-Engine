@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Objects/drawableGameObject.hpp"
+#include "Objects/gameEngineObject.hpp"
 
 #include <SFML/Graphics.hpp>
 
 namespace WhitE {
 
-class DebuggerDisplayer : public DrawableGameObject
+class DebuggerDisplayer : public GameEngineObject
 {
 public:
 	DebuggerDisplayer(Renderer& renderer);

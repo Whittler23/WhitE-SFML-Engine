@@ -3,7 +3,7 @@
 namespace WhitE {
 
 DebuggerDisplayer::DebuggerDisplayer(Renderer& renderer)
-	:DrawableGameObject(renderer, LayerType::EngineObjects, "DebuggerDisplayer")
+	:GameEngineObject(renderer, "DebuggerDisplayer")
 	,mShouldBeDrawn(false)
 {
 	initializeText();

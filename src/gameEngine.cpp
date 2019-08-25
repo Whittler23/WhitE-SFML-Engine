@@ -24,7 +24,7 @@ GameEngine::~GameEngine()
 
 void GameEngine::initializeRenderer()
 {
-	mRenderer.addObjectToDrawables(LayerType::EngineObjects, &getDataCollector().getDebuggerDisplayer());
+	//mRenderer.addObjectToDrawables(LayerType::EngineObjects, &getDataCollector().getDebuggerDisplayer());
 }
 
 void GameEngine::initializeEngineActions()

@@ -11,7 +11,7 @@ DrawableGameObject::DrawableGameObject(Renderer& renderer, LayerType layerType, 
 	,mScale(0.f, 0.f)
 	,mPosition(0.f, 0.f)
 {
-	//mRenderer.addObjectToDrawables(layerType, this);
+	mRenderer.addObjectToDrawables(layerType, this);
 }
 
 }

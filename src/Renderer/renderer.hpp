@@ -20,6 +20,7 @@ public:
 
 	void draw() const;
 
+
 	void addObjectToDrawables(LayerType layerType, DrawableGameObject* const object);
 
 	void removeObjectFromDrawables(LayerType layerType, DrawableGameObject* const object);
@@ -34,6 +35,7 @@ private:
 	sf::RenderTarget& mRenderTarget;
 	std::unordered_map<LayerType, Layer> mLayers;
 	std::unordered_map<LayerType, std::string> mLayerNames;
+	std::list<DrawableGameObject*> mGameEngineObjects;
 };
 
 }
