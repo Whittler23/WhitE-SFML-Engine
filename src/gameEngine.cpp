@@ -2,6 +2,7 @@
 #include "States/BaseState.hpp"
 #include "States/IntroState.hpp"
 #include "Input/actionManager.hpp"
+#include "States/gameState.hpp"
 
 namespace WhitE {
 
@@ -10,7 +11,7 @@ GameEngine::GameEngine()
 	,mDataCollector(getRenderer())
 	,mStatesManager(mGameWindow, mResourcesHolder)
 	,mRenderer(mGameWindow.getRenderWindow())
-	,mSharedData(getWindow(), getResourcesHolder())
+	,mSharedData(getWindow(), getResourcesHolder(), getRenderer())
 {
 	initializeRenderer();
 	initializeEngineActions();
@@ -24,7 +25,6 @@ GameEngine::~GameEngine()
 
 void GameEngine::initializeRenderer()
 {
-	//mRenderer.addGameEngineObject(&getDataCollector().getDebuggerDisplayer());
 }
 
 void GameEngine::initializeEngineActions()

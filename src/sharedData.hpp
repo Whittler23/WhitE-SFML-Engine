@@ -9,16 +9,19 @@ namespace WhitE {
 class Window;
 class ResourcesHolder;
 class StatesManager;
+class Renderer;
 
 struct SharedData
 {
-	SharedData(Window& window, ResourcesHolder& resourcesHolder)
+	SharedData(Window& window, ResourcesHolder& resourcesHolder, Renderer& renderer)
 		:mWindow(window)
 		,mResourcesHolder(resourcesHolder)
+		,mRenderer(renderer)
 	{}
 
 	Window& mWindow;
 	ResourcesHolder& mResourcesHolder;
+	Renderer& mRenderer;
 };
 
 }
