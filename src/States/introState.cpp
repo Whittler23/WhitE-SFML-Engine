@@ -54,7 +54,7 @@ public:
 
 	void input() override
 	{
-		if (mButtonBackground.getGlobalBounds().contains(sf::Vector2f(MouseManager::getMousePosition())))
+		if (mButtonBackground.getGlobalBounds().contains(sf::Vector2f(MouseManager::getMouseWindowPosition())))
 			mButtonBackground.setFillColor(mHoverColor);
 		else
 			mButtonBackground.setFillColor(mIdleColor);

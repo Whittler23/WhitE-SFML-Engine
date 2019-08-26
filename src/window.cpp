@@ -85,7 +85,8 @@ namespace WhitE {
 				break;
 
 			case sf::Event::Resized:
-				getRenderWindow().create(sf::VideoMode(getWindowWidth(), getWindowHeight()), mProperties.mWinTitle);
+				sf::FloatRect visableArea(0, 0, event.size.width, event.size.height);
+				getRenderWindow().setView(sf::View(visableArea));
 
 				WE_CORE_INFO("Resized! Window size: x" + std::to_string(getWindowWidth())
 					+ " y" + std::to_string(getWindowHeight()));
@@ -96,8 +97,11 @@ namespace WhitE {
 
 	void Window::update()
 	{
-		sf::Vector2i mousePosition = sf::Mouse::getPosition(getRenderWindow());
-		MouseManager::readMousePosition(mousePosition);
+		sf::Vector2i mouseWindowPosition = sf::Mouse::getPosition(getRenderWindow());
+		MouseManager::readMouseWindowPosition(mouseWindowPosition);
+
+		sf::Vector2f mouseWorldPosition = getRenderWindow().mapPixelToCoords(mouseWindowPosition);
+		MouseManager::readMouseWorldPosition(mouseWorldPosition);
 	}
 
 	void Window::draw(sf::Drawable& drawable)

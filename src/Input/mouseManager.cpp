@@ -23,14 +23,24 @@ sf::Vector2i MouseManager::getLastMouseClickPosition()
 	return mLastMouseClickPosition;
 }
 
-void MouseManager::readMousePosition(const sf::Vector2i& mousePosition)
+void MouseManager::readMouseWorldPosition(const sf::Vector2f& mouseWorldPosition)
 {
-	mMousePosition = mousePosition;
+	mMouseWorldPosition = mouseWorldPosition;
 }
 
-sf::Vector2i MouseManager::getMousePosition()
+sf::Vector2f MouseManager::getMouseWorldPosition()
 {
-	return mMousePosition;
+	return mMouseWorldPosition;
+}
+
+void MouseManager::readMouseWindowPosition(const sf::Vector2i& mouseWindowPosition)
+{
+	mMouseWindowPosition = mouseWindowPosition;
+}
+
+sf::Vector2i MouseManager::getMouseWindowPosition()
+{
+	return mMouseWindowPosition;
 }
 
 }
