@@ -41,9 +41,6 @@ public:
 		mButtonBackground.setSize(sf::Vector2f(160.f, 45.f));
 		mButtonBackground.setFillColor(mIdleColor);
 
-		WE_INFO(std::to_string(mButtonBackground.getGlobalBounds().width) + "elo");
-		WE_INFO(std::to_string(mButtonText.getGlobalBounds().width) + "elo");
-
 		mButtonText.setCharacterSize(25);
 		mButtonText.setPosition(
 			mButtonBackground.getPosition().x + mButtonBackground.getSize().x /2 - mButtonText.getGlobalBounds().width/2.f, 

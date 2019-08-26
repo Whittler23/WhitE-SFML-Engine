@@ -23,7 +23,8 @@ public:
 
 	void start();
 
-	void setInitState(std::unique_ptr<BaseState> initState);
+	void initState(std::unique_ptr<BaseState> initState);
+	void initGlobalActions(std::vector<std::pair<std::string, sf::Keyboard::Key>>);
 
 	auto getWindow() -> Window & { return mGameWindow; }
 	auto getRenderWindow() -> sf::RenderWindow & { return mGameWindow.getRenderWindow(); }
@@ -39,7 +40,6 @@ private:
 	void draw();
 
 	void initializeRenderer();
-	void initializeEngineActions();
 
 private:
 	Window mGameWindow;

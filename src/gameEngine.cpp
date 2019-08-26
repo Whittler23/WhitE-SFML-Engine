@@ -14,7 +14,6 @@ GameEngine::GameEngine()
 	,mSharedData(getWindow(), getResourcesHolder(), getRenderer())
 {
 	initializeRenderer();
-	initializeEngineActions();
 }
 
 GameEngine::~GameEngine()
@@ -26,17 +25,15 @@ void GameEngine::initializeRenderer()
 {
 }
 
-void GameEngine::initializeEngineActions()
-{
-	ActionManager::addAction("SwitchDebugger", sf::Keyboard::Tab);
-	ActionManager::addAction("PopState", sf::Keyboard::BackSpace);
-	ActionManager::addAction("PushGame", sf::Keyboard::G);
-	ActionManager::addAction("PushIntro", sf::Keyboard::I);
-}
-
-void GameEngine::setInitState(std::unique_ptr<BaseState> initState)
+void GameEngine::initState(std::unique_ptr<BaseState> initState)
 {
 	mStatesManager.pushState(std::move(initState));
+}
+
+void GameEngine::initGlobalActions(std::vector<std::pair<std::string, sf::Keyboard::Key>> actions)
+{
+	for (auto& action : actions)
+		ActionManager::addAction(action.first, action.second);
 }
 
 void GameEngine::start()
