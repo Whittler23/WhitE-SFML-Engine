@@ -9,6 +9,7 @@ namespace WhitE {
 	Window::Window(const std::string name, bool winStyle, sf::Vector2u size)
 		:mShouldClose(false)
 		,mHasFocus(true)
+		,mProperties(name, winStyle, size)
 	{
 		initializeWindow();
 	}
