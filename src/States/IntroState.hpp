@@ -22,11 +22,6 @@ public:
 	void onPush() override;
 	void onPop() override;
 
-private:
-	sf::Sprite mSplash;
-	sf::Text mText;
-
-	bool mShouldDraw;
 };
 
 }
