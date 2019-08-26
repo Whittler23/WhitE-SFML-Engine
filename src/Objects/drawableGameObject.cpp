@@ -3,8 +3,9 @@
 
 namespace WhitE {
 
-DrawableGameObject::DrawableGameObject(StateRenderer& stateRenderer, LayerType layerType, const std::string& name)
+DrawableGameObject::DrawableGameObject(StateRenderer& stateRenderer, ResourcesHolder& resourcesHolder, LayerType layerType, const std::string& name)
 	:GameObject(name)
+	,mResourcesHolder(resourcesHolder)
 	,mVisibility(true)
 	,mRotation(0.f)
 	,mScale(0.f, 0.f)
