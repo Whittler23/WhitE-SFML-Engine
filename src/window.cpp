@@ -85,6 +85,8 @@ namespace WhitE {
 				break;
 
 			case sf::Event::Resized:
+				getRenderWindow().create(sf::VideoMode(getWindowWidth(), getWindowHeight()), mProperties.mWinTitle);
+
 				WE_CORE_INFO("Resized! Window size: x" + std::to_string(getWindowWidth())
 					+ " y" + std::to_string(getWindowHeight()));
 				break;
