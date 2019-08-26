@@ -23,6 +23,8 @@ public:
 
 	void start();
 
+	void setInitState(std::unique_ptr<BaseState> initState);
+
 	auto getWindow() -> Window & { return mGameWindow; }
 	auto getRenderWindow() -> sf::RenderWindow & { return mGameWindow.getRenderWindow(); }
 	auto getDataCollector() -> DataCollector & { return mDataCollector; }

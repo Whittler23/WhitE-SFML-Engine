@@ -2,6 +2,8 @@
 #include "Logger/logInitializer.hpp"
 #include "Logger/logs.hpp"
 
+#include "States/introState.hpp"
+
 #include <stdexcept>
 
 #ifdef WE_WINDOWS
@@ -20,6 +22,8 @@ try {
 	WE_INFO("WhitE engine started!");
 
 	WhitE::GameEngine gameEngine;
+
+	gameEngine.setInitState(std::make_unique<WhitE::IntroState>(gameEngine.getSharedData()));
 
 	gameEngine.start();
 }

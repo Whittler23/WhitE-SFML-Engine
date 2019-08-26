@@ -15,7 +15,6 @@ GameEngine::GameEngine()
 {
 	initializeRenderer();
 	initializeEngineActions();
-	mStatesManager.pushState(std::make_unique<IntroState>(mSharedData));
 }
 
 GameEngine::~GameEngine()
@@ -33,6 +32,11 @@ void GameEngine::initializeEngineActions()
 	ActionManager::addAction("PopState", sf::Keyboard::BackSpace);
 	ActionManager::addAction("PushGame", sf::Keyboard::G);
 	ActionManager::addAction("PushIntro", sf::Keyboard::I);
+}
+
+void GameEngine::setInitState(std::unique_ptr<BaseState> initState)
+{
+	mStatesManager.pushState(std::move(initState));
 }
 
 void GameEngine::start()
