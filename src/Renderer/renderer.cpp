@@ -18,6 +18,11 @@ Renderer::~Renderer()
 	clearDrawableGameEngineObjects();
 }
 
+void Renderer::update(const sf::Time deltaTime)
+{
+	mCamera.update(deltaTime);
+}
+
 void Renderer::draw() const
 {
 	drawGameEngineObjects();
@@ -28,7 +33,6 @@ void Renderer::drawGameEngineObjects() const
 	for (auto& gameEngineObject : mGameEngineObjects)
 		mRenderTarget.draw(*gameEngineObject);
 }
-
 
 void Renderer::addGameEngineObject(GameEngineObject* const gameEngineObject)
 {
