@@ -9,6 +9,7 @@ namespace Math
 	sf::Vector2f getFloatRectCenter(const sf::FloatRect& floatRect);
 
 	sf::Vector2f getPSofV(const float percent, const sf::Vector2f& size);
+	sf::Vector2f getPSofV(const float percentX, const float percentY, const sf::Vector2f& size);
 }
 
 }

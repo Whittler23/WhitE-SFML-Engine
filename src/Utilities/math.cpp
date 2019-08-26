@@ -19,6 +19,14 @@ namespace Math
 			size.y * (percent / 100)
 		);
 	}
+
+	sf::Vector2f getPSofV(const float percentX, const float percentY, const sf::Vector2f& size)
+	{
+		return sf::Vector2f(
+			size.x * (percentX / 100),
+			size.y * (percentY / 100)
+		);
+	}
 }
 
 }
