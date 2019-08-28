@@ -43,7 +43,7 @@ void GameObject::removeChild(const std::string& nameOfObjectToRemove)
 			return;
 		}
 	}
-	WE_CORE_INFO("\"" + nameOfObjectToRemove + "\" is not a child of \"" + getName() + "\" and could not be removed");
+	WE_CORE_WARNING("\"" + nameOfObjectToRemove + "\" is not a child of \"" + getName() + "\" and could not be removed");
 }
 
 void GameObject::removeChild(GameObject* gameObjectToRemove)
@@ -57,7 +57,17 @@ void GameObject::removeChild(GameObject* gameObjectToRemove)
 			return;
 		}
 	}
-	WE_CORE_INFO("\"" + gameObjectToRemove->getName() + "\" is not a child of \"" + getName() + "\" and could not be removed");
+	WE_CORE_WARNING("\"" + gameObjectToRemove->getName() + "\" is not a child of \"" + getName() + "\" and could not be removed");
+}
+
+auto GameObject::getChild(const std::string& name) const -> GameObject&
+{
+	for (auto& child : mChildren)
+	{
+		if (child->getName() == name)
+			return *child.get();
+	}
+	WE_CORE_ERROR("\"" + name + "\" is not a child of \"" + getName() + "\" and could not be removed");
 }
 
 }

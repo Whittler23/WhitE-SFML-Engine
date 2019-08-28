@@ -19,6 +19,7 @@ public:
 	void removeChild(const std::string& name);
 	void removeChild(GameObject* gameObject);
 
+	auto getChild(const std::string& name) const->GameObject &;
 	auto getChildren() const -> const std::list<std::unique_ptr<GameObject>>& { return mChildren; }
 	auto getParent() const -> GameObject* { return mParent; }
 	auto getName() const -> std::string { return mName; }
