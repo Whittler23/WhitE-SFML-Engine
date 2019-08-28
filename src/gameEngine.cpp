@@ -1,8 +1,9 @@
 #include "gameEngine.hpp"
 #include "States/BaseState.hpp"
-#include "States/IntroState.hpp"
 #include "Input/actionManager.hpp"
-#include "States/gameState.hpp"
+
+#include "Tests/IntroState.hpp"
+#include "Tests/gameState.hpp"
 
 namespace WhitE {
 
@@ -57,6 +58,7 @@ void GameEngine::start()
 
 void GameEngine::update(const sf::Time deltaTime)
 {
+	mRenderer.update(deltaTime);
 	mStatesManager.update(deltaTime);
 	mDataCollector.update(deltaTime);
 	mGameWindow.updateEvents();
@@ -72,7 +74,7 @@ void GameEngine::input()
 	if (ActionManager::isActionPressed("PopState"))
 		getStatesManager().popState();
 	if(ActionManager::isActionPressed("PushGame"))
-		getStatesManager().pushState(std::make_unique<GameState>(getSharedData()));
+		getStatesManager().pushState(std::make_unique<GameState>(getSharedData(), sf::Vector2f(500, 500)));
 	if (ActionManager::isActionPressed("PushIntro"))
 		getStatesManager().pushState(std::make_unique<IntroState>(getSharedData()));
 }
