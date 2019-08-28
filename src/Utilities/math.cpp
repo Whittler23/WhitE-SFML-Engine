@@ -4,7 +4,7 @@ namespace WhitE {
 
 namespace Math
 {
-	sf::Vector2f getFloatRectCenter(const sf::FloatRect& floatRect)
+	sf::Vector2f getRectCenter(const sf::FloatRect& floatRect)
 	{
 		return sf::Vector2f(
 			floatRect.left + floatRect.width/2.f,
@@ -12,7 +12,15 @@ namespace Math
 		);
 	}
 
-	sf::Vector2f getPSofV(const float percent, const sf::Vector2f& size)
+	sf::Vector2f getRectCenter(const sf::Vector2f& rectSides)
+	{
+		return sf::Vector2f(
+			rectSides.x/2.f,
+			rectSides.y/2.f
+		);
+	}
+
+	sf::Vector2f getPofV(const float percent, const sf::Vector2f& size)
 	{
 		return sf::Vector2f(
 			size.x * (percent / 100),
@@ -20,7 +28,7 @@ namespace Math
 		);
 	}
 
-	sf::Vector2f getPSofV(const float percentX, const float percentY, const sf::Vector2f& size)
+	sf::Vector2f getPofV(const float percentX, const float percentY, const sf::Vector2f& size)
 	{
 		return sf::Vector2f(
 			size.x * (percentX / 100),
