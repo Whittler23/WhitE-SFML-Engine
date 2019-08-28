@@ -8,6 +8,7 @@ namespace WhitE {
 
 Renderer::Renderer(sf::RenderTarget& renderTarget)
 	:mRenderTarget(renderTarget)
+	,mCamera(renderTarget)
 {
 	WE_CORE_INFO("Initialized engine renderer");
 }
