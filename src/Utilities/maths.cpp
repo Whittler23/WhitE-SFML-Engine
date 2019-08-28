@@ -1,4 +1,4 @@
-#include "math.hpp"
+#include "maths.hpp"
 
 namespace WhitE {
 

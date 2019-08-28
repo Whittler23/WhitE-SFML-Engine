@@ -5,8 +5,6 @@
 #include "Input/actionManager.hpp"
 #include "sharedData.hpp"
 #include "Logger/logs.hpp"
-#include "Utilities/cast.hpp"
-#include "Utilities/math.hpp"
 
 #include "Tests/player.hpp"
 #include "Tests/background.hpp"
