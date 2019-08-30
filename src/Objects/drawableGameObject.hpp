@@ -16,6 +16,7 @@ class DrawableGameObject : public GameObject, public sf::Drawable
 public:
 	DrawableGameObject(StateRenderer& stateRenderer, SharedData& sharedData, LayerType layerType, const std::string& name);
 
+	sf::Vector2f getPosition() const;
 	bool getVisibility() const;
 
 protected:
@@ -25,7 +26,6 @@ protected:
 	virtual void setVisibility(const bool visibility);
 	virtual void rotate(const float angle);
 
-	sf::Vector2f getPosition() const;
 	sf::Vector2f getScale() const;
 	float getRotation() const;
 

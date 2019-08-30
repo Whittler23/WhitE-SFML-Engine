@@ -9,7 +9,7 @@ namespace WhitE {
 Camera::Camera(sf::RenderTarget& renderTarget)
 	:mRenderTarget(renderTarget)
 	,mView(renderTarget.getView())
-	//,mCameraTarget(nullptr)
+	,mCameraTarget(nullptr)
 {
 	WE_CORE_INFO("Camera initialized with view size: " + Cast::toString(mView.getSize()));
 	WE_CORE_INFO("Camera center: " + Cast::toString(mView.getCenter()));
@@ -17,15 +17,16 @@ Camera::Camera(sf::RenderTarget& renderTarget)
 
 void Camera::update(const sf::Time& deltaTime)
 {
-	//if(mCameraTarget != nullptr)
-	//	setViewCenter(mCameraTarget->getPosition());
+	if(mCameraTarget != nullptr)
+		setViewCenter(mCameraTarget->getPosition());
 
 	mRenderTarget.setView(mView);
 }
 
-void Camera::zoom(const float zoomFactor)
+void Camera::zoom(const float zoomPercent)
 {
-	mView.zoom(zoomFactor);
+	zoomPercent / 100.f;
+	mView.zoom(zoomPercent);
 }
 
 void Camera::setViewSize(const sf::Vector2f& viewSize)
@@ -38,15 +39,17 @@ void Camera::setViewCenter(const sf::Vector2f viewCenter)
 	mView.setCenter(viewCenter);
 }
 
-//void Camera::setCameraTarget(DrawableGameObject* object)
-//{
-//	mCameraTarget = object;
-//}
+void Camera::setCameraTarget(DrawableGameObject* object)
+{
+	mCameraTarget = object;
+}
 
-//void Camera::resetCameraTarget()
-//{
-//	mCameraTarget = nullptr;
-//}
+void Camera::resetCameraTarget()
+{
+	mCameraTarget = nullptr;
+	sf::View x = mRenderTarget.getDefaultView();
+	mView.reset(sf::FloatRect(0, 0, x.getSize().x, x.getSize().y));
+}
 
 auto Camera::getViewSize() const -> const sf::Vector2f
 {

@@ -12,12 +12,15 @@ GameState::GameState(SharedData& sharedData, const sf::Vector2f& viewSize)
 void GameState::onPop()
 {
 	mStateRenderer.clearDrawables();
+	getSharedData().mRenderer.getCamera().resetCameraTarget();
 	WE_INFO("Game State popped from the stack");
 }
 void GameState::onPush()
 {
 	getRoot().addChild(std::make_unique<Background>(mStateRenderer, getSharedData()));
 	getRoot().addChild(std::make_unique<Player>(mStateRenderer, getSharedData()));
+
+	getSharedData().mRenderer.getCamera().setCameraTarget(dynamic_cast<DrawableGameObject*>(&getRoot().getChild("Player")));
 
 	WE_CORE_INFO("Game State pushed on the stack");
 }
