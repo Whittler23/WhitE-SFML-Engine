@@ -16,19 +16,23 @@ class DrawableGameObject : public GameObject, public sf::Drawable
 public:
 	DrawableGameObject(StateRenderer& stateRenderer, SharedData& sharedData, LayerType layerType, const std::string& name);
 
+	bool getVisibility() const;
+
 protected:
+	virtual void setPosition(const sf::Vector2f& position);
+	virtual void setScale(const sf::Vector2f& scale);
+	virtual void setRotation(const float rotationAngle);
+	virtual void setVisibility(const bool visibility);
+	virtual void rotate(const float angle);
+
 	sf::Vector2f getPosition() const;
 	sf::Vector2f getScale() const;
 	float getRotation() const;
-	bool getVisibility() const;
 
-	auto getSharedData() -> SharedData & { return mSharedData; }
+	auto getSharedData()->SharedData &;
 
-	void setPosition(sf::Vector2f& position);
-	void setScale(sf::Vector2f& scale);
-	void setRotation(float rotation);
-	void setVisibility(bool visibility);
-	void rotate(float rotation);
+protected:
+	sf::Sprite mSprite;
 
 private:
 	SharedData& mSharedData;

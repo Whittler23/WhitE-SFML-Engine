@@ -44,51 +44,43 @@ public:
 	void input() override
 	{
 		if (ActionManager::isActionJustPressed("Up"))
-			setPosition(Direction::Up);
+			move(Direction::Up);
 		else if (ActionManager::isActionJustPressed("Down"))
-			setPosition(Direction::Down);
+			move(Direction::Down);
 		else if (ActionManager::isActionJustPressed("Left"))
-			setPosition(Direction::Left);
+			move(Direction::Left);
 		else if (ActionManager::isActionJustPressed("Right"))
-			setPosition(Direction::Right);
+			move(Direction::Right);
 		else
-			setPosition(Direction::None);
+			move(Direction::None);
 	}
 
 	void update(const sf::Time& time) override
 	{
-			
+
 	}
 
-	void setPosition(Direction dir)
+	void move(Direction dir)
 	{
 		auto position = mSprite.getPosition();
 		switch (dir)
 		{
 		case Direction::Up:
-			mSprite.setPosition(position + sf::Vector2f(0.f, -10.f));
+			setPosition(position + sf::Vector2f(0.f, -10.f));
 			break;
 		case Direction::Down:
-			mSprite.setPosition(position + sf::Vector2f(0.f, 10.f));
+			setPosition(position + sf::Vector2f(0.f, 10.f));
 			break;
 		case Direction::Left:
-			mSprite.setPosition(position + sf::Vector2f(-10.f, 0.f));
+			setPosition(position + sf::Vector2f(-10.f, 0.f));
 			break;
 		case Direction::Right:
-			mSprite.setPosition(position + sf::Vector2f(10.f, 0.f));
+			setPosition(position + sf::Vector2f(10.f, 0.f));
 			break;
 		case Direction::None:
 			break;
 		}
 	}
-
-	sf::Vector2f getPosition()
-	{
-		return mSprite.getPosition();
-	}
-
-private:
-	sf::Sprite mSprite;
 
 };
 

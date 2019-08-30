@@ -31,7 +31,8 @@ void StateRenderer::draw() const
 {
 	for (auto& layer : mLayers)
 		for (auto drawableObject : layer.second.getDrawableObjects())
-			mRenderTarget.draw(*drawableObject);
+			if(drawableObject->getVisibility())
+				mRenderTarget.draw(*drawableObject);
 }
 
 void StateRenderer::addObjectToDrawables(LayerType layerType, DrawableGameObject* const object)
