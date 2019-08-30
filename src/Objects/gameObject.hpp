@@ -18,6 +18,7 @@ public:
 	void addChild(std::unique_ptr<GameObject> gameObject);
 	void removeChild(const std::string& name);
 	void removeChild(GameObject* gameObject);
+	void changeParentOfChild(GameObject* child, GameObject* newParent);
 
 	auto getChild(const std::string& name) const->GameObject &;
 	auto getChildren() const -> const std::list<std::unique_ptr<GameObject>>& { return mChildren; }
