@@ -13,7 +13,7 @@
 ---------
 <p align="center">
   :tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada::tada:</br>
-  <h1 align="center"><b>START OF PROJECT: 06.07.2019</b></h1></br>
+  <h1 align="center"><b>START OF PROJECT: 06.08.2019</b></h1></br>
 </p>
 
 ----------
