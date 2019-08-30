@@ -9,19 +9,39 @@ GameObject::GameObject(const std::string& name)
 {
 }
 
-void GameObject::input()
+void GameObject::updateObjects(const sf::Time& deltaTime)
 {
-	for (auto& child : mChildren)
-	{
-		child->input();
-	}
+	update(deltaTime);
+	updateChildren(deltaTime);
+}
+
+void GameObject::inputObjects()
+{
+	input();
+	inputChildren();
 }
 
 void GameObject::update(const sf::Time& deltaTime)
 {
+}
+
+void GameObject::updateChildren(const sf::Time& deltaTime)
+{
 	for (auto& child : mChildren)
 	{
-		child->update(deltaTime);
+		child->updateObjects(deltaTime);
+	}
+}
+
+void GameObject::input()
+{
+}
+
+void GameObject::inputChildren()
+{
+	for (auto& child : mChildren)
+	{
+		child->inputObjects();
 	}
 }
 

@@ -12,8 +12,8 @@ class GameObject
 public:
 	GameObject(const std::string& name);
 
-	virtual void update(const sf::Time& deltaTime);
-	virtual void input();
+	void updateObjects(const sf::Time& deltaTime);
+	void inputObjects();
 
 	void addChild(std::unique_ptr<GameObject> gameObject);
 	void removeChild(const std::string& name);
@@ -27,6 +27,12 @@ public:
 
 	void setName(const std::string& name) { mName = name; }
 	void setParent(GameObject* parent) { mParent = parent; }
+
+protected:
+	virtual void update(const sf::Time& deltaTime);
+	void updateChildren(const sf::Time& deltaTime);
+	virtual void input();
+	void inputChildren();
 
 private:
 	std::string mName;

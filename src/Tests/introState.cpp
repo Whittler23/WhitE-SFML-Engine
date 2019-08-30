@@ -53,12 +53,12 @@ void IntroState::draw() const
 
 void IntroState::input()
 {
-	getRoot().input();
+	getRoot().inputObjects();
 }
 
 void IntroState::update(const sf::Time& deltaTime)
 {
-	getRoot().update(deltaTime);
+	getRoot().updateObjects(deltaTime);
 }
 
 }

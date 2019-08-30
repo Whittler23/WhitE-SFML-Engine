@@ -29,11 +29,11 @@ void GameState::draw() const
 
 void GameState::input()
 {
-	getRoot().input();
+	getRoot().inputObjects();
 }
 void GameState::update(const sf::Time& deltaTime)
 {
-	getRoot().update(deltaTime);
+	getRoot().updateObjects(deltaTime);
 }
 
 }
