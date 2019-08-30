@@ -7,6 +7,7 @@
 namespace WhitE {
 
 class Renderer;
+class ResourcesHolder;
 
 class DebuggerDisplayer : public GameEngineObject
 {
@@ -22,12 +23,13 @@ public:
 	bool shouldBeDrawn() { return mShouldBeDrawn; }
 
 private:
-	void initializeText();
+	void initializeText(ResourcesHolder& resourcesHolder);
 
 private:
 	sf::Text mFPSText;
-	sf::Font mFont;
 	bool mShouldBeDrawn;
+
+	friend class DataCollector;
 };
 
 }

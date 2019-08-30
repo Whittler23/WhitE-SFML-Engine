@@ -67,7 +67,7 @@ auto GameObject::getChild(const std::string& name) const -> GameObject&
 		if (child->getName() == name)
 			return *child.get();
 	}
-	WE_CORE_ERROR("\"" + name + "\" is not a child of \"" + getName() + "\" and could not be removed");
+	throw std::runtime_error("\"" + name + "\" is not a child of \"" + getName() + "\" and could not be removed");
 }
 
 }

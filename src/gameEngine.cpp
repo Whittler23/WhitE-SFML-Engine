@@ -9,9 +9,9 @@ namespace WhitE {
 
 GameEngine::GameEngine()
 	:mGameWindow()
-	,mDataCollector(getRenderer())
 	,mStatesManager(mGameWindow, mResourcesHolder)
 	,mRenderer(mGameWindow.getRenderWindow())
+	,mDataCollector(mRenderer)
 	,mSharedData(getWindow(), getResourcesHolder(), getRenderer())
 {
 	initializeRenderer();
@@ -35,6 +35,17 @@ void GameEngine::initGlobalActions(std::vector<std::pair<std::string, sf::Keyboa
 {
 	for (auto& action : actions)
 		ActionManager::addAction(action.first, action.second);
+}
+
+void GameEngine::initGameFonts(std::vector<std::pair<std::string, std::string>> fonts)
+{
+	for (auto& font : fonts)
+		mResourcesHolder.getFontHolder().load(font.first, font.second);
+}
+
+void GameEngine::initDataCollector()
+{
+	mDataCollector.init(mResourcesHolder);
 }
 
 void GameEngine::start()
@@ -83,8 +94,8 @@ void GameEngine::draw()
 {
 	mGameWindow.getRenderWindow().clear();
 
-	mRenderer.draw();
 	mStatesManager.draw();
+	mRenderer.draw();
 
 	mGameWindow.getRenderWindow().display();
 }

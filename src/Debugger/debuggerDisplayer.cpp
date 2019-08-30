@@ -1,4 +1,5 @@
 #include "Debugger/debuggerDisplayer.hpp"
+#include "Resources/resourcesHolder.hpp"
 
 namespace WhitE {
 
@@ -6,13 +7,11 @@ DebuggerDisplayer::DebuggerDisplayer(Renderer& renderer)
 	:GameEngineObject(renderer, "DebuggerDisplayer")
 	,mShouldBeDrawn(false)
 {
-	initializeText();
 }
 
-void DebuggerDisplayer::initializeText()
+void DebuggerDisplayer::initializeText(ResourcesHolder& resourcesHolder)
 {
-	mFont.loadFromFile("G:/WhitE/resources/fonts/testFont.ttf");
-	mFPSText.setFont(mFont);
+	mFPSText.setFont(resourcesHolder.getFontHolder().get("testFont"));
 	mFPSText.setPosition(sf::Vector2f(500.f, 30.f));
 }
 

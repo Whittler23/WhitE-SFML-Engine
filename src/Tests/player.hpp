@@ -32,8 +32,8 @@ public:
 		ActionManager::addAction("Down", sf::Keyboard::S);
 		ActionManager::addAction("Left", sf::Keyboard::A);
 		ActionManager::addAction("Right", sf::Keyboard::D);
-		getSharedData().mResourcesHolder.getTextureHolder().load("resources/textures/text.png");
-		mSprite.setTexture(getSharedData().mResourcesHolder.getTextureHolder().get("resources/textures/text.png"));
+		getSharedData().mResourcesHolder.getTextureHolder().load("textTexture", "resources/textures/text.png");
+		mSprite.setTexture(getSharedData().mResourcesHolder.getTextureHolder().get("textTexture"));
 	}
 
 	void draw(sf::RenderTarget& rt, sf::RenderStates rs) const override

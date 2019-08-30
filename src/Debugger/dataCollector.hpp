@@ -6,10 +6,14 @@
 
 namespace WhitE {
 
+class ResourcesHolder;
+
 class DataCollector
 {
 public:
 	DataCollector(Renderer& renderer);
+
+	void init(ResourcesHolder& resourcesHolder);
 
 	void update(const sf::Time deltaTime);
 	void input();

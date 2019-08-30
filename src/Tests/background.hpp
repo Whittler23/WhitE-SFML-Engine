@@ -16,8 +16,8 @@ public:
 
 	void init()
 	{
-		getSharedData().mResourcesHolder.getTextureHolder().load("resources/textures/Background.png");
-		mSprite.setTexture(getSharedData().mResourcesHolder.getTextureHolder().get("resources/textures/Background.png"));
+		getSharedData().mResourcesHolder.getTextureHolder().load("background", "resources/textures/Background.png");
+		mSprite.setTexture(getSharedData().mResourcesHolder.getTextureHolder().get("background"));
 		
 	}
 

@@ -25,6 +25,9 @@ public:
 
 	void initState(std::unique_ptr<BaseState> initState);
 	void initGlobalActions(std::vector<std::pair<std::string, sf::Keyboard::Key>>);
+	void initGameFonts(std::vector<std::pair<std::string, std::string>>);
+
+	void initDataCollector();
 
 	auto getWindow() -> Window & { return mGameWindow; }
 	auto getRenderWindow() -> sf::RenderWindow & { return mGameWindow.getRenderWindow(); }

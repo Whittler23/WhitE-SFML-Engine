@@ -8,45 +8,43 @@ WhitE::ResourcesManager<typename ResourceType>::ResourcesManager()
 }
 
 template<typename ResourceType>
-void WhitE::ResourcesManager<typename ResourceType>::load(const std::string& resPath)
+void WhitE::ResourcesManager<typename ResourceType>::load(const std::string& name, const std::string& resPath)
 {
 	auto resource = std::make_unique<ResourceType>();
 	if (resource->loadFromFile(resPath))
 	{
-		mResourcesMap.insert(std::make_pair(resPath, std::move(resource)));
-		WE_CORE_INFO(resPath + " was loaded!");
+		mResourcesMap.insert(std::make_pair(name, std::make_pair(resPath, std::move(resource))));
+		WE_CORE_INFO("Resource \"" + name + " with filepath \"" + resPath + "\" was loaded!");
 	}
 	else
-		WE_CORE_WARNING("Could not find specified path (" + resPath + ")");
+		throw std::runtime_error("Could not find specified filepath \"" + resPath + "\"");
 }
 
 template<typename ResourceType>
-auto WhitE::ResourcesManager<typename ResourceType>::get(const std::string& resPath) -> ResourceType&
+auto WhitE::ResourcesManager<typename ResourceType>::get(const std::string& name) -> ResourceType&
 {
-	auto found = mResourcesMap.find(resPath);
+	auto found = mResourcesMap.find(name);
 	if (found != mResourcesMap.end())
-		return *found->second;
+		return *found->second.second;
 	else
-		WE_CORE_WARNING("Could not find specified path (" + resPath + ")");
+		throw std::runtime_error("Could not find specified resource \"" + name + "\"");
 }
 
 template<typename ResourceType>
-void WhitE::ResourcesManager<typename ResourceType>::free(const std::string& resPath)
+void WhitE::ResourcesManager<typename ResourceType>::free(const std::string& name)
 {
-	auto found = mResourcesMap.find(resPath);
+	auto found = mResourcesMap.find(name);
 	if (found != mResourcesMap.end())
 	{
+		WE_CORE_INFO("Resource \"" + name + "\" with filepath " + " was erased!");
 		mResourcesMap.erase(found);
-		WE_CORE_INFO(resPath + " was erased!");
 	}
 	else
-		WE_CORE_WARNING("Could not find specified path (" + resPath + ")");
+		throw std::runtime_error("Could not find specified resource \"" + name + "\"");
 }
 
-
-
 template<typename ResourceType>
-bool WhitE::ResourcesManager<typename ResourceType>::doesExist(const std::string& resPath)
+bool WhitE::ResourcesManager<typename ResourceType>::doesExist(const std::string& name)
 {
-	return mResourcesMap.count(resPath) ? true : false;
+	return mResourcesMap.count(name) ? true : false;
 }

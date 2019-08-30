@@ -20,6 +20,9 @@ namespace {
 	{ std::make_pair("PushIntro", sf::Keyboard::I)			}
 	};
 
+	std::vector<std::pair<std::string, std::string>> initFontsVector = {
+	{ std::make_pair("testFont", "resources/fonts/testFont.ttf")	},
+	};
 }
 
 void showMessageBox(const std::string& str)
@@ -38,8 +41,11 @@ try {
 
 	WhitE::GameEngine gameEngine;
 
+	gameEngine.initGameFonts(initFontsVector);
 	gameEngine.initState(std::make_unique<WhitE::IntroState>(gameEngine.getSharedData()));
 	gameEngine.initGlobalActions(initActionsVector);
+
+	gameEngine.initDataCollector();
 
 	gameEngine.start();
 }

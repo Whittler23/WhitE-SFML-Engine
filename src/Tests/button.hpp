@@ -7,7 +7,7 @@ class Button : public DrawableGameObject
 public:
 	Button(StateRenderer& stateRenderer, SharedData& sharedData, const sf::Vector2f& position, const std::string& text)
 		:DrawableGameObject(stateRenderer, sharedData, LayerType::StaticObjects, "Button")
-		,mButtonText(text, getSharedData().mResourcesHolder.getFontHolder().get("resources/fonts/testFont.ttf"))
+		,mButtonText(text, getSharedData().mResourcesHolder.getFontHolder().get("testFont"))
 		,mPosition(position)
 		,mIdleColor(50, 206, 209, 120)
 		,mHoverColor(50, 206, 209, 200)
@@ -23,7 +23,6 @@ public:
 
 	void loadResources()
 	{
-		getSharedData().mResourcesHolder.getFontHolder().load("resources/fonts/testFont.ttf");
 	}
 
 	void init()
@@ -32,6 +31,7 @@ public:
 		mButtonBackground.setSize(sf::Vector2f(160.f, 45.f));
 		mButtonBackground.setFillColor(mIdleColor);
 
+		mButtonText.setFont(getSharedData().mResourcesHolder.getFontHolder().get("testFont"));
 		mButtonText.setCharacterSize(25);
 		mButtonText.setPosition(
 			mButtonBackground.getPosition().x + mButtonBackground.getSize().x /2 - mButtonText.getGlobalBounds().width/2.f, 

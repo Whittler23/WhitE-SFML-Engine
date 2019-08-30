@@ -9,6 +9,11 @@ DataCollector::DataCollector(Renderer& renderer)
 {
 }
 
+void DataCollector::init(ResourcesHolder& resourcesHolder)
+{
+	mDebuggerDisplayer.initializeText(resourcesHolder);
+}
+
 void DataCollector::update(const sf::Time deltaTime)
 {
 	if (mOneSecondClock.getElapsedTime().asSeconds() >= 1.f)
