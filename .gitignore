@@ -7,9 +7,7 @@ bin/
 
 # IDE files
 .vs
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
+*.vcxproj*
 *.sln
 
 

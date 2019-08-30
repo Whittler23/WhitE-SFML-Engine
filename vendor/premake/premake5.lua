@@ -4,8 +4,9 @@ printf "Building WhitE project using Premake..."
 printf ""
 
 workspace "WhitE"
-    architecture "x86"
+    architecture "x64"
     location "../../"
+	cppdialect "C++17"
     
     configurations {
         "Debug",
@@ -22,6 +23,7 @@ project "WhitE"
     files {
          "../../src/**.cpp",
          "../../src/**.hpp",
+		 "../../src/**.inl"
     }
 
     defines { "SFML_STATIC" }
@@ -52,10 +54,11 @@ project "WhitE"
         links{
             "sfml-graphics-s-d",
             "sfml-audio-s-d",
-            "sfml-network-s-d",
             "sfml-window-s-d",
             "sfml-system-s-d"
         }
+		
+		defines{ "WE_DEBUG" }
 
     filter{ "configurations:Release" }
         optimize "On"
@@ -63,11 +66,13 @@ project "WhitE"
         links{
             "sfml-graphics-s",
             "sfml-audio-s", 
-            "sfml-network-s",
             "sfml-window-s",
             "sfml-system-s"
         }
+		
+		defines{ "WE_RELEASE" }
 
+		
     filter{ "system:Windows" }
         defines{ "WE_WINDOWS" }
 
@@ -75,3 +80,4 @@ project "WhitE"
         defines{ "WE_LINUX" }
 
     filter{}
+	

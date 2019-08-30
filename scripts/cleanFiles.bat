@@ -1,0 +1,2 @@
+del  ..\*.sln
+del  ..\*.vcxproj*
