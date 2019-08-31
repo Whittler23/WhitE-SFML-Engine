@@ -4,6 +4,7 @@
 #include "Debugger/dataCollector.hpp"
 #include "Resources/ResourcesHolder.hpp"
 #include "States/StatesManager.hpp"
+#include "Renderer/camera.hpp"
 #include "Renderer/renderer.hpp"
 #include "sharedData.hpp"
 
@@ -48,6 +49,7 @@ private:
 	Window mGameWindow;
 	ResourcesHolder mResourcesHolder;
 	Renderer mRenderer;
+	Camera mCamera;
 	SharedData mSharedData;
 	DataCollector mDataCollector;
 	StatesManager mStatesManager;

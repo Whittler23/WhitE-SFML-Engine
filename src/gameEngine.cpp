@@ -11,8 +11,9 @@ GameEngine::GameEngine()
 	:mGameWindow()
 	,mStatesManager(mGameWindow, mResourcesHolder)
 	,mRenderer(mGameWindow.getRenderWindow())
+	,mCamera(mGameWindow.getRenderWindow())
 	,mDataCollector(mRenderer)
-	,mSharedData(getWindow(), getResourcesHolder(), getRenderer())
+	,mSharedData(mGameWindow, mResourcesHolder, mCamera)
 {
 	initializeRenderer();
 }
@@ -72,6 +73,7 @@ void GameEngine::update(const sf::Time deltaTime)
 	mRenderer.update(deltaTime);
 	mStatesManager.update(deltaTime);
 	mDataCollector.update(deltaTime);
+	mCamera.update(deltaTime);
 	mGameWindow.updateEvents();
 	mGameWindow.update();
 }

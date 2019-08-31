@@ -8,7 +8,6 @@ namespace WhitE {
 
 Renderer::Renderer(sf::RenderTarget& renderTarget)
 	:mRenderTarget(renderTarget)
-	,mCamera(renderTarget)
 {
 	WE_CORE_INFO("Initialized engine renderer");
 }
@@ -21,7 +20,6 @@ Renderer::~Renderer()
 
 void Renderer::update(const sf::Time deltaTime)
 {
-	mCamera.update(deltaTime);
 }
 
 void Renderer::draw() const

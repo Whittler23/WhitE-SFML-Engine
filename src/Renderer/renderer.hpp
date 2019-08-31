@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Renderer/layer.hpp"
-#include "Renderer/camera.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -27,12 +26,9 @@ public:
 
 	void clearDrawableGameEngineObjects();
 
-	auto getCamera() -> Camera& { return mCamera; }
-
 private:
 	sf::RenderTarget& mRenderTarget;
 	std::list<GameEngineObject*> mGameEngineObjects;
-	Camera mCamera;
 };
 
 }

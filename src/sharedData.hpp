@@ -8,20 +8,19 @@ namespace WhitE {
 
 class Window;
 class ResourcesHolder;
-class StatesManager;
-class Renderer;
+class Camera;
 
 struct SharedData
 {
-	SharedData(Window& window, ResourcesHolder& resourcesHolder, Renderer& renderer)
+	SharedData(Window& window, ResourcesHolder& resourcesHolder, Camera& camera)
 		:mWindow(window)
 		,mResourcesHolder(resourcesHolder)
-		,mRenderer(renderer)
+		,mCamera(camera)
 	{}
 
 	Window& mWindow;
 	ResourcesHolder& mResourcesHolder;
-	Renderer& mRenderer;
+	Camera& mCamera;
 };
 
 }
