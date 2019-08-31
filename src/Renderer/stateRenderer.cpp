@@ -6,6 +6,7 @@ namespace WhitE {
 
 StateRenderer::StateRenderer(sf::RenderTarget& renderTarget)
 	:mRenderTarget(renderTarget)
+	//,mGuiDrawer(nullptr)
 {
 	init();
 	WE_CORE_INFO("Initialized state renderer");
@@ -33,7 +34,20 @@ void StateRenderer::draw() const
 		for (auto drawableObject : layer.second.getDrawableObjects())
 			if(drawableObject->getVisibility())
 				mRenderTarget.draw(*drawableObject);
+
+	//if (mGuiDrawer != nullptr)
+	//	drawGui();
 }
+
+//void StateRenderer::attachGuiDrawer(GuiDrawer& guiDrawer)
+//{
+//	mGuiDrawer = &guiDrawer;
+//}
+//
+//void StateRenderer::removeGuiDrawer()
+//{
+//	mGuiDrawer = nullptr;
+//}
 
 void StateRenderer::addObjectToDrawables(LayerType layerType, DrawableGameObject* const object)
 {
