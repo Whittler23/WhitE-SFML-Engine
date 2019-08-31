@@ -10,6 +10,7 @@
 namespace WhitE {
 
 class GameObject;
+//class StateGui;
 struct SharedData;
 
 class BaseState
@@ -49,6 +50,7 @@ private:
 
 protected:
 	StateRenderer mStateRenderer;
+	//StateGui mStateGui;
 
 };
 

@@ -2,7 +2,7 @@
 
 #include "window.hpp"
 #include "Resources/resourcesHolder.hpp"
-#include "States/StatesManager.hpp"
+#include "Renderer/camera.hpp"
 
 namespace WhitE {
 
