@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Renderer/stateRenderer.hpp"
+#include "Gui/stateGui.hpp"
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -10,7 +11,6 @@
 namespace WhitE {
 
 class GameObject;
-//class StateGui;
 struct SharedData;
 
 class BaseState
@@ -50,7 +50,7 @@ private:
 
 protected:
 	StateRenderer mStateRenderer;
-	//StateGui mStateGui;
+	StateGui mStateGui;
 
 };
 

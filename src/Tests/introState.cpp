@@ -10,7 +10,7 @@
 
 #include "Tests/IntroState.hpp"
 #include "Tests/logo.hpp"
-#include "Tests/button.hpp"
+#include "Gui/GuiElements/button.hpp"
 
 namespace WhitE {
 
@@ -26,17 +26,16 @@ IntroState::~IntroState()
 void IntroState::onPush() 
 {
 	getRoot().addChild(std::make_unique<LogoSplash>(mStateRenderer, getSharedData()));
-	getRoot().addChild(std::make_unique<Button>(mStateRenderer, getSharedData(), sf::Vector2f(50.f, getSharedData().mWindow.getWindowHeight()-80.f), "EXIT"));
-	getRoot().addChild(std::make_unique<Button>(mStateRenderer, getSharedData(), sf::Vector2f(250.f, getSharedData().mWindow.getWindowHeight()-80.f), "EXIT"));
-	getRoot().addChild(std::make_unique<Button>(mStateRenderer, getSharedData(), sf::Vector2f(450.f, getSharedData().mWindow.getWindowHeight()-80.f), "EXIT"));
+	mStateGui.addGuiElement(std::make_unique<Button>(getSharedData(), sf::Vector2f(35, 35), sf::Vector2f(30, 30), "EXIT"));
+	mStateRenderer.attachGui(mStateGui.getStateGuiElements());
 
 	WE_INFO("Intro State pushed on the stack");
 }
 
 void IntroState::onPop()
 {
-	getSharedData().mResourcesHolder.getTextureHolder().free("resources/textures/testLogo.png");
-	getSharedData().mResourcesHolder.getFontHolder().free("resources/fonts/testFont.ttf");
+	getSharedData().mResourcesHolder.getTextureHolder().free("testLogo");
+	getSharedData().mResourcesHolder.getFontHolder().free("testFont");
 
 	mStateRenderer.clearDrawables();
 
@@ -54,11 +53,13 @@ void IntroState::draw() const
 void IntroState::input()
 {
 	getRoot().inputObjects();
+	mStateGui.inputGui();
 }
 
 void IntroState::update(const sf::Time& deltaTime)
 {
 	getRoot().updateObjects(deltaTime);
+	mStateGui.updateGui(deltaTime);
 }
 
 }

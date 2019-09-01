@@ -10,7 +10,7 @@ namespace WhitE {
 
 	class DrawableGameObject;
 	class GameEngineObject;
-	//class GuiDrawer;
+	class GuiElement;
 
 	class StateRenderer
 	{
@@ -20,8 +20,8 @@ namespace WhitE {
 
 		void init();
 
-		//void attachGuiDrawer(GuiDrawer& guiDrawer);
-		//void removeGuiDrawer();
+		void attachGui(std::list<std::unique_ptr<GuiElement>>* gui);
+		void removeGui();
 
 		void draw() const;
 
@@ -37,11 +37,11 @@ namespace WhitE {
 		void clearDrawables();
 
 	private:
-		//void drawGui() const;
+		void drawGui() const;
 
 	private:
 		sf::RenderTarget& mRenderTarget;
-		//GuiDrawer* mGuiDrawer;
+		std::list<std::unique_ptr<GuiElement>>* mGui;
 		std::unordered_map<LayerType, Layer> mLayers;
 		std::unordered_map<LayerType, std::string> mLayerNames;
 	};

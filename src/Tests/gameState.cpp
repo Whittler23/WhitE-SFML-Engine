@@ -12,6 +12,7 @@ GameState::GameState(SharedData& sharedData, const sf::Vector2f& viewSize)
 void GameState::onPop()
 {
 	mStateRenderer.clearDrawables();
+	mStateRenderer.removeGui();
 	getSharedData().mCamera.resetCameraTarget();
 	WE_INFO("Game State popped from the stack");
 }
@@ -19,6 +20,7 @@ void GameState::onPush()
 {
 	getRoot().addChild(std::make_unique<Background>(mStateRenderer, getSharedData()));
 	getRoot().addChild(std::make_unique<Player>(mStateRenderer, getSharedData()));
+	mStateRenderer.attachGui(mStateGui.getStateGuiElements());
 
 	getSharedData().mCamera.setCameraTarget(dynamic_cast<DrawableGameObject*>(&getRoot().getChild("Player")));
 
@@ -33,10 +35,12 @@ void GameState::draw() const
 void GameState::input()
 {
 	getRoot().inputObjects();
+	mStateGui.inputGui();
 }
 void GameState::update(const sf::Time& deltaTime)
 {
 	getRoot().updateObjects(deltaTime);
+	mStateGui.updateGui(deltaTime);
 }
 
 }

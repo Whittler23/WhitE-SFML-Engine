@@ -1,12 +1,13 @@
 #include "Renderer/stateRenderer.hpp"
 #include "Objects/drawableGameObject.hpp"
+#include "Gui/guiElement.hpp"
 #include "Logger/logs.hpp"
 
 namespace WhitE {
 
 StateRenderer::StateRenderer(sf::RenderTarget& renderTarget)
 	:mRenderTarget(renderTarget)
-	//,mGuiDrawer(nullptr)
+	,mGui(nullptr)
 {
 	init();
 	WE_CORE_INFO("Initialized state renderer");
@@ -35,19 +36,25 @@ void StateRenderer::draw() const
 			if(drawableObject->getVisibility())
 				mRenderTarget.draw(*drawableObject);
 
-	//if (mGuiDrawer != nullptr)
-	//	drawGui();
+	if (mGui != nullptr)
+		drawGui();
 }
 
-//void StateRenderer::attachGuiDrawer(GuiDrawer& guiDrawer)
-//{
-//	mGuiDrawer = &guiDrawer;
-//}
-//
-//void StateRenderer::removeGuiDrawer()
-//{
-//	mGuiDrawer = nullptr;
-//}
+void StateRenderer::drawGui() const
+{
+	for (auto& guiElement : *mGui)
+		mRenderTarget.draw(*guiElement);
+}
+
+void StateRenderer::attachGui(std::list<std::unique_ptr<GuiElement>>* gui)
+{
+	mGui = gui;
+}
+
+void StateRenderer::removeGui()
+{
+	mGui = nullptr;
+}
 
 void StateRenderer::addObjectToDrawables(LayerType layerType, DrawableGameObject* const object)
 {
