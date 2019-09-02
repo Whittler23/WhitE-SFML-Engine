@@ -1,5 +1,7 @@
 #include "Tests/gameState.hpp"
+#include "Gui/GuiElements/button.hpp"
 #include "sharedData.hpp"
+#include "Utilities/cast.hpp"
 
 namespace WhitE {
 
@@ -20,6 +22,7 @@ void GameState::onPush()
 {
 	getRoot().addChild(std::make_unique<Background>(mStateRenderer, getSharedData()));
 	getRoot().addChild(std::make_unique<Player>(mStateRenderer, getSharedData()));
+	mStateGui.addGuiElement(std::make_unique<Button>(getSharedData(), sf::Vector2f(70, 15), sf::Vector2f(25, 15), "TEST"));
 	mStateRenderer.attachGui(mStateGui.getStateGuiElements());
 
 	getSharedData().mCamera.setCameraTarget(dynamic_cast<DrawableGameObject*>(&getRoot().getChild("Player")));

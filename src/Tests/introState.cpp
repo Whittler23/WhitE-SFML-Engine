@@ -26,7 +26,10 @@ IntroState::~IntroState()
 void IntroState::onPush() 
 {
 	getRoot().addChild(std::make_unique<LogoSplash>(mStateRenderer, getSharedData()));
-	mStateGui.addGuiElement(std::make_unique<Button>(getSharedData(), sf::Vector2f(35, 35), sf::Vector2f(30, 30), "EXIT"));
+	mStateGui.addGuiElement(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 15), sf::Vector2f(40, 15), "PLAY"));
+	mStateGui.addGuiElement(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 35), sf::Vector2f(40, 15), "SETTINGS"));
+	mStateGui.addGuiElement(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 55), sf::Vector2f(40, 15), "CREDITS"));
+	mStateGui.addGuiElement(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 75), sf::Vector2f(40, 15), "EXIT"));
 	mStateRenderer.attachGui(mStateGui.getStateGuiElements());
 
 	WE_INFO("Intro State pushed on the stack");
