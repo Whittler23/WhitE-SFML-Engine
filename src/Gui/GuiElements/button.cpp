@@ -24,8 +24,8 @@ Button::~Button()
 void Button::init(const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize)
 {
 
-	mButtonBackground.setPosition(Math::getPofV(percentPosition.x, percentPosition.y, mSharedData.mCamera.getViewSize()));
-	mButtonBackground.setSize(Math::getPofV(percentSize.x, percentSize.y, mSharedData.mCamera.getViewSize()));
+	mButtonBackground.setPosition(Math::getPofV(percentPosition.x, percentPosition.y, mSharedData.mCamera.getDefaultView().getSize()));
+	mButtonBackground.setSize(Math::getPofV(percentSize.x, percentSize.y, mSharedData.mCamera.getDefaultView().getSize()));
 	mButtonBackground.setFillColor(mIdleColor);
 
 	mButtonText.setCharacterSize(25);
@@ -38,7 +38,7 @@ void Button::init(const sf::Vector2f& percentPosition, const sf::Vector2f& perce
 
 void Button::input()
 {
-	if (mButtonBackground.getGlobalBounds().contains(sf::Vector2f(MouseManager::getMouseWindowPosition())))
+	if (mButtonBackground.getGlobalBounds().contains(sf::Vector2f(MouseManager::getMouseGuiPosition())))
 		mButtonBackground.setFillColor(mHoverColor);
 	else
 		mButtonBackground.setFillColor(mIdleColor);
