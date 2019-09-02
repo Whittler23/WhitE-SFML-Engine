@@ -52,12 +52,17 @@ namespace WhitE {
 				EventManager::setLastReleasedKey(event.key.code);
 				break;
 
+			case sf::Event::MouseMoved:
+				updateMousePosition();
+				break;
+
 			case sf::Event::MouseButtonPressed:
 				EventManager::setIsButtonPressed(true);
 				EventManager::setLastPressedButton(event.mouseButton.button);
 
 				MouseManager::readMouseWindowClickPosition();
 				MouseManager::readMouseWorldClickPosition();
+				MouseManager::readMouseGuiClickPosition();
 
 				WE_CORE_INFO("Clicked! Mouse window position: " + Cast::toString(MouseManager::getLastMouseWindowClickPosition()));
 				WE_CORE_INFO("Clicked! Mouse world position: " + Cast::toString(MouseManager::getLastMouseWorldClickPosition()));
@@ -85,9 +90,6 @@ namespace WhitE {
 				break;
 
 			case sf::Event::Resized:
-				sf::FloatRect visableArea(0.f, 0.f, event.size.width, event.size.height);
-				mGameWindow.setView(sf::View(visableArea));
-
 				WE_CORE_INFO("Resized! Window size: x" + std::to_string(getWindowWidth())
 					+ " y" + std::to_string(getWindowHeight()));
 				break;
@@ -95,13 +97,16 @@ namespace WhitE {
 		}
 	}
 
-	void Window::update()
+	void Window::updateMousePosition()
 	{
 		sf::Vector2i mouseWindowPosition = sf::Mouse::getPosition(getRenderWindow());
 		MouseManager::readMouseWindowPosition(mouseWindowPosition);
 
 		sf::Vector2f mouseWorldPosition = mGameWindow.mapPixelToCoords(mouseWindowPosition);
 		MouseManager::readMouseWorldPosition(mouseWorldPosition);
+
+		sf::Vector2f mouseGuiPosition = mGameWindow.mapPixelToCoords(mouseWindowPosition, mGameWindow.getDefaultView());
+		MouseManager::readMouseGuiPosition(mouseGuiPosition);
 	}
 
 	void Window::draw(sf::Drawable& drawable)

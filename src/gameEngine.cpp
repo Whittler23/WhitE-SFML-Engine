@@ -75,7 +75,6 @@ void GameEngine::update(const sf::Time deltaTime)
 	mDataCollector.update(deltaTime);
 	mCamera.update(deltaTime);
 	mGameWindow.updateEvents();
-	mGameWindow.update();
 }
 
 void GameEngine::input()

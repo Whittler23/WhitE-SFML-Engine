@@ -13,7 +13,7 @@ struct WindowProperties
 	WindowProperties()
 		:mWinTitle("WhitE")
 		,mWinFllscr(false)
-		,mWinSize(640, 480)
+		,mWinSize(1920, 1080)
 	{}
 
 	WindowProperties(const std::string name, bool winStyle, sf::Vector2u size = { 0, 0 })
@@ -29,7 +29,7 @@ public:
 	Window(const std::string name, bool winStyle, sf::Vector2u size);
 	Window();
 
-	void update();
+	void updateMousePosition();
 	void updateEvents();
 	void draw(sf::Drawable& drawable);
 	void input();
