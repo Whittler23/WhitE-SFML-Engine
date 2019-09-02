@@ -57,6 +57,26 @@ sf::Vector2f MouseManager::getLastMouseWorldClickPosition()
 	return mLastMouseWorldClickPosition;
 }
 
+//======================================================================
 
+void MouseManager::readMouseGuiPosition(const sf::Vector2f& mouseGuiPosition)
+{
+	mMouseGuiPosition = mouseGuiPosition;
+}
+
+sf::Vector2f MouseManager::getMouseGuiPosition()
+{
+	return mMouseGuiPosition;
+}
+
+void MouseManager::readMouseGuiClickPosition()
+{
+	mLastMouseGuiClickPosition = mMouseGuiPosition;
+}
+
+sf::Vector2f MouseManager::getLastMouseGuiClickPosition()
+{
+	return mLastMouseGuiClickPosition;
+}
 
 }
