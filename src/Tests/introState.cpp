@@ -16,6 +16,7 @@ namespace WhitE {
 
 IntroState::IntroState(SharedData& sharedData)
 	:BaseState(sharedData)
+	,mMainMenuButtonSet(sharedData)
 {
 }
 
@@ -26,11 +27,10 @@ IntroState::~IntroState()
 void IntroState::onPush() 
 {
 	getRoot().addChild(std::make_unique<LogoSplash>(mStateRenderer, getSharedData()));
-	mStateGui.addGuiElement(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 15), sf::Vector2f(40, 15), "PLAY"));
-	mStateGui.addGuiElement(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 35), sf::Vector2f(40, 15), "SETTINGS"));
-	mStateGui.addGuiElement(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 55), sf::Vector2f(40, 15), "CREDITS"));
-	mStateGui.addGuiElement(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 75), sf::Vector2f(40, 15), "EXIT"));
-	mStateRenderer.attachGui(mStateGui.getStateGuiElements());
+
+	mStateGuiManager.addGuiSet(&mMainMenuButtonSet);
+	mStateRenderer.attachGui(mStateGuiManager.getGuiSets());
+	mStateGuiManager.removeGuiSet("Main Menu Buttons");
 
 	WE_INFO("Intro State pushed on the stack");
 }
@@ -56,13 +56,13 @@ void IntroState::draw() const
 void IntroState::input()
 {
 	getRoot().inputObjects();
-	mStateGui.inputGui();
+	mStateGuiManager.inputGuiSets();
 }
 
 void IntroState::update(const sf::Time& deltaTime)
 {
 	getRoot().updateObjects(deltaTime);
-	mStateGui.updateGui(deltaTime);
+	mStateGuiManager.updateGuiSets(deltaTime);
 }
 
 }

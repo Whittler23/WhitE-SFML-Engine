@@ -22,12 +22,10 @@ void GameState::onPush()
 {
 	getRoot().addChild(std::make_unique<Background>(mStateRenderer, getSharedData()));
 	getRoot().addChild(std::make_unique<Player>(mStateRenderer, getSharedData()));
-	mStateGui.addGuiElement(std::make_unique<Button>(getSharedData(), sf::Vector2f(70, 15), sf::Vector2f(25, 15), "TEST"));
-	mStateRenderer.attachGui(mStateGui.getStateGuiElements());
 
 	getSharedData().mCamera.setCameraTarget(dynamic_cast<DrawableGameObject*>(&getRoot().getChild("Player")));
 
-	WE_CORE_INFO("Game State pushed on the stack");
+	WE_INFO("Game State pushed on the stack");
 }
 
 void GameState::draw() const
@@ -38,12 +36,12 @@ void GameState::draw() const
 void GameState::input()
 {
 	getRoot().inputObjects();
-	mStateGui.inputGui();
+	mStateGuiManager.inputGuiSets();
 }
 void GameState::update(const sf::Time& deltaTime)
 {
 	getRoot().updateObjects(deltaTime);
-	mStateGui.updateGui(deltaTime);
+	mStateGuiManager.updateGuiSets(deltaTime);
 }
 
 }

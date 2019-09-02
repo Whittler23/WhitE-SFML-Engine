@@ -1,6 +1,7 @@
 #pragma once
 
 #include "States/baseState.hpp"
+#include "Tests/GuiSets/mainMenuSet.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -21,6 +22,9 @@ public:
 
 	void onPush() override;
 	void onPop() override;
+
+private:
+	MainMenuButtonsSet mMainMenuButtonSet;
 
 };
 

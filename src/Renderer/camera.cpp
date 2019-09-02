@@ -9,6 +9,7 @@ namespace WhitE {
 Camera::Camera(sf::RenderTarget& renderTarget)
 	:mRenderTarget(renderTarget)
 	,mView(renderTarget.getView())
+	,mDefaultView(renderTarget.getDefaultView())
 	,mCameraTarget(nullptr)
 {
 	WE_CORE_INFO("Camera initialized with view size: " + Cast::toString(mView.getSize()));
@@ -23,9 +24,9 @@ void Camera::update(const sf::Time& deltaTime)
 	mRenderTarget.setView(mView);
 }
 
-void Camera::zoom(const float zoomPercent)
+void Camera::zoom(float zoomPercent)
 {
-	zoomPercent / 100.f;
+	zoomPercent /= 100.f;
 	mView.zoom(zoomPercent);
 }
 
@@ -59,6 +60,11 @@ auto Camera::getViewSize() const -> const sf::Vector2f
 auto Camera::getView() const -> const sf::View &
 {
 	return mView;
+}
+
+auto Camera::getDefaultView() const -> const sf::View &
+{
+	return mDefaultView;
 }
 
 }

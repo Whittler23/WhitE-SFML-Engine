@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Renderer/stateRenderer.hpp"
-#include "Gui/stateGui.hpp"
+#include "Gui/stateGuiManager.hpp"
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -50,7 +50,7 @@ private:
 
 protected:
 	StateRenderer mStateRenderer;
-	StateGui mStateGui;
+	StateGuiManager mStateGuiManager;
 
 };
 
