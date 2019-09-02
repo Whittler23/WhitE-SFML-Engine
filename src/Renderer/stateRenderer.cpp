@@ -42,8 +42,13 @@ void StateRenderer::draw() const
 
 void StateRenderer::drawGui() const
 {
+	mWorldView = mRenderTarget.getView();
+	mRenderTarget.setView(mRenderTarget.getDefaultView());
+
 	for (auto& guiElement : *mGui)
 		mRenderTarget.draw(*guiElement);
+
+	mRenderTarget.setView(mWorldView);
 }
 
 void StateRenderer::attachGui(std::list<std::unique_ptr<GuiElement>>* gui)

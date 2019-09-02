@@ -44,6 +44,7 @@ namespace WhitE {
 		std::list<std::unique_ptr<GuiElement>>* mGui;
 		std::unordered_map<LayerType, Layer> mLayers;
 		std::unordered_map<LayerType, std::string> mLayerNames;
+		mutable sf::View mWorldView;
 	};
 
 }
