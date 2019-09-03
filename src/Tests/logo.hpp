@@ -8,8 +8,8 @@ namespace WhitE {
 class LogoSplash : public DrawableGameObject
 {
 public:
-	LogoSplash(StateRenderer& stateRenderer, SharedData& sharedData)
-		:DrawableGameObject(stateRenderer , sharedData, LayerType::StaticObjects, "LogoSplash")
+	LogoSplash(SharedData& sharedData)
+		:DrawableGameObject(sharedData, LayerType::StaticObjects, "LogoSplash")
 	{
 		loadResources();
 		init();

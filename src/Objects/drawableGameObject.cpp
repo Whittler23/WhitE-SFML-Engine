@@ -1,9 +1,8 @@
 #include "Objects/drawableGameObject.hpp"
-#include "Renderer/stateRenderer.hpp"
 
 namespace WhitE {
 
-DrawableGameObject::DrawableGameObject(StateRenderer& stateRenderer, SharedData& sharedData, LayerType layerType, const std::string& name)
+DrawableGameObject::DrawableGameObject(SharedData& sharedData, LayerType layerType, const std::string& name)
 	:Entity(name)
 	,mSharedData(sharedData)
 	,mVisibility(true)
@@ -11,7 +10,6 @@ DrawableGameObject::DrawableGameObject(StateRenderer& stateRenderer, SharedData&
 	,mScale(0.f, 0.f)
 	,mPosition(0.f, 0.f)
 {
-	stateRenderer.addObjectToDrawables(layerType, this);
 }
 
 void DrawableGameObject::setPosition(const sf::Vector2f& position)

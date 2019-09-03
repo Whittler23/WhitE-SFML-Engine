@@ -1,5 +1,6 @@
 #include "Tests/gameState.hpp"
 #include "Gui/GuiElements/button.hpp"
+#include "Objects/drawableGameObject.hpp"
 #include "sharedData.hpp"
 #include "Utilities/cast.hpp"
 
@@ -13,35 +14,45 @@ GameState::GameState(SharedData& sharedData, const sf::Vector2f& viewSize)
 
 void GameState::onPop()
 {
-	mStateRenderer.clearDrawables();
-	mStateRenderer.removeGui();
 	getSharedData().mCamera.resetCameraTarget();
 	WE_INFO("Game State popped from the stack");
 }
 void GameState::onPush()
 {
-	getRoot().addChild(std::make_unique<Background>(mStateRenderer, getSharedData()));
-	getRoot().addChild(std::make_unique<Player>(mStateRenderer, getSharedData()));
+	mEntities.emplace_back(std::make_unique<Background>(getSharedData()));
+	mEntities.emplace_back(std::make_unique<Player>(getSharedData()));
 
-	getSharedData().mCamera.setCameraTarget(dynamic_cast<DrawableGameObject*>(&getRoot().getChild("Player")));
+	for (auto& entity : mEntities)
+	{
+		if (entity->getName() == "Player")
+			getSharedData().mCamera.setCameraTarget(dynamic_cast<DrawableGameObject*>(&*entity));
+	}
+
 
 	WE_INFO("Game State pushed on the stack");
 }
 
 void GameState::draw() const
 {
-	mStateRenderer.draw();
+	for (auto& entity : mEntities)
+		getRenderTarget().draw(*entity);
+		
 	mStateGuiManager.drawGuiSets();
 }
 
 void GameState::input()
 {
-	getRoot().inputObjects();
+	for (auto& entity : mEntities)
+		entity->input();
+
 	mStateGuiManager.inputGuiSets();
 }
-void GameState::update(const sf::Time& deltaTime)
+
+void GameState::update(const sf::Time & deltaTime)
 {
-	getRoot().updateObjects(deltaTime);
+	for (auto& entity : mEntities)
+		entity->update(deltaTime);
+
 	mStateGuiManager.updateGuiSets(deltaTime);
 }
 

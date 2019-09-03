@@ -7,6 +7,7 @@
 #include "Input/mouseManager.hpp"
 #include "Objects/drawableGameObject.hpp"
 #include "Renderer/renderer.hpp"
+#include "Objects/entity.hpp"
 
 #include "Tests/IntroState.hpp"
 #include "Tests/GuiSets/mainMenuSet.hpp"
@@ -26,7 +27,7 @@ IntroState::~IntroState()
 
 void IntroState::onPush() 
 {
-	getRoot().addChild(std::make_unique<LogoSplash>(mStateRenderer, getSharedData()));
+	mEntities.emplace_back(std::make_unique<LogoSplash>(getSharedData()));
 
 	mStateGuiManager.addGuiSet(std::make_unique<MainMenuButtonsSet>(getSharedData()));
 
@@ -38,8 +39,6 @@ void IntroState::onPop()
 	getSharedData().mResourcesHolder.getTextureHolder().free("testLogo");
 	getSharedData().mResourcesHolder.getFontHolder().free("testFont");
 
-	mStateRenderer.clearDrawables();
-
 	ActionManager::deleteAction("Continue");
 	ActionManager::deleteAction("Move");
 
@@ -48,19 +47,25 @@ void IntroState::onPop()
 
 void IntroState::draw() const
 {
-	mStateRenderer.draw();
+	for (auto& entity : mEntities)
+		getRenderTarget().draw(*entity);
+
 	mStateGuiManager.drawGuiSets();
 }
 
 void IntroState::input()
 {
-	getRoot().inputObjects();
+	for (auto& entity : mEntities)
+		entity->input();
+
 	mStateGuiManager.inputGuiSets();
 }
 
 void IntroState::update(const sf::Time& deltaTime)
 {
-	getRoot().updateObjects(deltaTime);
+	for (auto& entity : mEntities)
+		entity->update(deltaTime);
+
 	mStateGuiManager.updateGuiSets(deltaTime);
 }
 

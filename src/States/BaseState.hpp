@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Renderer/stateRenderer.hpp"
 #include "Gui/stateGuiManager.hpp"
 
 #include <SFML/System.hpp>
@@ -35,22 +34,22 @@ protected:
 	void setTranscendent(const bool transcendent) { mTrandescend = transcendent; }
 	void setShouldPop(const bool shouldPop) { mShouldPop = shouldPop; }
 
-	auto getRoot() const -> Entity& { return *mRootObject; }
 	auto getSharedData() const -> SharedData & { return mSharedData; }
+	auto getRenderTarget() const -> sf::RenderTarget & { return mRenderTarget; }
 
 	float getTime() const { return mStateTimer.getElapsedTime().asSeconds(); }
 
 private:
 	SharedData& mSharedData;
-	std::unique_ptr<Entity> mRootObject;
+	sf::RenderTarget& mRenderTarget;
 	sf::Clock mStateTimer;
 	bool mTransparent;
 	bool mTrandescend;
 	bool mShouldPop;
 
 protected:
-	StateRenderer mStateRenderer;
 	StateGuiManager mStateGuiManager;
+	std::list<std::unique_ptr<Entity>> mEntities;
 
 };
 

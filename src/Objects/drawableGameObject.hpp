@@ -7,14 +7,13 @@
 
 namespace WhitE {
 
-class StateRenderer;
 struct SharedData;
 class ResourcesHolder;
 
-class DrawableGameObject : public Entity, public sf::Drawable
+class DrawableGameObject : public Entity
 {
 public:
-	DrawableGameObject(StateRenderer& stateRenderer, SharedData& sharedData, LayerType layerType, const std::string& name);
+	DrawableGameObject(SharedData& sharedData, LayerType layerType, const std::string& name);
 
 	sf::Vector2f getPosition() const;
 	bool getVisibility() const;

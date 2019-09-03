@@ -8,8 +8,8 @@ namespace WhitE {
 class Background : public DrawableGameObject
 {
 public:
-	Background(StateRenderer& stateRenderer, SharedData& sharedData)
-		:DrawableGameObject(stateRenderer, sharedData, LayerType::Background, "Background")
+	Background(SharedData& sharedData)
+		:DrawableGameObject(sharedData, LayerType::Background, "Background")
 	{
 		init();
 	}

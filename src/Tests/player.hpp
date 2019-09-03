@@ -10,8 +10,8 @@ namespace WhitE {
 class Player : public DrawableGameObject
 {
 public:
-	Player(StateRenderer& stateRenderer, SharedData& sharedData)
-		:DrawableGameObject(stateRenderer, sharedData, LayerType::KinematicObjects, "Player")
+	Player(SharedData& sharedData)
+		:DrawableGameObject(sharedData, LayerType::KinematicObjects, "Player")
 	{
 		init();
 	}
