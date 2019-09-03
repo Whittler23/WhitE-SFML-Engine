@@ -15,6 +15,7 @@ public:
 
 	void zoom(float zoomPercent);
 
+	void setView(const sf::View& view);
 	void setViewSize(const sf::Vector2f& viewSize);
 	void setViewCenter(const sf::Vector2f viewCenter);
 
@@ -24,6 +25,9 @@ public:
 	auto getViewSize() const -> const sf::Vector2f;
 	auto getView() const -> const sf::View &;
 	auto getDefaultView() const -> const sf::View &;
+
+private:
+	void applyView();
 
 private:
 	sf::RenderTarget& mRenderTarget;

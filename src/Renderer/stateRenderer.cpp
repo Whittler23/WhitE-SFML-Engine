@@ -37,20 +37,11 @@ void StateRenderer::draw() const
 			if(drawableObject->getVisibility())
 				mRenderTarget.draw(*drawableObject);
 
-	if (mGuiSets != nullptr)
-		drawGui();
 }
 
 void StateRenderer::drawGui() const
 {
-	mWorldView = mRenderTarget.getView();
-	mRenderTarget.setView(mRenderTarget.getDefaultView());
 
-	for (auto& guiSet : *mGuiSets)
-		for (auto& guiElement : *guiSet->getGuiSetElements())
-			mRenderTarget.draw(*guiElement);
-
-	mRenderTarget.setView(mWorldView);
 }
 
 void StateRenderer::attachGui(std::list<BaseGuiSet*>* guiSets)

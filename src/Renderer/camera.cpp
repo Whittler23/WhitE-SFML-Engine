@@ -21,18 +21,26 @@ void Camera::update(const sf::Time& deltaTime)
 	if(mCameraTarget != nullptr)
 		setViewCenter(mCameraTarget->getPosition());
 
-	mRenderTarget.setView(mView);
+	applyView();
 }
 
 void Camera::zoom(float zoomPercent)
 {
 	zoomPercent /= 100.f;
 	mView.zoom(zoomPercent);
+	applyView();
+}
+
+void Camera::setView(const sf::View& view)
+{
+	mView = view;
+	applyView();
 }
 
 void Camera::setViewSize(const sf::Vector2f& viewSize)
 {
 	mView.setSize(viewSize);
+	applyView();
 }
 
 void Camera::setViewCenter(const sf::Vector2f viewCenter)
@@ -43,6 +51,11 @@ void Camera::setViewCenter(const sf::Vector2f viewCenter)
 void Camera::setCameraTarget(DrawableGameObject* object)
 {
 	mCameraTarget = object;
+}
+
+void Camera::applyView()
+{
+	mRenderTarget.setView(mView);
 }
 
 void Camera::resetCameraTarget()
