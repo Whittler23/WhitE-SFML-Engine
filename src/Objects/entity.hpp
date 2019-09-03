@@ -20,7 +20,6 @@ public:
 
 private:
 	std::string mName;
-	std::list<std::unique_ptr<Entity>> mChildren;
 };
 
 }
