@@ -31,6 +31,7 @@ void GameState::onPush()
 void GameState::draw() const
 {
 	mStateRenderer.draw();
+	mStateGuiManager.drawGuiSets();
 }
 
 void GameState::input()

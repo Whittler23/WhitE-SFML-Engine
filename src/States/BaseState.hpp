@@ -10,7 +10,7 @@
 
 namespace WhitE {
 
-class GameObject;
+class Entity;
 struct SharedData;
 
 class BaseState
@@ -35,14 +35,14 @@ protected:
 	void setTranscendent(const bool transcendent) { mTrandescend = transcendent; }
 	void setShouldPop(const bool shouldPop) { mShouldPop = shouldPop; }
 
-	auto getRoot() const -> GameObject& { return *mRootObject; }
+	auto getRoot() const -> Entity& { return *mRootObject; }
 	auto getSharedData() const -> SharedData & { return mSharedData; }
 
 	float getTime() const { return mStateTimer.getElapsedTime().asSeconds(); }
 
 private:
 	SharedData& mSharedData;
-	std::unique_ptr<GameObject> mRootObject;
+	std::unique_ptr<Entity> mRootObject;
 	sf::Clock mStateTimer;
 	bool mTransparent;
 	bool mTrandescend;

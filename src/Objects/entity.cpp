@@ -1,31 +1,32 @@
-#include "Objects/gameObject.hpp"
+#include "Objects/entity.hpp"
 #include "Logger/logs.hpp"
+#include "Objects/drawableGameObject.hpp"
 
 namespace WhitE {
 
-GameObject::GameObject(const std::string& name)
+Entity::Entity(const std::string& name)
 	:mParent(nullptr)
 	,mName(name)
 {
 }
 
-void GameObject::updateObjects(const sf::Time& deltaTime)
+void Entity::updateObjects(const sf::Time& deltaTime)
 {
 	update(deltaTime);
 	updateChildren(deltaTime);
 }
 
-void GameObject::inputObjects()
+void Entity::inputObjects()
 {
 	input();
 	inputChildren();
 }
 
-void GameObject::update(const sf::Time& deltaTime)
+void Entity::update(const sf::Time& deltaTime)
 {
 }
 
-void GameObject::updateChildren(const sf::Time& deltaTime)
+void Entity::updateChildren(const sf::Time& deltaTime)
 {
 	for (auto& child : mChildren)
 	{
@@ -33,11 +34,11 @@ void GameObject::updateChildren(const sf::Time& deltaTime)
 	}
 }
 
-void GameObject::input()
+void Entity::input()
 {
 }
 
-void GameObject::inputChildren()
+void Entity::inputChildren()
 {
 	for (auto& child : mChildren)
 	{
@@ -45,14 +46,14 @@ void GameObject::inputChildren()
 	}
 }
 
-void GameObject::addChild(std::unique_ptr<GameObject> gameObject)
+void Entity::addChild(std::unique_ptr<Entity> entity)
 {
-	gameObject->setParent(this);
-	WE_CORE_INFO("\"" + gameObject->getName() + "\" was added as the child of \"" + getName() + "\"");
-	mChildren.emplace_back(std::move(gameObject));
+	entity->setParent(this);
+	WE_CORE_INFO("\"" + entity->getName() + "\" was added as the child of \"" + getName() + "\"");
+	mChildren.emplace_back(std::move(entity));
 }
 
-void GameObject::removeChild(const std::string& nameOfObjectToRemove)
+void Entity::removeChild(const std::string& nameOfObjectToRemove)
 {
 	for (auto it = mChildren.begin(); it != mChildren.end(); ++it)
 		if ((*it)->getName() == nameOfObjectToRemove)
@@ -65,20 +66,20 @@ void GameObject::removeChild(const std::string& nameOfObjectToRemove)
 	WE_CORE_WARNING("\"" + nameOfObjectToRemove + "\" is not a child of \"" + getName() + "\" and could not be removed");
 }
 
-void GameObject::removeChild(GameObject* gameObjectToRemove)
+void Entity::removeChild(Entity* entityToRemove)
 {
 	for (auto it = mChildren.begin(); it != mChildren.end(); ++it)
-		if (it->get() == gameObjectToRemove)
+		if (it->get() == entityToRemove)
 		{
 			mChildren.erase(it);
 			WE_CORE_INFO("\"" + (*it)->getName() + "\" which was child of \"" + mName + "\" was removed");
 			return;
 		}
 
-	WE_CORE_WARNING("\"" + gameObjectToRemove->getName() + "\" is not a child of \"" + mName + "\" and could not be removed");
+	WE_CORE_WARNING("\"" + entityToRemove->getName() + "\" is not a child of \"" + mName + "\" and could not be removed");
 }
 
-auto GameObject::getChild(const std::string& name) const -> GameObject&
+auto Entity::getChild(const std::string& name) const -> Entity&
 {
 	for (auto& child : mChildren)
 		if (child->getName() == name)
@@ -87,7 +88,7 @@ auto GameObject::getChild(const std::string& name) const -> GameObject&
 	throw std::runtime_error("\"" + name + "\" is not a child of \"" + mName + "\" and could not be removed");
 }
 
-void GameObject::changeParentOfChild(GameObject* child, GameObject* newParent)
+void Entity::changeParentOfChild(Entity* child, Entity* newParent)
 {
 	for (auto it = mChildren.begin(); it != mChildren.end(); ++it)
 		if (it->get() == child)
@@ -97,7 +98,7 @@ void GameObject::changeParentOfChild(GameObject* child, GameObject* newParent)
 			break;
 		}
 
-	WE_CORE_INFO("GameObject \"" + child->getName() + "\" became a child of the \"" + newParent->getName() + "\". It was a child of the \"" + mName + "\"");
+	WE_CORE_INFO("Entity \"" + child->getName() + "\" became a child of the \"" + newParent->getName() + "\". It was a child of the \"" + mName + "\"");
 }
 
 }

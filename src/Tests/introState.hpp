@@ -23,9 +23,6 @@ public:
 	void onPush() override;
 	void onPop() override;
 
-private:
-	MainMenuButtonsSet mMainMenuButtonSet;
-
 };
 
 }

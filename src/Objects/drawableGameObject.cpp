@@ -4,7 +4,7 @@
 namespace WhitE {
 
 DrawableGameObject::DrawableGameObject(StateRenderer& stateRenderer, SharedData& sharedData, LayerType layerType, const std::string& name)
-	:GameObject(name)
+	:Entity(name)
 	,mSharedData(sharedData)
 	,mVisibility(true)
 	,mRotation(0.f)

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Objects/gameObject.hpp"
+#include "Objects/entity.hpp"
 #include "Renderer/layerType.hpp"
 
 #include <SFML/Graphics.hpp>
@@ -11,7 +11,7 @@ class StateRenderer;
 struct SharedData;
 class ResourcesHolder;
 
-class DrawableGameObject : public GameObject, public sf::Drawable
+class DrawableGameObject : public Entity, public sf::Drawable
 {
 public:
 	DrawableGameObject(StateRenderer& stateRenderer, SharedData& sharedData, LayerType layerType, const std::string& name);

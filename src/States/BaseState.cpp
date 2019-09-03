@@ -1,5 +1,5 @@
 #include "States/BaseState.hpp"
-#include "Objects/gameObject.hpp"
+#include "Objects/entity.hpp"
 #include "sharedData.hpp"
 #include "Renderer/stateRenderer.hpp"
 
@@ -7,7 +7,8 @@ namespace WhitE {
 
 BaseState::BaseState(SharedData& sharedData)
 	:mSharedData(sharedData)
-	,mRootObject(std::make_unique<GameObject>("root"))
+	,mStateGuiManager(sharedData.mCamera, sharedData.mWindow.getRenderWindow())
+	,mRootObject(std::make_unique<Entity>("root"))
 	,mStateRenderer(getSharedData().mWindow.getRenderWindow())
 	,mTransparent(false)
 	,mTrandescend(false)
