@@ -4,22 +4,28 @@
 
 namespace WhitE {
 
+class Camera;
+
 class StateGuiManager
 {
 public:
-	StateGuiManager();
+	StateGuiManager(Camera& camera, sf::RenderTarget& renderTarget);
+
 
 	void updateGuiSets(const sf::Time& deltaTime);
 	void inputGuiSets();
+	void drawGuiSets() const;
 
-	void addGuiSet(BaseGuiSet* baseGuiSet);
+	void addGuiSet(std::unique_ptr<BaseGuiSet> baseGuiSet);
 	void removeGuiSet(BaseGuiSet* baseGuiSet);
 	void removeGuiSet(const std::string& guiSetName);
 
-	auto getGuiSets() -> std::list<BaseGuiSet*>*;
+	auto getGuiSets()->std::list<std::unique_ptr<BaseGuiSet>>*;
 
 private:
-	std::list<BaseGuiSet*> mGuiSets;
+	sf::RenderTarget& mRenderTarget;
+	Camera& mCamera;
+	std::list<std::unique_ptr<BaseGuiSet>> mGuiSets;
 
 };
 
