@@ -12,6 +12,7 @@ Button::Button(SharedData& sharedData, const sf::Vector2f& percentPosition, cons
 	,mButtonText(text, mSharedData.mResourcesHolder.getFontHolder().get("testFont"))
 	,mIdleColor(50, 206, 209, 120)
 	,mHoverColor(50, 206, 209, 200)
+	,mPressColor(255, 0, 0, 200)
 {
 	init(percentPosition, percentSize);
 }
@@ -39,20 +40,55 @@ void Button::init(const sf::Vector2f& percentPosition, const sf::Vector2f& perce
 void Button::input()
 {
 	if (mButtonBackground.getGlobalBounds().contains(sf::Vector2f(MouseManager::getMouseGuiPosition())))
-		mButtonBackground.setFillColor(mHoverColor);
+	{
+		mButtonState = ButtonState::Hover;
+		if (MouseManager::isMouseButtonJustPressed(sf::Mouse::Left))
+			mButtonState = ButtonState::Press;
+	}
 	else
-		mButtonBackground.setFillColor(mIdleColor);
+		mButtonState = ButtonState::Idle;
 }
 
 void Button::update(const sf::Time& deltaTime)
 {
-
+	switch (mButtonState)
+	{
+	case ButtonState::Idle:
+		onIdle();
+		break;
+	case ButtonState::Hover:
+		onHover();
+		break;
+	case ButtonState::Press:
+		onPress();
+		break;
+	}
 }
 
 void Button::draw(sf::RenderTarget & rt, sf::RenderStates) const
 {
 	rt.draw(mButtonBackground);
 	rt.draw(mButtonText);
+}
+
+bool Button::isPressed()
+{
+	return (mButtonState == ButtonState::Press);
+}
+
+void Button::onIdle()
+{
+	mButtonBackground.setFillColor(mIdleColor);
+}
+
+void Button::onHover()
+{
+	mButtonBackground.setFillColor(mHoverColor);
+}
+
+void Button::onPress()
+{
+	mButtonBackground.setFillColor(mPressColor);
 }
 
 }
