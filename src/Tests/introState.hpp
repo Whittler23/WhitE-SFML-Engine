@@ -22,6 +22,9 @@ public:
 	void onPush() override;
 	void onPop() override;
 
+private:
+	void updateButtonsActions(const sf::Time& deltaTime);
+
 };
 
 }

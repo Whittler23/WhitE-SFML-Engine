@@ -14,6 +14,8 @@ void StateGuiManager::updateGuiElements(const sf::Time& deltaTime)
 {
 	for (auto& guiElement : mGuiElements)
 		guiElement->update(deltaTime);
+	for (auto& guiButton : mGuiButtons)
+		guiButton.second->update(deltaTime);
 }
 
 void StateGuiManager::inputGuiElements()
@@ -21,7 +23,7 @@ void StateGuiManager::inputGuiElements()
 	for (auto& guiElement : mGuiElements)
 		guiElement->input();
 	for (auto& guiButton : mGuiButtons)
-		guiButton->input();
+		guiButton.second->input();
 }
 
 void StateGuiManager::drawGuiElements() const
@@ -31,8 +33,9 @@ void StateGuiManager::drawGuiElements() const
 
 	for (auto& guiElement : mGuiElements)
 		mRenderTarget.draw(*guiElement);
+
 	for (auto& guiButton : mGuiButtons)
-		mRenderTarget.draw(*guiButton);
+		mRenderTarget.draw(*guiButton.second);
 
 	mCamera.setView(tempView);
 }
@@ -44,11 +47,11 @@ void StateGuiManager::addGuiElement(std::unique_ptr<GuiElement> guiSet)
 	mGuiElements.emplace_back(std::move(guiSet));
 }
 
-void StateGuiManager::addGuiButton(std::unique_ptr<Button> guiButton)
+void StateGuiManager::addGuiButton(std::pair<std::string, std::unique_ptr<Button>> guiButton)
 {
-	WE_CORE_INFO("\"" + guiButton->getName() + "\" GUI set was added to the State Gui Manager");
+	WE_CORE_INFO("\"" + guiButton.second->getName() + "\" GUI set was added to the State Gui Manager");
 
-	mGuiButtons.emplace_back(std::move(guiButton));
+	mGuiButtons.emplace(std::move(guiButton));
 }
 
 void StateGuiManager::removeGuiElement(const std::string& guiSetName)

@@ -28,9 +28,6 @@ public:
 	auto getWindow() const -> Window & { return mWindow; }
 
 private:
-
-
-private:
 	Window& mWindow;
 	ResourcesHolder& mResources;
 	std::stack<std::unique_ptr<BaseState>> mStack;

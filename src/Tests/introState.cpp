@@ -28,10 +28,10 @@ void IntroState::onPush()
 {
 	mEntities.emplace_back(std::make_unique<LogoSplash>(getSharedData()));
 
-	mStateGuiManager.addGuiButton(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 15), sf::Vector2f(40, 15), "PLAY"));
-	mStateGuiManager.addGuiButton(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 35), sf::Vector2f(40, 15), "SETTINGS"));
-	mStateGuiManager.addGuiButton(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 55), sf::Vector2f(40, 15), "CREDITS"));
-	mStateGuiManager.addGuiButton(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 75), sf::Vector2f(40, 15), "EXIT"));
+	mStateGuiManager.addGuiButton(std::make_pair("Play", std::make_unique<Button>(getSharedData(),sf::Vector2f(30, 15), sf::Vector2f(40, 15), "PLAY")));
+	mStateGuiManager.addGuiButton(std::make_pair("Settings", std::make_unique<Button>(getSharedData(),sf::Vector2f(30, 35), sf::Vector2f(40, 15), "SETTINGS")));
+	mStateGuiManager.addGuiButton(std::make_pair("Credits", std::make_unique<Button>(getSharedData(),sf::Vector2f(30, 55), sf::Vector2f(40, 15), "CREDITS")));
+	mStateGuiManager.addGuiButton(std::make_pair("Exit", std::make_unique<Button>(getSharedData(),sf::Vector2f(30, 75), sf::Vector2f(40, 15), "EXIT")));
 
 	WE_INFO("Intro State pushed on the stack"); 
 }
@@ -69,6 +69,19 @@ void IntroState::update(const sf::Time& deltaTime)
 		entity->update(deltaTime);
 
 	mStateGuiManager.updateGuiElements(deltaTime);
+	updateButtonsActions(deltaTime);
+}
+
+void IntroState::updateButtonsActions(const sf::Time& deltaTime)
+{
+	auto& buttons = mStateGuiManager.getGuiButtons();
+	if (buttons["Play"]->isPressed())
+		return;
+	else if (buttons["Settings"]->isPressed())
+		return;
+	else if (buttons["Exit"]->isPressed())
+		setShouldPop(true);
+	
 }
 
 }

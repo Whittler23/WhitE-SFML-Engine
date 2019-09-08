@@ -19,16 +19,16 @@ public:
 	void drawGuiElements() const;
 
 	void addGuiElement(std::unique_ptr<GuiElement> guiElement);
-	void addGuiButton(std::unique_ptr<Button> guiButton);
+	void addGuiButton(std::pair<std::string, std::unique_ptr<Button>> guiButton);
 	void removeGuiElement(const std::string& guiElementName);
 
-	auto getGuiButtons()->std::list<std::unique_ptr<Button>>& { return mGuiButtons; }
+	auto getGuiButtons()->std::unordered_map<std::string, std::unique_ptr<Button>>& { return mGuiButtons; }
 
 private:
 	sf::RenderTarget& mRenderTarget;
 	Camera& mCamera;
 	std::list<std::unique_ptr<GuiElement>> mGuiElements;
-	std::list<std::unique_ptr<Button>> mGuiButtons;
+	std::unordered_map<std::string, std::unique_ptr<Button>> mGuiButtons;
 
 };
 
