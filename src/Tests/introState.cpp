@@ -10,7 +10,6 @@
 #include "Objects/entity.hpp"
 
 #include "Tests/IntroState.hpp"
-#include "Tests/logo.hpp"
 #include "Gui/GuiElements/button.hpp"
 
 namespace WhitE {
@@ -26,8 +25,6 @@ IntroState::~IntroState()
 
 void IntroState::onPush() 
 {
-	mEntities.emplace_back(std::make_unique<LogoSplash>(getSharedData()));
-
 	mStateGuiManager.addGuiButton(std::make_pair("Play", std::make_unique<Button>(getSharedData(),sf::Vector2f(30, 15), sf::Vector2f(40, 15), "PLAY")));
 	mStateGuiManager.addGuiButton(std::make_pair("Settings", std::make_unique<Button>(getSharedData(),sf::Vector2f(30, 35), sf::Vector2f(40, 15), "SETTINGS")));
 	mStateGuiManager.addGuiButton(std::make_pair("Credits", std::make_unique<Button>(getSharedData(),sf::Vector2f(30, 55), sf::Vector2f(40, 15), "CREDITS")));
@@ -38,7 +35,6 @@ void IntroState::onPush()
 
 void IntroState::onPop()
 {
-	getSharedData().mResourcesHolder.getTextureHolder().free("testLogo");
 	getSharedData().mResourcesHolder.getFontHolder().free("testFont");
 
 	ActionManager::deleteAction("Continue");
@@ -78,6 +74,7 @@ void IntroState::updateButtonsActions(const sf::Time& deltaTime)
 	if (buttons["Play"]->isPressed())
 		return;
 	else if (buttons["Settings"]->isPressed())
+
 		return;
 	else if (buttons["Exit"]->isPressed())
 		setShouldPop(true);
