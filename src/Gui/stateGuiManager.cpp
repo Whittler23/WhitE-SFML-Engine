@@ -10,64 +10,58 @@ StateGuiManager::StateGuiManager(Camera& camera, sf::RenderTarget& renderTarget)
 {
 }
 
-void StateGuiManager::updateGuiSets(const sf::Time& deltaTime)
+void StateGuiManager::updateGuiElements(const sf::Time& deltaTime)
 {
-	for (auto& guiSet : mGuiSets)
-		guiSet->updateGuiElements(deltaTime);
+	for (auto& guiElement : mGuiElements)
+		guiElement->update(deltaTime);
 }
 
-void StateGuiManager::inputGuiSets()
+void StateGuiManager::inputGuiElements()
 {
-	for (auto& guiSet : mGuiSets)
-		guiSet->inputGuiElements();
+	for (auto& guiElement : mGuiElements)
+		guiElement->input();
+	for (auto& guiButton : mGuiButtons)
+		guiButton->input();
 }
 
-void StateGuiManager::drawGuiSets() const
+void StateGuiManager::drawGuiElements() const
 {
 	sf::View tempView = mCamera.getView();
 	mCamera.setView(mCamera.getDefaultView());
 
-	for (auto& guiSet : mGuiSets)
-		for (auto& guiElement : *guiSet->getGuiSetElements())
-			mRenderTarget.draw(*guiElement);	
+	for (auto& guiElement : mGuiElements)
+		mRenderTarget.draw(*guiElement);
+	for (auto& guiButton : mGuiButtons)
+		mRenderTarget.draw(*guiButton);
 
 	mCamera.setView(tempView);
 }
 
-void StateGuiManager::addGuiSet(std::unique_ptr<BaseGuiSet> guiSet)
+void StateGuiManager::addGuiElement(std::unique_ptr<GuiElement> guiSet)
 {
 	WE_CORE_INFO("\"" + guiSet->getName() + "\" GUI set was added to the State Gui Manager");
 	
-	mGuiSets.emplace_back(std::move(guiSet));
+	mGuiElements.emplace_back(std::move(guiSet));
 }
 
-void StateGuiManager::removeGuiSet(BaseGuiSet* baseGuiSet)
+void StateGuiManager::addGuiButton(std::unique_ptr<Button> guiButton)
 {
-	for (auto it = mGuiSets.begin(); it != mGuiSets.end(); ++it)
-		if (it->get() == baseGuiSet)
-		{
-			WE_CORE_INFO("\"" + baseGuiSet->getName() + "\" GUI set was erased from the State Gui Manager");
-			mGuiSets.erase(it);
-			return;
-		}
+	WE_CORE_INFO("\"" + guiButton->getName() + "\" GUI set was added to the State Gui Manager");
+
+	mGuiButtons.emplace_back(std::move(guiButton));
 }
 
-void StateGuiManager::removeGuiSet(const std::string& guiSetName)
+void StateGuiManager::removeGuiElement(const std::string& guiSetName)
 {
-	for (auto it = mGuiSets.begin(); it != mGuiSets.end(); ++it)
+	for (auto it = mGuiElements.begin(); it != mGuiElements.end(); ++it)
 		if ((*it)->getName() == guiSetName)
 		{
 			WE_CORE_INFO("\"" + guiSetName + "\" GUI set was erased from the State Gui Manager");
-			mGuiSets.erase(it);
+			mGuiElements.erase(it);
 			return;
 		}
 
 	WE_CORE_WARNING("\"" + guiSetName + "\" GUI set does not exist and couldn't be erased from the State Gui Manager");
-}
-
-auto StateGuiManager::getGuiSets() -> std::list<std::unique_ptr<BaseGuiSet>>*
-{
-	return &mGuiSets;
 }
 
 }

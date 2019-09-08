@@ -10,7 +10,6 @@
 #include "Objects/entity.hpp"
 
 #include "Tests/IntroState.hpp"
-#include "Tests/GuiSets/mainMenuSet.hpp"
 #include "Tests/logo.hpp"
 #include "Gui/GuiElements/button.hpp"
 
@@ -29,9 +28,12 @@ void IntroState::onPush()
 {
 	mEntities.emplace_back(std::make_unique<LogoSplash>(getSharedData()));
 
-	mStateGuiManager.addGuiSet(std::make_unique<MainMenuButtonsSet>(getSharedData()));
+	mStateGuiManager.addGuiButton(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 15), sf::Vector2f(40, 15), "PLAY"));
+	mStateGuiManager.addGuiButton(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 35), sf::Vector2f(40, 15), "SETTINGS"));
+	mStateGuiManager.addGuiButton(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 55), sf::Vector2f(40, 15), "CREDITS"));
+	mStateGuiManager.addGuiButton(std::make_unique<Button>(getSharedData(), sf::Vector2f(30, 75), sf::Vector2f(40, 15), "EXIT"));
 
-	WE_INFO("Intro State pushed on the stack");
+	WE_INFO("Intro State pushed on the stack"); 
 }
 
 void IntroState::onPop()
@@ -50,7 +52,7 @@ void IntroState::draw() const
 	for (auto& entity : mEntities)
 		getRenderTarget().draw(*entity);
 
-	mStateGuiManager.drawGuiSets();
+	mStateGuiManager.drawGuiElements();
 }
 
 void IntroState::input()
@@ -58,7 +60,7 @@ void IntroState::input()
 	for (auto& entity : mEntities)
 		entity->input();
 
-	mStateGuiManager.inputGuiSets();
+	mStateGuiManager.inputGuiElements();
 }
 
 void IntroState::update(const sf::Time& deltaTime)
@@ -66,7 +68,7 @@ void IntroState::update(const sf::Time& deltaTime)
 	for (auto& entity : mEntities)
 		entity->update(deltaTime);
 
-	mStateGuiManager.updateGuiSets(deltaTime);
+	mStateGuiManager.updateGuiElements(deltaTime);
 }
 
 }

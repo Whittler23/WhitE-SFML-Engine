@@ -37,7 +37,7 @@ void GameState::draw() const
 	for (auto& entity : mEntities)
 		getRenderTarget().draw(*entity);
 		
-	mStateGuiManager.drawGuiSets();
+	mStateGuiManager.drawGuiElements();
 }
 
 void GameState::input()
@@ -45,7 +45,7 @@ void GameState::input()
 	for (auto& entity : mEntities)
 		entity->input();
 
-	mStateGuiManager.inputGuiSets();
+	mStateGuiManager.inputGuiElements();
 }
 
 void GameState::update(const sf::Time & deltaTime)
@@ -53,7 +53,7 @@ void GameState::update(const sf::Time & deltaTime)
 	for (auto& entity : mEntities)
 		entity->update(deltaTime);
 
-	mStateGuiManager.updateGuiSets(deltaTime);
+	mStateGuiManager.updateGuiElements(deltaTime);
 }
 
 }

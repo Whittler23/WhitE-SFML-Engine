@@ -1,6 +1,9 @@
 #pragma once
 
-#include "Gui/baseGuiSet.hpp"
+#include "Gui/guiElement.hpp"
+#include "GuiElements/button.hpp"
+
+#include <list>
 
 namespace WhitE {
 
@@ -11,21 +14,21 @@ class StateGuiManager
 public:
 	StateGuiManager(Camera& camera, sf::RenderTarget& renderTarget);
 
+	void updateGuiElements(const sf::Time& deltaTime);
+	void inputGuiElements();
+	void drawGuiElements() const;
 
-	void updateGuiSets(const sf::Time& deltaTime);
-	void inputGuiSets();
-	void drawGuiSets() const;
+	void addGuiElement(std::unique_ptr<GuiElement> guiElement);
+	void addGuiButton(std::unique_ptr<Button> guiButton);
+	void removeGuiElement(const std::string& guiElementName);
 
-	void addGuiSet(std::unique_ptr<BaseGuiSet> baseGuiSet);
-	void removeGuiSet(BaseGuiSet* baseGuiSet);
-	void removeGuiSet(const std::string& guiSetName);
-
-	auto getGuiSets()->std::list<std::unique_ptr<BaseGuiSet>>*;
+	auto getGuiButtons()->std::list<std::unique_ptr<Button>>& { return mGuiButtons; }
 
 private:
 	sf::RenderTarget& mRenderTarget;
 	Camera& mCamera;
-	std::list<std::unique_ptr<BaseGuiSet>> mGuiSets;
+	std::list<std::unique_ptr<GuiElement>> mGuiElements;
+	std::list<std::unique_ptr<Button>> mGuiButtons;
 
 };
 
