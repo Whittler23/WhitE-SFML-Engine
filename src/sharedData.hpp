@@ -21,6 +21,10 @@ struct SharedData
 	Window& mWindow;
 	ResourcesHolder& mResourcesHolder;
 	Camera& mCamera;
+
+	ResourcesManager<sf::Texture>& getTextures() { return mResourcesHolder.getTextureHolder(); }
+	ResourcesManager<sf::Font>& getFonts() { return mResourcesHolder.getFontHolder(); }
+	ResourcesManager<sf::SoundBuffer>& getSounds() { return mResourcesHolder.getSoundHolder(); }
 };
 
 }
