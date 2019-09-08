@@ -22,10 +22,10 @@ public:
 
 	void pushState(std::unique_ptr<BaseState> state);
 	void popState();
-	void replaceState(std::unique_ptr<BaseState> state);
 
 	auto getResources() const -> ResourcesHolder & { return mResources; }
 	auto getWindow() const -> Window & { return mWindow; }
+	bool isEmpty();
 
 private:
 	Window& mWindow;

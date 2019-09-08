@@ -62,16 +62,9 @@ void StatesManager::popState()
 		WE_CORE_ERROR("Attempt of operating on an empty stack!");
 }
 
-void StatesManager::replaceState(std::unique_ptr<BaseState> state)
+bool StatesManager::isEmpty()
 {
-	if (!mStack.empty())
-	{
-		mStack.pop();
-		mStack.push(std::move(state));
-		WE_CORE_INFO("Replaced popped from stack");
-	}
-	else
-		WE_CORE_ERROR("Attempt of operating on an empty stack!");
+	return mStack.empty();
 }
 
 }
