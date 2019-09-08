@@ -1,6 +1,5 @@
 #include "Tests/gameState.hpp"
 #include "Gui/GuiElements/button.hpp"
-#include "Objects/drawableGameObject.hpp"
 #include "sharedData.hpp"
 #include "Utilities/cast.hpp"
 
@@ -25,7 +24,7 @@ void GameState::onPush()
 	for (auto& entity : mEntities)
 	{
 		if (entity->getName() == "Player")
-			getSharedData().mCamera.setCameraTarget(dynamic_cast<DrawableGameObject*>(&*entity));
+			getSharedData().mCamera.setCameraTarget(dynamic_cast<Entity*>(&*entity));
 	}
 
 

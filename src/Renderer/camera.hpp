@@ -4,7 +4,7 @@
 
 namespace WhitE {
 
-class DrawableGameObject;
+class Entity;
 
 class Camera
 {
@@ -19,7 +19,7 @@ public:
 	void setViewSize(const sf::Vector2f& viewSize);
 	void setViewCenter(const sf::Vector2f viewCenter);
 
-	void setCameraTarget(DrawableGameObject* object);
+	void setCameraTarget(Entity* object);
 	void resetCameraTarget();
 
 	auto getViewSize() const -> const sf::Vector2f;
@@ -33,7 +33,7 @@ private:
 	sf::RenderTarget& mRenderTarget;
 	sf::View mView;
 	sf::View mDefaultView;
-	DrawableGameObject* mCameraTarget;
+	Entity* mCameraTarget;
 
 };
 

@@ -1,17 +1,17 @@
 #pragma once
 
-#include "Objects/drawableGameObject.hpp"
+#include "Objects/entity.hpp"
 #include "sharedData.hpp"
 #include "Input/actionManager.hpp"
 #include "Renderer/renderer.hpp"
 
 namespace WhitE {
 
-class Player : public DrawableGameObject
+class Player : public Entity
 {
 public:
 	Player(SharedData& sharedData)
-		:DrawableGameObject(sharedData, LayerType::KinematicObjects, "Player")
+		:Entity(sharedData, "Player")
 	{
 		init();
 	}

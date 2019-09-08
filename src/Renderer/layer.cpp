@@ -1,5 +1,4 @@
 #include "Renderer/layer.hpp"
-#include "Objects/drawableGameObject.hpp"
 #include "Logger/logs.hpp"
 
 namespace WhitE {

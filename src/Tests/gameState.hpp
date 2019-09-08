@@ -1,7 +1,6 @@
 #pragma once
 
 #include "States/BaseState.hpp"
-#include "Objects/drawableGameObject.hpp"
 #include "Input/actionManager.hpp"
 #include "sharedData.hpp"
 #include "Logger/logs.hpp"

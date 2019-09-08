@@ -1,6 +1,7 @@
 #include "Renderer/camera.hpp"
 #include "Logger/logs.hpp"
 #include "Utilities/cast.hpp"
+#include "Objects/entity.hpp"
 
 #include "Tests/player.hpp"
 
@@ -48,7 +49,7 @@ void Camera::setViewCenter(const sf::Vector2f viewCenter)
 	mView.setCenter(viewCenter);
 }
 
-void Camera::setCameraTarget(DrawableGameObject* object)
+void Camera::setCameraTarget(Entity* object)
 {
 	mCameraTarget = object;
 }

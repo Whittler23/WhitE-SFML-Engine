@@ -1,15 +1,14 @@
 #pragma once
 
-#include "Objects/drawableGameObject.hpp"
 #include "sharedData.hpp"
 
 namespace WhitE {
 
-class Background : public DrawableGameObject
+class Background : public Entity
 {
 public:
 	Background(SharedData& sharedData)
-		:DrawableGameObject(sharedData, LayerType::Background, "Background")
+		:Entity(sharedData, "Background")
 	{
 		init();
 	}

@@ -5,7 +5,6 @@
 #include "States/baseState.hpp"
 #include "Input/actionManager.hpp"
 #include "Input/mouseManager.hpp"
-#include "Objects/drawableGameObject.hpp"
 #include "Renderer/renderer.hpp"
 #include "Objects/entity.hpp"
 
