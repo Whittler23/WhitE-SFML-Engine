@@ -47,11 +47,11 @@ void StateGuiManager::addGuiElement(std::unique_ptr<GuiElement> guiSet)
 	mGuiElements.emplace_back(std::move(guiSet));
 }
 
-void StateGuiManager::addGuiButton(std::pair<std::string, std::unique_ptr<Button>> guiButton)
+void StateGuiManager::addGuiButton(const std::string& guiName, std::unique_ptr<Button> guiButton)
 {
-	WE_CORE_INFO("\"" + guiButton.second->getName() + "\" GUI set was added to the State Gui Manager");
+	WE_CORE_INFO("\"" + guiName + "\" GUI set was added to the State Gui Manager");
 
-	mGuiButtons.emplace(std::move(guiButton));
+	mGuiButtons.emplace(std::make_pair(guiName, std::move(guiButton)));
 }
 
 void StateGuiManager::removeGuiElement(const std::string& guiSetName)

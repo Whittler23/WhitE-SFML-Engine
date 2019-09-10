@@ -19,7 +19,7 @@ public:
 	void drawGuiElements() const;
 
 	void addGuiElement(std::unique_ptr<GuiElement> guiElement);
-	void addGuiButton(std::pair<std::string, std::unique_ptr<Button>> guiButton);
+	void addGuiButton(const std::string& guiName, std::unique_ptr<Button> guiButton);
 	void removeGuiElement(const std::string& guiElementName);
 
 	auto getGuiButtons()->std::unordered_map<std::string, std::unique_ptr<Button>>& { return mGuiButtons; }
