@@ -18,7 +18,8 @@ void GameState::onPop()
 }
 void GameState::onPush()
 {
-	mEntities.emplace_back(std::make_unique<Background>(getSharedData()));
+	getSharedData().getTextures().load("backgroundGame", "resources/textures/background.png");
+	mEntities.emplace_back(std::make_unique<Background>(getSharedData(), "backgroundGame"));
 	mEntities.emplace_back(std::make_unique<Player>(getSharedData()));
 
 	for (auto& entity : mEntities)

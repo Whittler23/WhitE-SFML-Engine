@@ -7,13 +7,17 @@
 
 namespace WhitE {
 
-Button::Button(SharedData& sharedData, const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize, const std::string& text)
+	Button::Button(SharedData& sharedData, const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize, const std::string& text,
+		sf::Color idleColor, sf::Color hoverColor, sf::Color pressColor, const std::string& textureName,
+		const std::string& fontName)
 	:GuiElement(sharedData, "Button")
-	,mButtonText(text, mSharedData.mResourcesHolder.getFontHolder().get("testFont"))
-	,mIdleColor(50, 206, 209, 120)
-	,mHoverColor(50, 206, 209, 200)
-	,mPressColor(255, 0, 0, 200)
+	,mButtonState(ButtonState::Idle)
+	,mButtonText(text, sf::Font())
+	,mIdleColor(idleColor)
+	,mHoverColor(hoverColor)
+	,mPressColor(pressColor)
 {
+	loadGraphics(textureName, fontName);
 	init(percentPosition, percentSize);
 }
 
@@ -22,9 +26,19 @@ Button::~Button()
 
 }
 
+void Button::loadGraphics(const std::string& textureName, const std::string& fontName)
+{
+	if (fontName == "")
+		mButtonText.setFont(mSharedData.getFonts().get("testFont"));
+	else
+		mButtonText.setFont(mSharedData.getFonts().get(fontName));
+
+	if (textureName != "")
+		mButtonBackground.setTexture(&mSharedData.getTextures().get(textureName));
+}
+
 void Button::init(const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize)
 {
-
 	mButtonBackground.setPosition(Math::getPofV(percentPosition.x, percentPosition.y, mSharedData.mCamera.getDefaultView().getSize()));
 	mButtonBackground.setSize(Math::getPofV(percentSize.x, percentSize.y, mSharedData.mCamera.getDefaultView().getSize()));
 	mButtonBackground.setFillColor(mIdleColor);
@@ -65,7 +79,7 @@ void Button::update(const sf::Time& deltaTime)
 	}
 }
 
-void Button::draw(sf::RenderTarget & rt, sf::RenderStates) const
+void Button::draw(sf::RenderTarget & rt, sf::RenderStates rs) const
 {
 	rt.draw(mButtonBackground);
 	rt.draw(mButtonText);

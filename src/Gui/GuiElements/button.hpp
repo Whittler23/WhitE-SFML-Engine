@@ -8,12 +8,13 @@ namespace WhitE {
 class Button : public GuiElement
 {
 public:
-	Button(SharedData& sharedData, const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize, const std::string& text);
+	Button(SharedData& sharedData, const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize, const std::string& text,
+		sf::Color idleColor, sf::Color hoverColor, sf::Color pressColor,
+		const std::string& textureName = "", const std::string& fontName = "");
 	~Button();
 
 	enum class ButtonState {Idle, Hover, Press};
 
-	void init(const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize);
 
 	void update(const sf::Time& deltaTime) override;
 	void input() override;
@@ -22,6 +23,9 @@ public:
 	bool isPressed();
 
 private:
+	void init(const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize);
+	void loadGraphics(const std::string& textureName, const std::string& fontName);
+
 	void onIdle();
 	void onHover();
 	void onPress();

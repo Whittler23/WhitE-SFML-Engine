@@ -7,17 +7,15 @@ namespace WhitE {
 class Background : public Entity
 {
 public:
-	Background(SharedData& sharedData)
+	Background(SharedData& sharedData, const std::string& backgroundName)
 		:Entity(sharedData, "Background")
 	{
-		init();
+		init(backgroundName);
 	}
 
-	void init()
+	void init(const std::string& backgroundName)
 	{
-		getSharedData().mResourcesHolder.getTextureHolder().load("background", "resources/textures/Background.png");
-		mSprite.setTexture(getSharedData().mResourcesHolder.getTextureHolder().get("background"));
-		
+		mSprite.setTexture(getSharedData().mResourcesHolder.getTextureHolder().get(backgroundName));	
 	}
 
 	void draw(sf::RenderTarget& rt, sf::RenderStates rs) const override
