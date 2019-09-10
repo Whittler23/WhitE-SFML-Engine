@@ -27,17 +27,21 @@ IntroState::~IntroState()
 void IntroState::onPush() 
 {
 	mStateGuiManager.addGuiButton("Play", std::make_unique<Button>(
-		getSharedData(),sf::Vector2f(7, 10), sf::Vector2f(30, 15),"PLAY"
-		, sf::Color(0, 0, 0, 50), sf::Color(0, 0, 0, 150), sf::Color::Blue, 2.f));
+		getSharedData(), sf::Vector2f(7, 10), sf::Vector2f(30, 15),  
+		sf::Color(0, 0, 0, 50), sf::Color(0, 0, 0, 150), sf::Color::Blue,
+		"PLAY", 2.f, 50u));
 	mStateGuiManager.addGuiButton("Settings", std::make_unique<Button>(
-		getSharedData(), sf::Vector2f(10, 30), sf::Vector2f(30, 15), "SETTINGS"
-		, sf::Color(0, 0, 0, 50), sf::Color(0, 0, 0,150), sf::Color::Blue, 2.f));
+		getSharedData(), sf::Vector2f(10, 30), sf::Vector2f(30, 15), 
+		sf::Color(0, 0, 0, 50), sf::Color(0, 0, 0,150), sf::Color::Blue,
+		"SETTINGS", 2.f, 50u));
 	mStateGuiManager.addGuiButton("Credits", std::make_unique<Button>(
-		getSharedData(), sf::Vector2f(13, 50), sf::Vector2f(30, 15), "CREDITS"
-		, sf::Color(0, 0, 0, 50), sf::Color(0, 0, 0, 150), sf::Color::Blue, 2.f));
+		getSharedData(), sf::Vector2f(13, 50), sf::Vector2f(30, 15), 
+		 sf::Color(0, 0, 0, 50), sf::Color(0, 0, 0, 150), sf::Color::Blue,
+		"CREDITS", 2.f, 50u));
 	mStateGuiManager.addGuiButton("Exit", std::make_unique<Button>(
-		getSharedData(), sf::Vector2f(16, 70), sf::Vector2f(30, 15), "EXIT"
-		, sf::Color(0, 0, 0, 50), sf::Color(0, 0, 0, 150), sf::Color::Blue, 2.f));
+		getSharedData(), sf::Vector2f(16, 70), sf::Vector2f(30, 15), 
+		sf::Color(0, 0, 0, 50), sf::Color(0, 0, 0, 150), sf::Color::Blue,
+		"EXIT", 2.f, 50u));
 
 	getSharedData().getTextures().load("backgroundIntro", "resources/textures/backgroundIntro.jpg");
 	mEntities.emplace_back(std::make_unique<Background>(getSharedData(), std::string("backgroundIntro")));

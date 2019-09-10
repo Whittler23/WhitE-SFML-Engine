@@ -8,8 +8,9 @@ namespace WhitE {
 class Button : public GuiElement
 {
 public:
-	Button(SharedData& sharedData, const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize, const std::string& text,
-		sf::Color idleColor, sf::Color hoverColor, sf::Color pressColor, const float buttonOutlines = 0.f,
+	Button(SharedData& sharedData, const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize,
+		sf::Color idleColor, sf::Color hoverColor, sf::Color pressColor,
+		const std::string& text, const float buttonOutlines = 0.f, const unsigned fontSize = 30.f,
 		const std::string& textureName = "", const std::string& fontName = "");
 	~Button();
 
@@ -21,8 +22,10 @@ public:
 	bool isPressed();
 
 private:
-	void init(const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize, const float buttonOutlines);
+	void init(const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize, const float buttonOutlines, const unsigned fontSize);
 	void loadGraphics(const std::string& textureName, const std::string& fontName);
+
+	sf::Vector2f getTextPosition();
 
 	void onIdle();
 	void onHover();
@@ -35,7 +38,7 @@ private:
 	sf::Color mHoverColor;
 	sf::Color mPressColor;
 
-	sf::RectangleShape mButtonBackground;
+	sf::RectangleShape mButtonBox;
 	sf::Text mButtonText;
 	sf::Vector2f mPosition;
 	ButtonState mButtonState;

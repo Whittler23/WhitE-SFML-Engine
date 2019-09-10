@@ -7,8 +7,9 @@
 
 namespace WhitE {
 
-	Button::Button(SharedData& sharedData, const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize, const std::string& text,
-		sf::Color idleColor, sf::Color hoverColor, sf::Color pressColor, const float buttonOutlines,
+	Button::Button(SharedData& sharedData, const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize,
+		sf::Color idleColor, sf::Color hoverColor, sf::Color pressColor,
+		const std::string& text, const float buttonOutlines, const unsigned fontSize,
 		const std::string& textureName, const std::string& fontName)
 	:GuiElement(sharedData, "Button")
 	,mButtonState(ButtonState::Idle)
@@ -18,7 +19,7 @@ namespace WhitE {
 	,mPressColor(pressColor)
 {
 	loadGraphics(textureName, fontName);
-	init(percentPosition, percentSize, buttonOutlines);
+	init(percentPosition, percentSize, buttonOutlines, fontSize);
 }
 
 Button::~Button()
@@ -34,27 +35,33 @@ void Button::loadGraphics(const std::string& textureName, const std::string& fon
 		mButtonText.setFont(mSharedData.getFonts().get(fontName));
 
 	if (textureName != "")
-		mButtonBackground.setTexture(&mSharedData.getTextures().get(textureName));
+		mButtonBox.setTexture(&mSharedData.getTextures().get(textureName));
 }
 
-void Button::init(const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize, const float buttonOutlines)
+void Button::init(const sf::Vector2f& percentPosition, const sf::Vector2f& percentSize, const float buttonOutlines, const unsigned fontSize)
 {
-	mButtonBackground.setPosition(Math::getPofV(percentPosition.x, percentPosition.y, mSharedData.mCamera.getDefaultView().getSize()));
-	mButtonBackground.setSize(Math::getPofV(percentSize.x, percentSize.y, mSharedData.mCamera.getDefaultView().getSize()));
-	mButtonBackground.setFillColor(mIdleColor);
-	mButtonBackground.setOutlineThickness(buttonOutlines);
+	mButtonBox.setPosition(Math::getPofV(percentPosition.x, percentPosition.y, mSharedData.mCamera.getDefaultView().getSize()));
+	mButtonBox.setSize(Math::getPofV(percentSize.x, percentSize.y, mSharedData.mCamera.getDefaultView().getSize()));
+	mButtonBox.setOutlineThickness(buttonOutlines);
 
-	mButtonText.setCharacterSize(25);
-	mButtonText.setPosition(
-		mButtonBackground.getPosition().x + mButtonBackground.getSize().x / 2 - mButtonText.getGlobalBounds().width / 2.f,
-		mButtonBackground.getPosition().y + mButtonBackground.getSize().y / 2 - mButtonText.getGlobalBounds().height / 2.f
-	);
-	mButtonText.move(sf::Vector2f(0, -5.f));
+	mButtonText.setCharacterSize(fontSize);
+	mButtonText.setPosition(getTextPosition());
+}
+
+sf::Vector2f Button::getTextPosition()
+{
+	auto textBounds(mButtonText.getGlobalBounds());
+	auto buttonBox(mButtonBox.getSize());
+	mButtonText.setOrigin((textBounds.width - buttonBox.x) / 2 + textBounds.left,
+		(textBounds.height - buttonBox.y) / 2 + textBounds.top);
+
+	return sf::Vector2f(mButtonBox.getPosition().x,
+		mButtonBox.getPosition().y);
 }
 
 void Button::input()
 {
-	if (mButtonBackground.getGlobalBounds().contains(sf::Vector2f(MouseManager::getMouseGuiPosition())))
+	if (mButtonBox.getGlobalBounds().contains(sf::Vector2f(MouseManager::getMouseGuiPosition())))
 	{
 		mButtonState = ButtonState::Hover;
 		if (MouseManager::isMouseButtonJustPressed(sf::Mouse::Left))
@@ -82,7 +89,7 @@ void Button::update(const sf::Time& deltaTime)
 
 void Button::draw(sf::RenderTarget & rt, sf::RenderStates rs) const
 {
-	rt.draw(mButtonBackground);
+	rt.draw(mButtonBox);
 	rt.draw(mButtonText);
 }
 
@@ -93,17 +100,17 @@ bool Button::isPressed()
 
 void Button::onIdle()
 {
-	mButtonBackground.setFillColor(mIdleColor);
+	mButtonBox.setFillColor(mIdleColor);
 }
 
 void Button::onHover()
 {
-	mButtonBackground.setFillColor(mHoverColor);
+	mButtonBox.setFillColor(mHoverColor);
 }
 
 void Button::onPress()
 {
-	mButtonBackground.setFillColor(mPressColor);
+	mButtonBox.setFillColor(mPressColor);
 }
 
 }
