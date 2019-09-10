@@ -3,6 +3,7 @@
 #include "States/StatesManager.hpp"
 #include "sharedData.hpp"
 #include "States/baseState.hpp"
+#include "Tests/gameState.hpp"
 #include "Input/actionManager.hpp"
 #include "Input/mouseManager.hpp"
 #include "Renderer/renderer.hpp"
@@ -71,9 +72,8 @@ void IntroState::updateButtonsActions(const sf::Time& deltaTime)
 {
 	auto& buttons = mStateGuiManager.getGuiButtons();
 	if (buttons["Play"]->isPressed())
-		return;
+		setNextState(std::make_unique<GameState>(getSharedData(), sf::Vector2f(500.f, 500.f)));
 	else if (buttons["Settings"]->isPressed())
-
 		return;
 	else if (buttons["Exit"]->isPressed())
 		setShouldPop(true);

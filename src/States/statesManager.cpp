@@ -37,6 +37,10 @@ void StatesManager::update(const sf::Time& deltaTime)
 			popState();
 			return;
 		}
+
+		if (mStack.top()->isNextStatePending())
+			pushState(mStack.top()->getNextState());
+
 		mStack.top()->update(deltaTime);
 	}
 }

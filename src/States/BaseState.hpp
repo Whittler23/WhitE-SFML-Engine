@@ -29,7 +29,11 @@ public:
 	bool getTransparent() { return mTransparent; }
 	bool getTranscendent() { return mTrandescend; }
 
+	bool isNextStatePending() { return mNextState != nullptr; }
+	std::unique_ptr<BaseState> getNextState() { return std::move(mNextState); }
+
 protected:
+	void setNextState(std::unique_ptr<BaseState> nextState) { mNextState = std::move(nextState); }
 	void setTransparent(const bool transparent) { mTransparent = transparent; }
 	void setTranscendent(const bool transcendent) { mTrandescend = transcendent; }
 	void setShouldPop(const bool shouldPop) { mShouldPop = shouldPop; }
@@ -50,6 +54,7 @@ private:
 protected:
 	StateGuiManager mStateGuiManager;
 	std::list<std::unique_ptr<Entity>> mEntities;
+	std::unique_ptr<BaseState> mNextState;
 
 };
 
