@@ -1,9 +1,6 @@
 #include "Renderer/camera.hpp"
 #include "Logger/logs.hpp"
 #include "Utilities/cast.hpp"
-#include "Objects/entity.hpp"
-
-#include "Tests/player.hpp"
 
 namespace WhitE {
 
@@ -11,7 +8,6 @@ Camera::Camera(sf::RenderTarget& renderTarget)
 	:mRenderTarget(renderTarget)
 	,mView(renderTarget.getView())
 	,mDefaultView(renderTarget.getDefaultView())
-	,mCameraTarget(nullptr)
 {
 	WE_CORE_INFO("Camera initialized with view size: " + Cast::toString(mView.getSize()));
 	WE_CORE_INFO("Camera center: " + Cast::toString(mView.getCenter()));
@@ -19,8 +15,6 @@ Camera::Camera(sf::RenderTarget& renderTarget)
 
 void Camera::update(const sf::Time& deltaTime)
 {
-	if(mCameraTarget != nullptr)
-		setViewCenter(mCameraTarget->getPosition());
 
 	applyView();
 }
@@ -49,11 +43,6 @@ void Camera::setViewCenter(const sf::Vector2f viewCenter)
 	mView.setCenter(viewCenter);
 }
 
-void Camera::setCameraTarget(Entity* object)
-{
-	mCameraTarget = object;
-}
-
 void Camera::applyView()
 {
 	mRenderTarget.setView(mView);
@@ -61,9 +50,6 @@ void Camera::applyView()
 
 void Camera::resetCameraTarget()
 {
-	mCameraTarget = nullptr;
-	sf::View x = mRenderTarget.getDefaultView();
-	mView.reset(sf::FloatRect(0, 0, x.getSize().x, x.getSize().y));
 }
 
 auto Camera::getViewSize() const -> const sf::Vector2f

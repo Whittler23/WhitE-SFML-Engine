@@ -6,7 +6,7 @@
 
 namespace WhitE {
 
-class BaseState;
+class State;
 class ResourcesHolder;
 class Window;
 
@@ -20,7 +20,7 @@ public:
 	void draw();
 	void input();
 
-	void pushState(std::unique_ptr<BaseState> state);
+	void pushState(std::unique_ptr<State> state);
 	void popState();
 
 	auto getResources() const -> ResourcesHolder & { return mResources; }
@@ -30,7 +30,7 @@ public:
 private:
 	Window& mWindow;
 	ResourcesHolder& mResources;
-	std::stack<std::unique_ptr<BaseState>> mStack;
+	std::stack<std::unique_ptr<State>> mStack;
 };
 
 }

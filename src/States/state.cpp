@@ -1,10 +1,9 @@
-#include "States/BaseState.hpp"
-#include "Objects/entity.hpp"
+#include "States/state.hpp"
 #include "sharedData.hpp"
 
 namespace WhitE {
 
-BaseState::BaseState(SharedData& sharedData)
+State::State(SharedData& sharedData)
 	:mSharedData(sharedData)
 	,mRenderTarget(sharedData.mWindow.getRenderWindow())
 	,mStateGuiManager(sharedData.mCamera, sharedData.mWindow.getRenderWindow())
@@ -15,7 +14,7 @@ BaseState::BaseState(SharedData& sharedData)
 {
 }
 
-BaseState::~BaseState()
+State::~State()
 {
 
 }

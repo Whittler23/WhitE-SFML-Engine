@@ -1,5 +1,5 @@
 #include "States/StatesManager.hpp"
-#include "States/baseState.hpp"
+#include "States/state.hpp"
 #include "window.hpp"
 
 #include "Logger/logs.hpp"
@@ -45,7 +45,7 @@ void StatesManager::update(const sf::Time& deltaTime)
 	}
 }
 
-void StatesManager::pushState(std::unique_ptr<BaseState> state)
+void StatesManager::pushState(std::unique_ptr<State> state)
 {
 	mStack.push(std::move(state));
 	mStack.top()->onPush();

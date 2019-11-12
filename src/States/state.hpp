@@ -9,14 +9,13 @@
 
 namespace WhitE {
 
-class Entity;
 struct SharedData;
 
-class BaseState
+class State
 {
 public:
-	BaseState(SharedData& sharedData);
-	virtual ~BaseState();
+	State(SharedData& sharedData);
+	virtual ~State();
 
 	virtual void onPop() = 0;
 	virtual void onPush() = 0;
@@ -30,10 +29,10 @@ public:
 	bool getTranscendent() { return mTrandescend; }
 
 	bool isNextStatePending() { return mNextState != nullptr; }
-	std::unique_ptr<BaseState> getNextState() { return std::move(mNextState); }
+	std::unique_ptr<State> getNextState() { return std::move(mNextState); }
 
 protected:
-	void setNextState(std::unique_ptr<BaseState> nextState) { mNextState = std::move(nextState); }
+	void setNextState(std::unique_ptr<State> nextState) { mNextState = std::move(nextState); }
 	void setTransparent(const bool transparent) { mTransparent = transparent; }
 	void setTranscendent(const bool transcendent) { mTrandescend = transcendent; }
 	void setShouldPop(const bool shouldPop) { mShouldPop = shouldPop; }
@@ -53,8 +52,7 @@ private:
 
 protected:
 	StateGuiManager mStateGuiManager;
-	std::list<std::unique_ptr<Entity>> mEntities;
-	std::unique_ptr<BaseState> mNextState;
+	std::unique_ptr<State> mNextState;
 
 };
 

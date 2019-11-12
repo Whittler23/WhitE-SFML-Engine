@@ -1,18 +1,13 @@
 #include "gameEngine.hpp"
-#include "States/BaseState.hpp"
+#include "States/state.hpp"
 #include "Input/actionManager.hpp"
-
-#include "Tests/IntroState.hpp"
-#include "Tests/gameState.hpp"
 
 namespace WhitE {
 
 GameEngine::GameEngine()
 	:mGameWindow()
 	,mStatesManager(mGameWindow, mResourcesHolder)
-	,mRenderer(mGameWindow.getRenderWindow())
 	,mCamera(mGameWindow.getRenderWindow())
-	,mDataCollector(mRenderer)
 	,mSharedData(mGameWindow, mResourcesHolder, mCamera)
 {
 	initializeRenderer();
@@ -27,7 +22,7 @@ void GameEngine::initializeRenderer()
 {
 }
 
-void GameEngine::initState(std::unique_ptr<BaseState> initState)
+void GameEngine::initState(std::unique_ptr<State> initState)
 {
 	mStatesManager.pushState(std::move(initState));
 }
@@ -42,11 +37,6 @@ void GameEngine::initGameFonts(std::vector<std::pair<std::string, std::string>> 
 {
 	for (auto& font : fonts)
 		mResourcesHolder.getFontHolder().load(font.first, font.second);
-}
-
-void GameEngine::initDataCollector()
-{
-	mDataCollector.init(mResourcesHolder);
 }
 
 void GameEngine::start()
@@ -70,9 +60,7 @@ void GameEngine::start()
 
 void GameEngine::update(const sf::Time deltaTime)
 {
-	mRenderer.update(deltaTime);
 	mStatesManager.update(deltaTime);
-	mDataCollector.update(deltaTime);
 	mCamera.update(deltaTime);
 	mGameWindow.updateEvents();
 }
@@ -80,15 +68,7 @@ void GameEngine::update(const sf::Time deltaTime)
 void GameEngine::input()
 {
 	mStatesManager.input();
-	mDataCollector.input();
 	mGameWindow.input();
-
-	if (ActionManager::isActionPressed("PopState"))
-		getStatesManager().popState();
-	if(ActionManager::isActionPressed("PushGame"))
-		getStatesManager().pushState(std::make_unique<GameState>(getSharedData(), sf::Vector2f(500, 500)));
-	if (ActionManager::isActionPressed("PushIntro"))
-		getStatesManager().pushState(std::make_unique<IntroState>(getSharedData()));
 }
 
 void GameEngine::draw()
@@ -96,7 +76,6 @@ void GameEngine::draw()
 	mGameWindow.getRenderWindow().clear();
 
 	mStatesManager.draw();
-	mRenderer.draw();
 
 	mGameWindow.getRenderWindow().display();
 }

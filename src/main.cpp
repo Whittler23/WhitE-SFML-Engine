@@ -3,8 +3,6 @@
 #include "Logger/logs.hpp"
 #include "Input/actionManager.hpp"
 
-#include "Tests/introState.hpp"
-
 #include <stdexcept>
 
 #ifdef WE_WINDOWS
@@ -42,10 +40,7 @@ try {
 	WhitE::GameEngine gameEngine;
 
 	gameEngine.initGameFonts(initFontsVector);
-	gameEngine.initState(std::make_unique<WhitE::IntroState>(gameEngine.getSharedData()));
 	gameEngine.initGlobalActions(initActionsVector);
-
-	gameEngine.initDataCollector();
 
 	gameEngine.start();
 }
@@ -60,4 +55,5 @@ catch (...)
 	showMessageBox("Unknown Error!");
 	throw;
 }
+
 }
