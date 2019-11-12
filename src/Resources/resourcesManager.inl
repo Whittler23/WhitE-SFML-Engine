@@ -1,7 +1,6 @@
 #include "Resources/resourcesManager.hpp"
 #include "Logger/logs.hpp"
 
-
 template<typename ResourceType>
 WhitE::ResourcesManager<typename ResourceType>::ResourcesManager()
 {
