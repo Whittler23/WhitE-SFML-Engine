@@ -28,11 +28,12 @@ project "WhitE"
 
     defines { "SFML_STATIC" }
 
-    libdirs { "../../vendor/SFML/lib" }
+    libdirs { "../../vendor/sfml-2.5.1/lib" }
 
     includedirs{
         "../../src",
-        "../../vendor/SFML/include"
+        "../../vendor/sfml-2.5.1/include",
+        "../../vendor/entt-3.2.0/src"
     }
 
     links{
