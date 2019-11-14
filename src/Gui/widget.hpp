@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace WhitE {
+namespace WhitE::gui {
 
 class GuiContainer;
 

@@ -7,7 +7,7 @@
 #include <unordered_map>
 #include <memory>
 
-namespace WhitE {
+namespace WhitE::gui {
 
 class Widget;
 
@@ -15,6 +15,8 @@ class GuiContainer : public Widget
 {
 public:
 	GuiContainer();
+
+	void draw(const sf::RenderTarget& renderTarget, sf::RenderStates renderStates = sf::RenderStates::Default) const;
 
 	void addWidget(const std::string& widgetName, std::unique_ptr<Widget> newWidget);
 

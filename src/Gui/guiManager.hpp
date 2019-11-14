@@ -1,33 +1,46 @@
 #pragma once
 
+#include "Gui/guiContainer.hpp"
+
+#include <SFML/Graphics.hpp>
+
 #include <unordered_map>
 #include <string>
 #include <memory>
 
-namespace WhitE {
+namespace WhitE::gui {
 
 class Widget;
 
 class GuiManager
 {
 public:
-	GuiManager();
+	GuiManager(sf::RenderTarget& renderTarget);
+	GuiManager(sf::RenderTarget& renderTarget, const sf::View& view);
 
-	void addContainer(const std::string& containerName, std::unique_ptr<Widget> newContainer);
+	void draw() const;
 
-	Widget* get(const std::string& containerName);
-	Widget* get(const Widget& container);
-	std::vector<std::unique_ptr<Widget>>& getContainers();
+	void setView(const sf::View& newView);
 
-	void remove(const std::string& containerName);
-	void remove(const Widget& container);
-	void removeAllContainers();
+	void addWidget(const std::string& widgetName, std::unique_ptr<Widget> newWidget);
 
-	std::string getContainerName();
-	std::vector<std::string> getContainerNames();
+	Widget* get(const std::string& widgetName);
+	Widget* get(const Widget& widget);
+	std::vector<std::unique_ptr<Widget>>& getWidgets();
+
+	void remove(const std::string& widgetName);
+	void remove(const Widget& widget);
+	void removeAllWidgets();
+
+	sf::View getView();
+	std::string getWidgetName();
+	std::vector<std::string> getWidgetNames();
 
 private:
-	std::unordered_map<std::string, std::unique_ptr<Widget>> mContainersMap;
+	sf::View mGuiView;
+	GuiContainer mGuiContainer;
+
+	sf::RenderTarget& mRenderTarget;
 };
 
 }
