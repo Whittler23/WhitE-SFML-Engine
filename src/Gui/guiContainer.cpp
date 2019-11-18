@@ -6,13 +6,13 @@ namespace WhitE::gui {
 
 GuiContainer::GuiContainer()
 {
-
 }
 
 void GuiContainer::draw(sf::RenderTarget& renderTarget, const sf::RenderStates renderStates) const
 {
 	for (const auto& widget : mWidgetsMap)
-		widget.second->draw(renderTarget, renderStates);
+		if(widget.second->getVisible())
+			widget.second->draw(renderTarget, renderStates);
 }
 
 void GuiContainer::addWidget(const std::string& widgetName, std::unique_ptr<Widget> newWidget)
@@ -20,6 +20,8 @@ void GuiContainer::addWidget(const std::string& widgetName, std::unique_ptr<Widg
 	newWidget->setParent(this);
 	mWidgetsMap.emplace(std::make_pair(widgetName, std::move(newWidget)));
 }
+
+/////////////////////////////////////////////////////////////
 
 Widget* GuiContainer::get(const std::string& widgetName)
 {
@@ -33,6 +35,8 @@ std::vector<Widget*> GuiContainer::getWidgets()
 		widgets.emplace_back(widget.second.get());
 	return widgets;
 }
+
+/////////////////////////////////////////////////////////////
 
 void GuiContainer::remove(const std::string& widgetName)
 {
@@ -51,6 +55,8 @@ void GuiContainer::removeAllWidgets()
 	mWidgetsMap.clear();
 }
 
+/////////////////////////////////////////////////////////////
+
 void GuiContainer::setSize(const sf::Vector2f& newSize)
 {
 	mContainerSize = newSize;
@@ -61,6 +67,8 @@ sf::Vector2f GuiContainer::getSize()
 	return mContainerSize;
 }
 
+/////////////////////////////////////////////////////////////
+
 void GuiContainer::setPosition(const sf::Vector2f& newPosition)
 {
 	mContainerPosition = newPosition;
@@ -70,5 +78,7 @@ sf::Vector2f GuiContainer::getPosition()
 {
 	return mContainerPosition;
 }
+
+/////////////////////////////////////////////////////////////
 
 }

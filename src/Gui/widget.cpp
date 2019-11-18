@@ -15,19 +15,24 @@ namespace WhitE::gui {
 	{
 	}
 
-
-
 	void Widget::draw(sf::RenderTarget& renderTarget, const sf::RenderStates& renderStates) const
 	{
-		sf::RectangleShape rect({ 400.f, 400.f });
-		rect.setFillColor(sf::Color::Red);
-
-		renderTarget.draw(rect, renderStates);
+		
 	}
 
 	void Widget::setParent(GuiContainer* parentContainer)
 	{
 		mParent = parentContainer;
+	}
+
+	void Widget::setSize(const sf::Vector2f& newSize)
+	{
+		mSize = newSize;
+	}
+
+	void Widget::setPosition(const sf::Vector2f& newPosition)
+	{
+		mPosition = newPosition;
 	}
 
 	sf::Vector2f Widget::getSize()
@@ -48,6 +53,16 @@ namespace WhitE::gui {
 	std::string Widget::getName()
 	{
 		return mWidgetName;
+	}
+
+	bool Widget::getVisible()
+	{
+		return mVisible;
+	}
+
+	bool Widget::getEnabled()
+	{
+		return mEnabled;
 	}
 
 }

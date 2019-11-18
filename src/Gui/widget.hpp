@@ -17,11 +17,17 @@ public:
 
 	void setParent(GuiContainer* parentContainer);
 
+	void setSize(const sf::Vector2f& newSize);
+	void setPosition(const sf::Vector2f& newPosition);
+
 	sf::Vector2f getSize();
 	sf::Vector2f getPosition();
 
 	GuiContainer* getParent();
 	std::string getName();
+
+	bool getVisible();
+	bool getEnabled();
 
 private:
 	std::string mWidgetName;

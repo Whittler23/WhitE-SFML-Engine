@@ -4,7 +4,7 @@ namespace WhitE::gui{
 
 GuiManager::GuiManager(sf::RenderTarget& renderTarget)
 	:mRenderTarget(renderTarget)
-	,mGuiView()
+	,mGuiView(renderTarget.getView())
 {
 	mGuiContainer.setSize(mGuiView.getSize());
 }
