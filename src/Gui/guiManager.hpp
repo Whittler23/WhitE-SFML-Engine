@@ -25,16 +25,15 @@ public:
 	void addWidget(const std::string& widgetName, std::unique_ptr<Widget> newWidget);
 
 	Widget* get(const std::string& widgetName);
-	Widget* get(const Widget& widget);
-	std::vector<std::unique_ptr<Widget>>& getWidgets();
+	std::vector<Widget*> getWidgets();
 
 	void remove(const std::string& widgetName);
 	void remove(const Widget& widget);
 	void removeAllWidgets();
 
-	sf::View getView();
-	std::string getWidgetName();
 	std::vector<std::string> getWidgetNames();
+
+	sf::View getView();
 
 private:
 	sf::View mGuiView;

@@ -6,7 +6,6 @@ namespace WhitE {
 State::State(SharedData& sharedData)
 	:mSharedData(sharedData)
 	,mRenderTarget(sharedData.mWindow.getRenderWindow())
-	,mStateGuiManager(sharedData.mCamera, sharedData.mWindow.getRenderWindow())
 	,mNextState(nullptr)
 	,mTransparent(false)
 	,mTrandescend(false)

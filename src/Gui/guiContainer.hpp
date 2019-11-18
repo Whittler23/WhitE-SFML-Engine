@@ -21,15 +21,17 @@ public:
 	void addWidget(const std::string& widgetName, std::unique_ptr<Widget> newWidget);
 
 	Widget* get(const std::string& widgetName);
-	Widget* get(const Widget& widget);
-	std::vector<std::unique_ptr<Widget>>& getWidgets();
+	std::vector<Widget*> getWidgets();
 
 	void remove(const std::string& widgetName);
 	void remove(const Widget& widget);
 	void removeAllWidgets();
 
-	void setSize(sf::Vector2f newSize);
+	void setSize(const sf::Vector2f& newSize);
 	sf::Vector2f getSize();
+
+	void setPosition(const sf::Vector2f& newPosition);
+	sf::Vector2f getPosition();
 
 private:
 	std::unordered_map<std::string, std::unique_ptr<Widget>> mWidgetsMap;

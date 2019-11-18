@@ -18,6 +18,9 @@ public:
 	sf::Vector2f getSize();
 	sf::Vector2f getPosition();
 
+	std::string getName();
+	void draw(const sf::RenderTarget& renderTarget, sf::RenderStates& renderStates) const;
+
 private:
 	std::string mWidgetName;
 	GuiContainer* mParent;

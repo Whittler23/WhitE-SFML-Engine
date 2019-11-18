@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Gui/stateGuiManager.hpp"
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -51,7 +50,6 @@ private:
 	bool mShouldPop;
 
 protected:
-	StateGuiManager mStateGuiManager;
 	std::unique_ptr<State> mNextState;
 
 };
