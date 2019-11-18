@@ -13,13 +13,15 @@ class Widget
 public:
 	Widget();
 
+	void draw(sf::RenderTarget& renderTarget, const sf::RenderStates& renderStates) const;
+
 	void setParent(GuiContainer* parentContainer);
 
 	sf::Vector2f getSize();
 	sf::Vector2f getPosition();
 
+	GuiContainer* getParent();
 	std::string getName();
-	void draw(const sf::RenderTarget& renderTarget, sf::RenderStates& renderStates) const;
 
 private:
 	std::string mWidgetName;

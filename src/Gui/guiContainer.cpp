@@ -9,7 +9,7 @@ GuiContainer::GuiContainer()
 
 }
 
-void GuiContainer::draw(const sf::RenderTarget& renderTarget, sf::RenderStates renderStates) const
+void GuiContainer::draw(sf::RenderTarget& renderTarget, const sf::RenderStates renderStates) const
 {
 	for (const auto& widget : mWidgetsMap)
 		widget.second->draw(renderTarget, renderStates);
