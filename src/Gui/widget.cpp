@@ -10,6 +10,7 @@ Widget::Widget()
 	,mOpacity(100)
 	,mVisible(true)
 	,mEnabled(true)
+	,mMouseHover(false)
 {
 }
 
@@ -20,6 +21,7 @@ Widget::Widget(const std::string& widgetName)
 	,mOpacity(100)
 	,mVisible(true)
 	,mEnabled(true)
+	,mMouseHover(false)
 {
 }
 

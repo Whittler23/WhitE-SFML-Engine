@@ -16,7 +16,7 @@ public:
 	Widget();
 	Widget(const std::string& widgetName);
 
-	void draw(sf::RenderTarget& renderTarget, const sf::RenderStates& renderStates) const;
+	virtual void draw(sf::RenderTarget& renderTarget, const sf::RenderStates& renderStates) const;
 
 	void setParent(GuiContainer* parentContainer);
 	GuiContainer* getParent() const;
@@ -51,6 +51,7 @@ private:
 	int mOpacity;
 	bool mVisible;
 	bool mEnabled;
+	bool mMouseHover;
 };
 
 }
