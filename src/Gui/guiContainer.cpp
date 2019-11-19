@@ -1,12 +1,22 @@
 #include "Gui/guiContainer.hpp"
+#include "Gui/widgetProperties.hpp"
 
 #include "Logger/logs.hpp"
 
 namespace WhitE::gui {
 
+/////////////////////////////////////////////////////////////
+					//CONSTRUCTORS
+/////////////////////////////////////////////////////////////
+
 GuiContainer::GuiContainer()
+	:Widget("GuiContainer")
 {
 }
+
+/////////////////////////////////////////////////////////////
+						//PUBLIC
+/////////////////////////////////////////////////////////////
 
 void GuiContainer::draw(sf::RenderTarget& renderTarget, const sf::RenderStates renderStates) const
 {
@@ -20,23 +30,6 @@ void GuiContainer::addWidget(const std::string& widgetName, std::unique_ptr<Widg
 	newWidget->setParent(this);
 	mWidgetsMap.emplace(std::make_pair(widgetName, std::move(newWidget)));
 }
-
-/////////////////////////////////////////////////////////////
-
-Widget* GuiContainer::get(const std::string& widgetName)
-{
-	return mWidgetsMap.at(widgetName).get();
-}
-
-std::vector<Widget*> GuiContainer::getWidgets()
-{
-	std::vector<Widget*> widgets;
-	for (const auto& widget : mWidgetsMap)
-		widgets.emplace_back(widget.second.get());
-	return widgets;
-}
-
-/////////////////////////////////////////////////////////////
 
 void GuiContainer::remove(const std::string& widgetName)
 {
@@ -55,28 +48,39 @@ void GuiContainer::removeAllWidgets()
 	mWidgetsMap.clear();
 }
 
-/////////////////////////////////////////////////////////////
-
-void GuiContainer::setSize(const sf::Vector2f& newSize)
+void GuiContainer::setContainerSize(const sf::Vector2f& newSize)
 {
+	mPreviousContainerSize = mContainerSize;
 	mContainerSize = newSize;
+	recalculateWidgetsValues();
 }
 
-sf::Vector2f GuiContainer::getSize()
+sf::Vector2f GuiContainer::getContainerSize() const
 {
 	return mContainerSize;
 }
 
-/////////////////////////////////////////////////////////////
-
-void GuiContainer::setPosition(const sf::Vector2f& newPosition)
+Widget* GuiContainer::get(const std::string& widgetName) const
 {
-	mContainerPosition = newPosition;
+	return mWidgetsMap.at(widgetName).get();
 }
 
-sf::Vector2f GuiContainer::getPosition()
+std::vector<Widget*> GuiContainer::getWidgets() const
 {
-	return mContainerPosition;
+	std::vector<Widget*> widgets;
+	for (const auto& widget : mWidgetsMap)
+		widgets.emplace_back(widget.second.get());
+	return widgets;
+}
+
+/////////////////////////////////////////////////////////////
+						//PRIVATE
+/////////////////////////////////////////////////////////////
+
+void GuiContainer::recalculateWidgetsValues()
+{
+	for (auto& widget : mWidgetsMap)
+		widget.second->recalculateValues(mPreviousContainerSize);
 }
 
 /////////////////////////////////////////////////////////////

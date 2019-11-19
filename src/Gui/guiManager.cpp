@@ -59,6 +59,7 @@ void GuiManager::removeAllWidgets()
 std::vector<std::string> GuiManager::getWidgetNames()
 {
 	return std::vector<std::string>();
+	//TODO
 }
 
 sf::View GuiManager::getView()
@@ -70,10 +71,7 @@ void GuiManager::setView(const sf::View& newView)
 {
 	mGuiView = newView;
 	mGuiContainer.setSize(newView.getSize());
-	mGuiContainer.setPosition(newView.getCenter());
-
-	//TODO: Change in the view must be followed by the changes
-	//		in the gui widgets' sizes
+	mGuiContainer.setPosition(newView.getCenter()); //?
 }
 
 }

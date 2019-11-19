@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Gui/widgetProperties.hpp"
+
 #include <SFML/Graphics.hpp>
 
 #include <string>
@@ -12,31 +14,40 @@ class Widget
 {
 public:
 	Widget();
+	Widget(const std::string& widgetName);
 
 	void draw(sf::RenderTarget& renderTarget, const sf::RenderStates& renderStates) const;
 
 	void setParent(GuiContainer* parentContainer);
+	GuiContainer* getParent() const;
 
-	void setSize(const sf::Vector2f& newSize);
-	void setPosition(const sf::Vector2f& newPosition);
+	void setSize(const sf::Vector2f& newPercentageSize);
+	sf::Vector2f getSize() const;
 
-	sf::Vector2f getSize();
-	sf::Vector2f getPosition();
+	void setPosition(const sf::Vector2f& newPercentagePosition);
+	sf::Vector2f getPosition() const;
 
-	GuiContainer* getParent();
-	std::string getName();
+	std::string getName() const;
 
-	bool getVisible();
-	bool getEnabled();
+	void setVisible(bool isVisible);
+	bool getVisible() const;
+
+	void setEnabled(bool isEnabled);
+	bool getEnabled() const;
+
+	void setOpacity(int mOpacity);
+	int getOpacity() const;
+
+	void recalculateValues(const sf::Vector2f& prevViewSize);
+
+protected:
+	WidgetProperties mWidgetProperties;
 
 private:
+	GuiContainer* mParent; 
+
+	sf::Sprite mSprite;
 	std::string mWidgetName;
-	GuiContainer* mParent;
-
-	//NOTE: Below variables are relative to the container size
-	sf::Vector2f mSize;
-	sf::Vector2f mPosition;
-
 	int mOpacity;
 	bool mVisible;
 	bool mEnabled;

@@ -20,25 +20,24 @@ public:
 
 	void addWidget(const std::string& widgetName, std::unique_ptr<Widget> newWidget);
 
-	Widget* get(const std::string& widgetName);
-	std::vector<Widget*> getWidgets();
-
 	void remove(const std::string& widgetName);
 	void remove(const Widget& widget);
 	void removeAllWidgets();
 
-	void setSize(const sf::Vector2f& newSize);
-	sf::Vector2f getSize();
+	void setContainerSize(const sf::Vector2f& newSize);
+	sf::Vector2f getContainerSize() const;
 
-	void setPosition(const sf::Vector2f& newPosition);
-	sf::Vector2f getPosition();
+	Widget* get(const std::string& widgetName) const;
+	std::vector<Widget*> getWidgets() const;
+
+private:
+	void recalculateWidgetsValues();
 
 private:
 	std::unordered_map<std::string, std::unique_ptr<Widget>> mWidgetsMap;
 
-	//NOTE: Below variables are relative to the window size
 	sf::Vector2f mContainerSize;
-	sf::Vector2f mContainerPosition;
+	sf::Vector2f mPreviousContainerSize;
 };
 
 }
