@@ -8,15 +8,19 @@ class WidgetProperties
 {
 public:
 	WidgetProperties();
-	WidgetProperties(const sf::Vector2f& percentagePosition, const sf::Vector2f percentageSize, const sf::Vector2f& viewSize);
-	WidgetProperties(float percentageXPosition, float percentageYPosition, float percentageWidth, float percentageHeight, const sf::Vector2f& viewSize);
+	WidgetProperties(const sf::Vector2f& percentagePosition, const sf::Vector2f percentageSize, const sf::Vector2f& containerSize);
+	WidgetProperties(float percentageXPosition, float percentageYPosition, float percentageWidth, float percentageHeight, const sf::Vector2f& containerSize);
 
-	void recalculateValues(const sf::Vector2f& prevViewSize, const sf::Vector2f& newViewSize);
+	void recalculateValues(const sf::Vector2f& prevContainerSize, const sf::Vector2f& newContainerSize);
 
-	void setSize(const sf::Vector2f& percentageSize, const sf::Vector2f& viewSize);
+	void setPercentageSize(const sf::Vector2f& percentagePosition, const sf::Vector2f& containerSize);
+	void setSize(const sf::Vector2f& size);
+	sf::Vector2f getPercentageSize(const sf::Vector2f& containerSize) const;
 	sf::Vector2f getSize() const;
 
-	void setPosition(const sf::Vector2f& percentagePosition, const sf::Vector2f& viewSize);
+	void setPercentagePosition(const sf::Vector2f& percentagePosition, const sf::Vector2f& containerSize);
+	void setPosition(const sf::Vector2f& position);
+	sf::Vector2f getPercentagePosition(const sf::Vector2f& containerSize) const;
 	sf::Vector2f getPosition() const;
 
 private:

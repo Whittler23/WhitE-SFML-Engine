@@ -1,5 +1,6 @@
 #include "Gui/widget.hpp"
 #include "Gui/guiContainer.hpp"
+#include <iostream>
 
 namespace WhitE::gui {
 
@@ -39,9 +40,14 @@ GuiContainer* Widget::getParent() const
 	return mParent;
 }
 
-void Widget::setSize(const sf::Vector2f& newPercentageSize)
+void Widget::setPercentageSize(const sf::Vector2f& newPercentageSize)
 {
-	mWidgetProperties.setSize(newPercentageSize, mParent->getSize());
+	mWidgetProperties.setPercentageSize(newPercentageSize, getParent()->getContainerSize());
+}
+
+void Widget::setSize(const sf::Vector2f& newSize)
+{
+	mWidgetProperties.setSize(newSize);
 }
 
 sf::Vector2f Widget::getSize() const
@@ -49,14 +55,29 @@ sf::Vector2f Widget::getSize() const
 	return mWidgetProperties.getSize();
 }
 
-void Widget::setPosition(const sf::Vector2f& newPercentagePosition)
+sf::Vector2f Widget::getPercentSize() const
 {
-	mWidgetProperties.setPosition(newPercentagePosition, mParent->getPosition());
+	return mWidgetProperties.getPercentageSize(getParent()->getContainerSize());
+}
+
+void Widget::setPercentagePosition(const sf::Vector2f& newPercentagePosition)
+{
+	mWidgetProperties.setPercentagePosition(newPercentagePosition, mParent->getContainerSize());
+}
+
+void Widget::setPosition(const sf::Vector2f& newPosition)
+{
+	mWidgetProperties.setPosition(newPosition);
 }
 
 sf::Vector2f Widget::getPosition() const
 {
 	return mWidgetProperties.getPosition();
+}
+
+sf::Vector2f Widget::getPercentPosition() const
+{
+	return mWidgetProperties.getPercentagePosition(getParent()->getContainerSize());
 }
 
 std::string Widget::getName() const

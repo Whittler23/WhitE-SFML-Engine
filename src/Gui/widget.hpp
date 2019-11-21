@@ -21,11 +21,15 @@ public:
 	void setParent(GuiContainer* parentContainer);
 	GuiContainer* getParent() const;
 
-	void setSize(const sf::Vector2f& newPercentageSize);
+	void setPercentageSize(const sf::Vector2f& newPercentageSize);
+	void setSize(const sf::Vector2f& newSize);
 	sf::Vector2f getSize() const;
+	sf::Vector2f getPercentSize() const;
 
-	void setPosition(const sf::Vector2f& newPercentagePosition);
+	void setPercentagePosition(const sf::Vector2f& newPercentagePosition);
+	void setPosition(const sf::Vector2f& newPosition);
 	sf::Vector2f getPosition() const;
+	sf::Vector2f getPercentPosition() const;
 
 	std::string getName() const;
 

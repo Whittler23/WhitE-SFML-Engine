@@ -2,6 +2,7 @@
 #include "Logger/logInitializer.hpp"
 #include "Logger/logs.hpp"
 #include "Input/actionManager.hpp"
+#include "testState.hpp"
 
 #include <stdexcept>
 
@@ -12,10 +13,8 @@
 namespace {
 
 	std::vector<std::pair<std::string, sf::Keyboard::Key>> initActionsVector = {
-	{ std::make_pair("SwitchDebugger", sf::Keyboard::Tab)	},
-	{ std::make_pair("PopState", sf::Keyboard::BackSpace)	},
-	{ std::make_pair("PushGame", sf::Keyboard::G)			},
-	{ std::make_pair("PushIntro", sf::Keyboard::I)			}
+	{ std::make_pair("changeSize", sf::Keyboard::Space)	},
+	{ std::make_pair("changeSizePercent", sf::Keyboard::Enter)	},
 	};
 
 	std::vector<std::pair<std::string, std::string>> initFontsVector = {
@@ -41,6 +40,7 @@ try {
 
 	gameEngine.initGameFonts(initFontsVector);
 	gameEngine.initGlobalActions(initActionsVector);
+	gameEngine.initState(std::make_unique<WhitE::TestState>(gameEngine.getSharedData()));
 
 	gameEngine.start();
 }

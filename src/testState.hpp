@@ -1,6 +1,8 @@
 #include "States/state.hpp"
 #include "Gui/guiManager.hpp"
 #include "sharedData.hpp"
+#include "Gui/Widgets/button.hpp"
+#include "Input/actionManager.hpp"
 
 namespace WhitE {
 
@@ -18,20 +20,30 @@ public:
 	void onPush() override
 	{
 		mGuiManager.addWidget("testWidget", std::make_unique<gui::Widget>());
+		mGuiManager.addWidget("button", std::make_unique<gui::Button>());
+		mGuiManager.get("button")->setPercentagePosition(sf::Vector2f(0.f, 0.f));
+		mGuiManager.get("button")->setPercentageSize(sf::Vector2f(10.f, 5.f));
 	}
 
 	void draw() const override
-	{
-		sf::RectangleShape rect({ 400.f, 200.f });
-		rect.setFillColor(sf::Color::Blue);
-		rect.setPosition({ 700.f, 300.f });
-		getSharedData().mWindow.getRenderWindow().draw(rect);
+	{	
 		mGuiManager.draw();
 	}
 
 	void input() override
 	{
-
+		if (ActionManager::isActionPressed("changeSize"))
+		{
+			auto* widget = mGuiManager.get("button");
+			auto position = widget->getPosition();
+			widget->setPosition(position + sf::Vector2f(10.f, 10.f));
+		}
+		else if (ActionManager::isActionPressed("changeSizePercent"))
+		{
+			auto* widget = mGuiManager.get("button");
+			auto position = widget->getPercentPosition();
+			widget->setPercentagePosition(position + sf::Vector2f(1.f, 1.f));
+		}
 	}
 
 	void update(const sf::Time& deltaTime) override

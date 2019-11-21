@@ -13,7 +13,7 @@ GuiManager::GuiManager(sf::RenderTarget& renderTarget, const sf::View& view)
 	:mRenderTarget(renderTarget)
 	,mGuiView(view)
 {
-	mGuiContainer.setSize(mGuiView.getSize());
+	mGuiContainer.setContainerSize(mGuiView.getSize());
 }
 
 void GuiManager::draw() const
