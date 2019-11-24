@@ -2,6 +2,8 @@
 
 #include "Gui/guiContainer.hpp"
 
+#include "Gui/Widgets/button.hpp"
+
 #include <SFML/Graphics.hpp>
 
 #include <unordered_map>
@@ -35,6 +37,9 @@ public:
 
 	sf::View getView();
 
+	template<typename T>
+	T* createWidget(const std::string& widgetName);
+
 private:
 	sf::View mGuiView;
 	GuiContainer mGuiContainer;
@@ -43,3 +48,5 @@ private:
 };
 
 }
+
+#include "Gui/guiManager.inl"

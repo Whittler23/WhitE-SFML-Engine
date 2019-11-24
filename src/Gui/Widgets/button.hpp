@@ -11,6 +11,9 @@ public:
 
 	void draw(sf::RenderTarget& renderTarget, sf::RenderStates renderStates) const;
 
+private:
+	sf::Text mButtonText;
+
 
 };
 

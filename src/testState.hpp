@@ -19,17 +19,9 @@ public:
 
 	void onPush() override
 	{
-		getSharedData().getTextures().load("buttonTexture", "resources/textures/button.png");
-		sf::Texture& buttonTexture = getSharedData().getTextures().get("buttonTexture");
-		mGuiManager.addWidget("testWidget", std::make_unique<gui::Widget>());
-		mGuiManager.addWidget("button", std::make_unique<gui::Button>());
-		mGuiManager.addWidget("button2", std::make_unique<gui::Button>());
-		mGuiManager.get("button")->setPercentagePosition(sf::Vector2f(0.f, 0.f));
-		mGuiManager.get("button")->setPercentageSize(sf::Vector2f(10.f, 5.f));
-		auto& button2 = dynamic_cast<gui::Button&>(*mGuiManager.get("button2"));
-		button2.setTexture(buttonTexture);
-		button2.setPercentagePosition(sf::Vector2f(40.f, 30.f));
-
+		auto* widget = mGuiManager.createWidget<gui::Button>("button");
+		widget->setPercentagePosition(sf::Vector2f(0.f, 0.f));
+		widget->setPercentageSize(sf::Vector2f(10.f, 5.f));
 	}
 
 	void draw() const override

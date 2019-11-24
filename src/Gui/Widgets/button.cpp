@@ -9,7 +9,7 @@ Button::Button()
 
 void Button::draw(sf::RenderTarget& renderTarget, sf::RenderStates renderStates) const
 {
-	if (hasTexture())
+	if (!hasTexture())
 	{
 		sf::RectangleShape buttonBody;
 		buttonBody.setPosition(getPosition());
