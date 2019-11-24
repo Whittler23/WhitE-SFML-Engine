@@ -16,7 +16,7 @@ class GuiContainer : public Widget
 public:
 	GuiContainer();
 
-	void draw(sf::RenderTarget& renderTarget, const sf::RenderStates renderStates = sf::RenderStates::Default) const;
+	void draw(sf::RenderTarget& renderTarget, sf::RenderStates renderStates = sf::RenderStates::Default) const;
 
 	void addWidget(const std::string& widgetName, std::unique_ptr<Widget> newWidget);
 

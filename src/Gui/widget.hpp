@@ -16,10 +16,14 @@ public:
 	Widget();
 	Widget(const std::string& widgetName);
 
-	virtual void draw(sf::RenderTarget& renderTarget, const sf::RenderStates& renderStates) const;
+	virtual void draw(sf::RenderTarget& renderTarget, sf::RenderStates renderStates) const;
 
 	void setParent(GuiContainer* parentContainer);
 	GuiContainer* getParent() const;
+
+	void setTexture(sf::Texture& widgetTexture);
+	bool hasTexture() const;
+	const sf::Texture* getTexture() const;
 
 	void setPercentageSize(const sf::Vector2f& newPercentageSize);
 	void setSize(const sf::Vector2f& newSize);
@@ -46,11 +50,11 @@ public:
 
 protected:
 	WidgetProperties mWidgetProperties;
+	sf::Sprite mSprite;
 
 private:
 	GuiContainer* mParent; 
 
-	sf::Sprite mSprite;
 	std::string mWidgetName;
 	int mOpacity;
 	bool mVisible;

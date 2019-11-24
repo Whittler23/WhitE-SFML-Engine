@@ -9,11 +9,8 @@ class Button : public ClickableWidget
 public:
 	Button();
 
-	void draw(sf::RenderTarget& renderTarget, const sf::RenderStates& renderStates) const;
+	void draw(sf::RenderTarget& renderTarget, sf::RenderStates renderStates) const;
 
-private:
-	bool mHasTexture;
-	sf::RectangleShape buttonBody;
 
 };
 

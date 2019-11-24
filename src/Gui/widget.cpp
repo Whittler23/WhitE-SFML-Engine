@@ -26,8 +26,10 @@ Widget::Widget(const std::string& widgetName)
 {
 }
 
-void Widget::draw(sf::RenderTarget& renderTarget, const sf::RenderStates& renderStates) const
+void Widget::draw(sf::RenderTarget& renderTarget, sf::RenderStates renderStates) const
 {
+	renderStates.transform.translate(getPosition());
+	renderTarget.draw(mSprite, renderStates);
 }
 
 void Widget::setParent(GuiContainer* parentContainer)
@@ -38,6 +40,21 @@ void Widget::setParent(GuiContainer* parentContainer)
 GuiContainer* Widget::getParent() const
 {
 	return mParent;
+}
+
+void Widget::setTexture(sf::Texture& widgetTexture)
+{
+	mSprite.setTexture(widgetTexture);
+}
+
+bool Widget::hasTexture() const
+{
+	return mSprite.getTexture();
+}
+
+const sf::Texture* Widget::getTexture() const
+{
+	return mSprite.getTexture();
 }
 
 void Widget::setPercentageSize(const sf::Vector2f& newPercentageSize)

@@ -18,7 +18,7 @@ GuiContainer::GuiContainer()
 						//PUBLIC
 /////////////////////////////////////////////////////////////
 
-void GuiContainer::draw(sf::RenderTarget& renderTarget, const sf::RenderStates renderStates) const
+void GuiContainer::draw(sf::RenderTarget& renderTarget, sf::RenderStates renderStates) const
 {
 	for (const auto& widget : mWidgetsMap)
 		if(widget.second->getVisible())
